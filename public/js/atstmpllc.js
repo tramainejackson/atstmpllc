@@ -92,43 +92,6 @@ $(document).ready(function() {
 		}
 	}
 	
-//Bank form error check function
-	function bankErrorCheck() {
-		var errors = 0;
-		var errorMsg = "";
-		var errorModal;
-		var bankName = $(".newBankName");
-		var accountNum = $(".newBankAN");
-		var checkBal = $(".newBankBalanceC");
-		var saveBal = $(".newBankBalanceS");
-
-		if(bankName.val() == "" || bankName.val() == null) {
-			errors++;
-			errorMsg += "<li class='errorItem'>" + errors + ". " + "Bank Name Cannot Be Empty</li>";
-			bankName.addClass("error_border");
-		} if(accountNum.val() == null || accountNum.val() == "") {
-			errors++;
-			errorMsg += "<li class='errorItem'>" + errors + ". " + "Account Number Cannot Be Empty</li>";
-			accountNum.addClass("error_border");
-		} if(checkBal.val() == null || checkBal.val() == ""){
-			errors++;
-			errorMsg += "<li class='errorItem'>" + errors + ". " + "Checking Balance Cannot Be Empty</li>";
-			checkBal.addClass("error_border");
-		} if(saveBal.val() == null || saveBal.val() == ""){
-			errors++;
-			errorMsg += "<li class='errorItem'>" + errors + ". " + "Savings Balance Cannot Be Empty</li>";
-			saveBal.addClass("error_border");
-		}
-		
-		$("#return_messages ul").empty();
-		$("#return_messages ul").append(errorMsg);
-		if(errors > 0) {
-			event.preventDefault();			
-		} else {
-			return true;
-		}
-	}
-	
 //User form error check function
 	function userErrorCheck() {
 		var errors = 0;

@@ -33,42 +33,42 @@
 		</div>
 	<?php } ?>
 	<?php if(isset($_GET["create_bank"])) { ?>
-		<div class="createNewBank">
-			<div class="row">
-				<div class="formDiv">
-					<div class="formDivTitle row">
-						<h2 class="">Create A New Bank</h2>
-					</div>
-					<div class="createBankContent row">
-						<form name="" class="" action="add_bank.php" method="POST" enctype="multipart/form-data" onsubmit="bankErrorCheck();">
-							<div class="row">
-								<span class="spanLabel col-md-4 col-sm-4 col-xs-5">Bank Name</span>
-								<input type="text" name="bank_name" class="newBankName col-md-6 col-sm-6 col-xs-5" value="" placeholder="Enter Bank Name" />
-							</div>
-							<div class="row">
-								<span class="spanLabel col-md-4 col-sm-4 col-xs-5">Account Number</span>
-								<input type="text" name="account_num" class="newBankAN col-md-6 col-sm-6 col-xs-5" value="" placeholder="Enter Account Number" />
-							</div>
-							<div class="balanceInputDiv row">
-								<span class="spanLabel col-md-4 col-sm-4 col-xs-5">Checking Balance</span>
-								<input type="number" name="checking_balance" class="newBankBalanceC balanceInput col-md-6 col-sm-6 col-xs-5" value="" placeholder="0.00" />
-							</div>
-							<div class="balanceInputDiv row">
-								<span class="spanLabel col-md-4 col-sm-4 col-xs-5">Saving Balance</span>
-								<input type="number" name="savings_balance" class="newBankBalanceS balanceInput col-md-6 col-sm-6 col-xs-5" value="" placeholder="0.00" />
-							</div>
-							<div class="row">
-								<input hidden type="text" name="added_by" value="<?php echo $user->full_name(); ?>" />
-								<input hidden type="text" name="owner_id" value="<?php echo $user->user_id; ?>" />
-							</div>
-							<div class="row">
-								<input type="submit" name="submit" class="" value="Create" />
-							</div>
-						</form>
-					</div>
+	<div class="createNewBank">
+		<div class="row">
+			<div class="formDiv">
+				<div class="formDivTitle row">
+					<h2 class="">Create A New Bank</h2>
+				</div>
+				<div class="createBankContent row">
+					<form name="" class="" action="add_bank.php" method="POST" enctype="multipart/form-data" onsubmit="bankErrorCheck();">
+						<div class="row">
+							<span class="spanLabel col-md-4 col-sm-4 col-xs-5">Bank Name</span>
+							<input type="text" name="bank_name" class="newBankName col-md-6 col-sm-6 col-xs-5" value="" placeholder="Enter Bank Name" />
+						</div>
+						<div class="row">
+							<span class="spanLabel col-md-4 col-sm-4 col-xs-5">Account Number</span>
+							<input type="text" name="account_num" class="newBankAN col-md-6 col-sm-6 col-xs-5" value="" placeholder="Enter Account Number" />
+						</div>
+						<div class="balanceInputDiv row">
+							<span class="spanLabel col-md-4 col-sm-4 col-xs-5">Checking Balance</span>
+							<input type="number" name="checking_balance" class="newBankBalanceC balanceInput col-md-6 col-sm-6 col-xs-5" value="" placeholder="0.00" />
+						</div>
+						<div class="balanceInputDiv row">
+							<span class="spanLabel col-md-4 col-sm-4 col-xs-5">Saving Balance</span>
+							<input type="number" name="savings_balance" class="newBankBalanceS balanceInput col-md-6 col-sm-6 col-xs-5" value="" placeholder="0.00" />
+						</div>
+						<div class="row">
+							<input hidden type="text" name="added_by" value="<?php echo $user->full_name(); ?>" />
+							<input hidden type="text" name="owner_id" value="<?php echo $user->user_id; ?>" />
+						</div>
+						<div class="row">
+							<input type="submit" name="submit" class="" value="Create" />
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
+	</div>
 	<?php } ?>
 	<?php if(isset($_GET["edit_bank"])) { ?>
 		<?php $editable_banks = $userAccount[0]->get_users_editable_banks(); ?>

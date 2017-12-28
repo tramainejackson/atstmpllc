@@ -20,7 +20,7 @@ class CreateBankAccountsTable extends Migration
             $table->integer('account_num')->nullable();
             $table->double('checking_balance', 15, 2)->nullable();
             $table->double('savings_balance', 15, 2)->nullable();
-            $table->string('created_by', 30)->nullable();
+            $table->integer('created_by')->nullable();
             $table->timestamps();
 			$table->softDeletes();
         });

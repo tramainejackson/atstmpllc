@@ -17,4 +17,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::resource('bank', 'BankAccountController');
+
+Route::resource('account', 'UserAccountController');
+
+Route::resource('users', 'HomeController');
+
+Route::resource('transactions', 'TransactionController');
+
 Route::get('/home', 'HomeController@index')->name('home');
