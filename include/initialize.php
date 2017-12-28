@@ -1,0 +1,11 @@
+<?php
+	require_once("sessions.php");
+	require_once("database.php");
+	require_once("database_object.php");
+	require_once("user.php");
+	require_once("user_account.php");
+	require_once("bank_account.php");
+	require_once("transaction.php");
+	require_once("feedback.php");
+	require_once("functions.php");
+?>

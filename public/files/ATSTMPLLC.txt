@@ -1,0 +1,50 @@
+---------------------------------------
+			ATSTMPLLC
+---------------------------------------
+
+Ability to send emails
+Add ability to pay rent
+Allow video additions
+Maybe: Add plugin for images for mobile pictures
+Fix IE issues
+Ability to remove photos, in bunches
+Add spinner for form submission
+Send self email when user adds to contact
+Add preview of uploading image to settings page
+Add home button on mobile page for when logged in
+Update welcome page
+Check if file is image or not. Add intervention image to upload images is if is an image
+Style delete modal better
+Update files pages
+If current session, do not show welcome dropdown on reroute to welcome page
+Make contact submission ajax call
+Add sign up form to welcome drop down
+Add spining loading message when processing pictures
+Add Intervention image
+Update file upload size
+File Uploads
+Add column to contacts table to indicate where the users was added via public form
+Add last login to users to track logins
+Figure out the email for jacksonrentalhomesllc.com (Using G Suite)
+Add mail information
+Add some more to the mobile nav
+Change contacts and properties index page when logged in
+Fix Dropdown for logout
+Ability to remove carousel images
+Create mobile site
+Make flash session message animate from top
+Fix PNG picture of checkmarks
+If available date is before today then add available date. If not just say available
+Add States to DB to loop through
+Change the display of the DOB when viewing
+Change the Apartment/House toggle
+Change Website Fonts
+Needs domain
+Mock site: http://reybold.com/ | https://www.rentmsh.com/ | http://www.broderickapts.com
+Needs to be able to add videos and pictures for each property
+Property Variables: description, address, price, active/deactivate, apartment or house
+Contact Variables: Email address, phone number, current tenant, name, family size, dob, age
+Needs to be able to store contacts
+Need logo
+Change contact information, mission statement
+export HTTP_PROXY="http://155.247.166.25:8080"
