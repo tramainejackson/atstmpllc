@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Transaction;
+use App\BankAccount;
+use App\UserAccount;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class TransactionController extends Controller
 {
@@ -14,7 +18,12 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+		$user = Auth::user();
+		$user_id = Auth::id();
+		$user_name = $user->firstname . " " . $user->lastname;
+        $companyTransactions = Transaction::where('company_id', $user->company_id)->get();
+		
+		return view('transactions.index', compact('user', 'companyTransactions'));
     }
 
     /**
@@ -24,7 +33,13 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        //
+        $user = Auth::user();
+		$user_id = Auth::id();
+		$user_name = $user->firstname . " " . $user->lastname;
+        $userAccounts = UserAccount::where('user_id', $user_id)->get();
+        $companyTransactions = Transaction::where('company_id', $user->company_id)->get();
+		
+		return view('transactions.create', compact('user', 'userAccounts', 'companyTransactions'));
     }
 
     /**

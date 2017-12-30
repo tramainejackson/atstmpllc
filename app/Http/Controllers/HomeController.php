@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Http\File;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -20,11 +24,26 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Show the users dashboard.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
+    {
+		$active_user = Auth::user();
+		$users = \App\User::where('company_id', $active_user->company_id)->get();
+		$user_photo = $active_user->picture;
+		$user_name = $active_user->firstname . " " . $active_user->lastname;
+		
+        return view('users.index', compact('active_user', 'user_name', 'user_photo', 'users'));
+    }
+	
+	/**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+	public function home()
     {
 		$user = Auth::user();
 		$user_accounts = \App\UserAccount::where('user_id', Auth::id())->get();
@@ -34,5 +53,202 @@ class HomeController extends Controller
 		$last_login = $user->last_login != null ? $user->last_login : $user->created_at;
 		
         return view('home', compact('user_accounts', 'transactions', 'user_photo', 'last_login', 'user_name'));
+    }
+	
+	/**
+     * Show the create page.
+     *
+     * @return \Illuminate\Http\Response
+    */
+    public function create()
+    {		
+        return view('users.create');
+    }
+	
+	/**
+     * Show the create page.
+     *
+     * @return \Illuminate\Http\Response
+    */
+    public function show()
+    {		
+        return view('users.create');
+    }
+	
+	/**
+     * Show the edit page for selected user
+    */
+    public function edit($id)
+    {		
+		$user = User::find($id);
+		
+        return view('users.edit', compact('user'));
+    }
+	
+	/**
+     * Show the edit page for selected user
+    */
+    public function update(Request $request, $id)
+    {		
+		// Validate incoming data
+		$message = "";
+		$this->validate($request, [
+			'email' => 'required|max:50',
+			'username' => 'required|max:30',
+			'firstname' => 'required|max:30',
+			'lastname' => 'required|max:30',
+		]);
+		
+		$current_user = Auth::user();
+		$user = User::find($id);
+		
+		// Create new user instance
+		$user->username = $request->username;
+		$user->email = $request->email;
+		$user->firstname = $request->firstname;
+		$user->lastname = $request->lastname;
+		$user->editable = $request->editable;
+		
+		if($request->password != null) {
+			$user->password = bcrypt($request->password);			
+		}
+
+		if($user->save()) {
+			$message .= "<li class='okItem'>User Saved Successfully</li>";
+		} else {
+			$message .= "<li class='okItem'>User Account Not Updated. Please Try Updating Again</li>";
+		}
+
+		return redirect()->action('HomeController@edit', $user)->with('status', $message);			
+    }
+	
+	/**
+     * Store the new user.
+     *
+     * @return \Illuminate\Http\Response
+    */
+    public function store(Request $request)
+    {
+		$message = "";
+		// Validate incoming data
+		$this->validate($request, [
+			'email' => 'required|max:50|unique:users',
+			'username' => 'required|max:30|unique:users',
+			'firstname' => 'required|max:30',
+			'lastname' => 'required|max:30',
+			'password' => 'required|min:6',
+		]);
+		
+		$current_user = Auth::user();
+
+		// Create new user instance
+		$newUser = new User();
+		$newUser->username = $request->username;
+		$newUser->password = bcrypt($request->password);
+		$newUser->email = $request->email;
+		$newUser->firstname = $request->firstname;
+		$newUser->lastname = $request->lastname;
+		$newUser->editable = $request->editable;
+		$newUser->company_id = $current_user->company_id;
+		
+		// Store picture if one was uploaded
+		// if($request->hasFile('upload_photo')) {
+			// foreach($request->file('upload_photo') as $newImage) {
+				// $addImage = new TripPictures();
+				// $fileName = $newImage->getClientOriginalName();
+				
+				// // Check to see if images is too large
+				// if($newImage->getError() == 1) {
+					// $error .= "The file " . $fileName . " is too large and could not be uploaded";
+				// } elseif($newImage->getError() == 0) {
+					// // Check to see if images is about 25MB
+					// // If it is then resize it
+					// if($newImage->getClientSize() < 25000000) {
+						// if($newImage->guessExtension() == 'jpeg' || $newImage->guessExtension() == 'png' || $newImage->guessExtension() == 'gif' || $newImage->guessExtension() == 'webp' || $newImage->guessExtension() == 'jpg') {
+							// $image = Image::make($newImage->getRealPath())->orientate();
+							// $path = $newImage->store('public/images');
+							// $image->save(storage_path('app/'. $path));
+
+							// $addImage->trip_id = $request->trip_id;
+							// $addImage->picture_name = $path;
+							
+							// if($addImage->save()) {
+								// $success++;
+							// }
+						// } else {
+							// $error .= "The file " . $fileName . " could not be added bcause it is the wrong image type.";
+						// }
+					// } else {
+						// // Resize the image before storing. Will need to hash the filename first
+						// $path = $newImage->store('public/images');
+						// $image = Image::make($newImage)->orientate()->resize(1500, null, function ($constraint) {
+							// $constraint->aspectRatio();
+							// $constraint->upsize();
+						// });
+						// $image->save(storage_path('app/'. $path));
+
+						// $addImage->trip_id = $request->trip_id;
+						// $addImage->picture_name = $path;
+						
+						// if($addImage->save()) {
+							// $success++;
+						// }
+					// }
+				// } else {
+					// $error .= "The file " . $fileName . " may be corrupt and could not be uploaded.";
+				// }
+			// }
+		// } else {
+			// foreach($request->file('upload_photo') as $newImage) {
+				// $addImage = new TripPictures();
+				// $fileName = $newImage->getClientOriginalName();
+
+				// if($newImage->getError() == 1) {
+					// $error .= "The file " . $fileName . " is too large and could not be uploaded";
+					// // $image = Image::make($newImage)->orientate();
+				// } elseif($newImage->getError() == 0) {
+					// // Change if statement to check size of images and make sure smaller than 5kb
+					// // If not resize to a smaller size
+					// if($newImage->getClientSize() < $newImage->getMaxFileSize()) {
+						// $path = $newImage->store('public/images');
+						// $image = Image::make($newImage)->orientate();
+						// $image->save(storage_path('app/'. $path));
+
+						// $addImage->trip_id = $request->trip_id;
+						// $addImage->picture_name = $path;
+						
+						// if($addImage->save()) {
+							// $success++;
+						// }
+					// } else {
+						// // Resize the image before storing. Will need to hash the filename first
+						// $path = $newImage->store('public/images');
+						// $image = Image::make($newImage)->orientate()->resize(1500, null, function ($constraint) {
+							// $constraint->aspectRatio();
+							// $constraint->upsize();
+						// });
+						// $image->save(storage_path('app/'. $path));
+
+						// $addImage->trip_id = $request->trip_id;
+						// $addImage->picture_name = $path;
+						
+						// if($addImage->save()) {
+							// $success++;
+						// }
+					// }
+				// } else {
+					// $error .= "The file " . $fileName . " may be corrupt and could not be uploaded.";
+				// }
+			// }
+		// }
+		// $newUser->picture = isset($_FILES["picture"]) ? $newUser->checkNewPicture($_FILES["picture"]) : "";
+
+		if($newUser->save()) {
+			$message .= "<li class='okItem'>User Saved Successfully</li>";
+		} else {
+			$message .= "<li class='errorItem'>Unable to add user.</li>.";
+		}
+		
+		return redirect()->action('HomeController@edit', $newUser)->with('status', $message);
     }
 }

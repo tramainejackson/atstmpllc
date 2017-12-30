@@ -1,13 +1,20 @@
 $(document).ready(function() {	
 
-//Common Variables
+// Common Variables
 	var windowHeight = window.innerHeight;
 	var windowWidth = document.body.clientWidth;
 	var documentHeight = document.body.clientHeight;
 	
-//Make the body min height the same size as the window height 	
+// Make the body min height the same size as the window height 	
 	$("body#admin_page_login").css({minHeight:windowHeight});
-
+	
+// Initialize datetimepicker
+	$('.datetimepicker').datetimepicker({
+		timepicker:false,
+		format:'m/d/Y',
+		value:'12/03/2017'
+	});
+	
 //Show gif images while ajax is loading
 	$(document).ajaxStart(function(){
 		$("#loading_image").fadeIn("slow");
@@ -41,17 +48,21 @@ $(document).ready(function() {
 	
 	//Bring up pictures to see before deleting or bring up all pictures
 		$("body").on("change", ".transactionSelect", function(e) {
+			var addtFormGroups = $(".alternateFormGroups");
 			var transactionType = $(".transactionSelect").val();
 
-			if(transactionType == "Transfer") {
-				window.open("transactions.php?new_transaction&transfer", "_self");
-			} else if(transactionType == "Withdrawl") {
-				window.open("transactions.php?new_transaction&withdrawl", "_self");
-			} else if(transactionType == "Deposit") {
-				window.open("transactions.php?new_transaction&deposit", "_self");
-			} else if(transactionType == "Purchase") {
-				window.open("transactions.php?new_transaction", "_self");
-			}
+			$(addtFormGroups).slideUp(function() {
+				if(transactionType == "Transfer") {
+					$('.addtTransferForm').each(function() {
+						$(this).slideDown();
+					});
+				} else if(transactionType == "Withdrawl") {
+					$('.addtWithdrawlForm').slideDown();
+				} else if(transactionType == "Deposit") {
+					$('.addtDepositForm').slideDown();
+				} else if(transactionType == "Purchase") {
+				}
+			});
 		});
 		
 	//Show transaction photo in colorbox plugins

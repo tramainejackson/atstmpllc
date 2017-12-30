@@ -14,19 +14,22 @@
 		<div class="row">
 			<div class="col-12">
 				<div class="adminLoginHeader">
-					<h2 class="">Login</h2>
+					<h2 class="text-white">Login</h2>
 				</div>
 			</div>
 			<div class="col-12">
-				<div class="panel-body">
+				<div class="panel-body p-4 rounded text-light">
 					<form class="form-horizontal" method="POST" action="{{ route('login') }}">
 						{{ csrf_field() }}
 
 						<div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
 							<label for="username" class="col-md-4 control-label">Username</label>
 
-							<div class="col-md-6">
-								<input id="username" type="username" class="form-control" name="username" value="{{ old('username') }}" required autofocus>
+							<div class="col-md-8">
+								<div class="input-group">
+									<span class="oi oi-person input-group-addon bg-white"></span>
+									<input id="username" type="text" class="form-control border-left-0" name="username" value="{{ old('username') }}" required autofocus>
+								</div>
 
 								@if ($errors->has('username'))
 									<span class="help-block">
@@ -39,8 +42,11 @@
 						<div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
 							<label for="password" class="col-md-4 control-label">Password</label>
 
-							<div class="col-md-6">
-								<input id="password" type="password" class="form-control" name="password" required>
+							<div class="col-md-8">
+								<div class="input-group">
+									<span class="oi oi-lock-locked input-group-addon bg-white"></span>
+									<input id="password" type="password" class="form-control border-left-0" name="password" required>
+								</div>
 
 								@if ($errors->has('password'))
 									<span class="help-block">
@@ -51,7 +57,7 @@
 						</div>
 
 						<div class="form-group">
-							<div class="col-md-6 col-md-offset-4">
+							<div class="col-md-8 col-md-offset-4">
 								<div class="checkbox">
 									<label>
 										<input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me

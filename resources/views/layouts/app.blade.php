@@ -24,10 +24,9 @@
 <body>
 	<div id="app">
 		@if(session('status'))
-			<h2 class="flashMessage text-center">{{ session('status') }}</h2>
-		@endif
-		@if(session('error'))
-			<h2 class="errorMessage text-center">{{ session('error') }}</h2>
+			<div id="return_messages">
+				<ul class="flashMessage text-center">{!! session('status') !!}</ul>
+			</div>
 		@endif
 		<div class="modal fade loadingSpinner">
 			<div class="loader"></div>

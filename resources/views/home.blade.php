@@ -59,11 +59,11 @@
 							<div class="bankAccountInfo">
 								<div class="">
 									<span class="spanLabel">Checking Balance:</span>
-									<span class="itemContent">{{ $bankAccount->checking_balance != null ? '$' . $bankAccount->checking_balance : '$0.00' }}</span>
+									<span class="itemContent">{{ $bankAccount->checking_balance != null ? '$' . number_format($bankAccount->checking_balance, 2) : '$0.00' }}</span>
 								</div>
 								<div class="">
 									<span class="spanLabel">Savings Balance:</span>
-									<span class="itemContent">{{ $bankAccount->savings_balance != null ? '$' . $bankAccount->savings_balance : '$0.00' }}</span>
+									<span class="itemContent">{{ $bankAccount->savings_balance != null ? '$' . number_format($bankAccount->savings_balance, 2) : '$0.00' }}</span>
 								</div>
 							</div>
 						</div>
@@ -92,11 +92,11 @@
 							<div class="myBankInfo">
 								<div class="">
 									<span class="spanLabel">My balance within checking account:</span>
-									<span class="itemContent">{{ $user_account->checking_share != null ? '$' . $user_account->checking_share : '$0.00' }}</span>
+									<span class="itemContent">{{ $user_account->checking_share != null ? '$' . number_format($user_account->checking_share, 2) : '$0.00' }}</span>
 								</div>
 								<div class="">
 									<span class="spanLabel">My balance within savings account:</span>
-									<span class="itemContent">{{ $user_account->savings_share != null ? '$' . $user_account->savings_share : '$0.00' }}</span>
+									<span class="itemContent">{{ $user_account->savings_share != null ? '$' . number_format($user_account->savings_share, 2) : '$0.00' }}</span>
 								</div>
 								<div class="">
 									<span class="spanLabel">Percentage of Account:</span>

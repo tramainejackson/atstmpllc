@@ -4,13 +4,13 @@
 			<button type="button" class="navbar-toggle d-inline-block d-lg-none rounded" data-toggle="collapse" data-target="#myNavbar">
 				<span class="oi oi-menu"></span>
 			</button>
-			<a class="navbar-brand" href="/">ATSTMPLLC</a>
+			<a class="navbar-brand" href="/home">{{ Auth::user()->company->company_name }}</a>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="navbar-nav mr-auto">
-				<li class="navLinks"><a href="bank.php">Banks</a></li>
-				<li class="navLinks"><a href="transactions.php?view_transactions">Transactions</a></li>
-				<li class="navLinks"><a href="users.php?edit_user">Users</a></li>
+				<li class="navLinks"><a href="/bank">Banks</a></li>
+				<li class="navLinks"><a href="/transactions">Transactions</a></li>
+				<li class="navLinks"><a href="/users">Users</a></li>
 			</ul>
 			<ul class="navbar-nav">
 				<li class="navLinks">
