@@ -28,7 +28,7 @@
 							<div class="col-md-8">
 								<div class="input-group">
 									<span class="oi oi-person input-group-addon bg-white"></span>
-									<input id="username" type="text" class="form-control border-left-0" name="username" value="{{ old('username') }}" required autofocus>
+									<input id="username" type="text" class="form-control border-left-0" name="username" value="{{ old('username') }}" placeholder="Enter Username" required autofocus>
 								</div>
 
 								@if ($errors->has('username'))
@@ -45,7 +45,7 @@
 							<div class="col-md-8">
 								<div class="input-group">
 									<span class="oi oi-lock-locked input-group-addon bg-white"></span>
-									<input id="password" type="password" class="form-control border-left-0" name="password" required>
+									<input id="password" type="password" class="form-control border-left-0" name="password"  placeholder="Enter Password" required>
 								</div>
 
 								@if ($errors->has('password'))

@@ -36,4 +36,5 @@ class Transaction extends Model
 	public function bank_account() {
 		return $this->belongsTo('App\BankAccount');
 	}
+
 }

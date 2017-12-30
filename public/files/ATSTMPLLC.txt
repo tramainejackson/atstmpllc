@@ -4,6 +4,7 @@
 
 Dont allow dupe username or email on user update page
 Fix logout icon
+No receipt needed for transfer
 Fix user profile image on home page
 Complete transaction pages
 Complate shares pages

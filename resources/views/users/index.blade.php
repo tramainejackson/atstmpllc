@@ -26,7 +26,7 @@
 				</div>
 				@foreach($users as $user)
 					@if($user->editable == "Y")
-						<div class="col-12 col-xl-3">
+						<div class="col-12 col-xl-4">
 							<div class="card">
 								@if($user->picture != null)
 									<img src="{{ $user_photo }}" class="img-card-top" />

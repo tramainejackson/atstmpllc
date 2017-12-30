@@ -51,95 +51,100 @@
 									</select>
 								</div>
 							</div>
-							<div class="form-group addtDepositForm alternateFormGroups" style="display:none;">
+							<div class="form-group addtDepositForm alternateFormGroups hidden">
 								<label class="form-label">Deposit Type</label>
-								<select class="form-control" name="deposit_type">
+								<select class="form-control" name="deposit_type" disabled>
 									<option value="personal" selected>Personal</option>
 									<option value="company">Company Income</option>
 								</select>
 							</div>
-							<div class="form-group addtWithdrawlForm alternateFormGroups" style="display:none;">
+							<div class="form-group addtWithdrawlForm alternateFormGroups hidden">
 								<label class="form-label">Withdrawl Type</label>
-								<select class="form-control" name="withdrawl_type">
+								<select class="form-control" name="withdrawl_type" disabled>
 									<option value="personal" selected>Personal</option>
 									<option value="company">Company Withdrawl</option>
 								</select>
 							</div>
-							<div class="form-group addtTransferForm alternateFormGroups" style="display:none;">
+							<div class="form-group addtTransferForm alternateFormGroups hidden">
 								<label class="form-label">Transfer Type</label>
-								<select class="transferAccountType custom-select form-control" name="transfer_type">
+								<select class="transferAccountType custom-select form-control" name="transfer_type" disabled>
 									<option value="blank" disabled>----- Select a Transfer Type -----</option>
 									<option value="account" selected>Account Transfer</option>
 									<option value="user">User Transfer</option>
 								</select>
 							</div>
-							<div class="form-group addtTransferForm alternateFormGroups" style="display:none;">
-								<label class="form-label">Account Type</label>
-								<select class="form-control custom-select" name="account_type">
-									<option value="checking" selected>Checking</option>
-									<option value="savings">Savings</option>
-								</select>
+							<div class="form-row addtTransferForm alternateFormGroups hidden">
+								<div class="col-12">
+									<label class="form-label">Account Type</label>
+									<select class="form-control custom-select" name="account_type" disabled>
+										<option value="checking" selected>Checking</option>
+										<option value="savings">Savings</option>
+									</select>
+								</div>
+								<div class="col-12">
+									<label class="form-label">Send From</label>
+									<select class="form-control custom-select" name="account_type" disabled>
+										<option value="blank" disabled>---- Select Account To Send From ----</option>
+										<option value="checking" selected>Checking</option>
+										<option value="savings">Savings</option>
+									</select>
+								</div>
+								<div class="col-12">
+									<label class="form-label">Send To</label>
+									<select class="form-control custom-select" name="transfer_to" disabled>
+										<option value="blank" class="firstOption" disabled>---- Select Account To Send To ----</option>
+										<option value="account_checking" class="accountOption">Checking</option>
+										<option value="account_savings"  class="accountOption">Savings</option>
+										
+										@php 
+											$toUsers = \App\User::where([
+												['id', '<>', Auth::id()],
+												['company_id', $user->company_id]
+											])->get(); 
+										@endphp
+										@if($toUsers->isNotEmpty())
+											@foreach($toUsers as $toUser)
+												<option value="" class="userOption hidden" disabled>{{ $toUser->firstname }}</option>
+											@endforeach
+										@else
+											<option value="" disabled>No other user available to send to</option>
+										@endif
+									</select>
+								</div>
 							</div>
-							<div class="form-group addtTransferForm alternateFormGroups" style="display:none;">
-								<label class="form-label">Send From</label>
-								<select class="form-control custom-select" name="account_type">
-									<option value="blank" disabled>---- Select Account To Send From ----</option>
-									<option value="checking" selected>Checking</option>
-									<option value="savings">Savings</option>
-								</select>
-							</div>
-							<div class="form-group addtTransferForm alternateFormGroups" style="display:none;">
-								<label class="form-label">Send To</label>
-								<select class="form-control custom-select" name="transfer_to">
-									<option value="blank" disabled>---- Select Account To Send To ----</option>
-									<option value="account_checking">Checking</option>
-									<option value="account_savings" selected>Savings</option>
-									
-									@php 
-										$toUsers = \App\User::where([
-											['id', '<>', Auth::id()],
-											['company_id', $user->company_id]
-										])->get(); 
-									@endphp
-									@if($toUsers->isNotEmpty())
-										@foreach($toUsers as $toUser)
-											<option value="" disabled>{{ $toUser->firstname }}</option>
-										@endforeach
-									@else
-										<option value="" disabled>No other user available to send to</option>
-									@endif
-								</select>
-							</div>
-							<div class="form-group">
+							<div class="form-group{{ $errors->has('trans_amount') ? ' has-error' : '' }}">
 								<label class="form-label">Amount</label>
 								<div class="input-group">
 									<span class="oi oi-dollar input-group-addon"></span>
 									<input type="number" name="trans_amount" title="Remeber to add the cents." class="balanceInput transAmount form-control" value="" placeholder="0.00" step="0.01" />
 								</div>
+								
+								@if ($errors->has('trans_amount'))
+									<span class="help-block text-danger">
+										<strong>{{ $errors->first('trans_amount') }}</strong>
+									</span>
+								@endif
 							</div>
 							<div class="form-group">
 								<label class="form-label">Date</label>
 								<input type="text" name="trans_date" class="form-control datetimepicker" value="" required />
 							</div>
-							<!-- If not a transfer -->
-								<div class="form-row">
-									<div class="col-6">
-										<label class="form-label">Receipt</label>
-										<select class="form-control custom-select" name="receipt">
-											<option value="Y">Yes</option>
-											<option value="N">No</option>
-										</select>
-									</div>
-									<div class="col-6">
-										<label class="form-label">Receipt Photo</label>
-										<input type="file" name="receipt_photo" class="form-control" value="" placeholder="" />
-									</div>
+							<div class="form-row receiptForm">
+								<div class="col-6">
+									<label class="form-label">Receipt</label>
+									<select class="form-control custom-select" name="receipt">
+										<option value="Y">Yes</option>
+										<option value="N">No</option>
+									</select>
 								</div>
-							<!-- -->
+								<div class="col-6">
+									<label class="form-label">Receipt Photo</label>
+									<input type="file" name="receipt_photo" class="form-control" value="" placeholder="" />
+								</div>
+							</div>
 							<div class="form-group">
 								<label class="form-label">User</label>
 								<input disabled type="text" name="trans_user" class="form-control" value="{{ $user->firstname }}" />
-								<input hidden type="text" name="user_id" class="" value="{{ $user->user_id }}" />
 							</div>
 							<div class="form-group">
 								{{ Form::submit('Create New Transaction', ['class' => 'btn btn-lg btn-primary']) }}

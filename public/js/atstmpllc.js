@@ -12,21 +12,7 @@ $(document).ready(function() {
 	$('.datetimepicker').datetimepicker({
 		timepicker:false,
 		format:'m/d/Y',
-		value:'12/03/2017'
-	});
-	
-//Show gif images while ajax is loading
-	$(document).ajaxStart(function(){
-		$("#loading_image").fadeIn("slow");
-	});
-	$(document).ajaxComplete(function(){
-		$("#loading_image").fadeOut("slow");
-		$("#confirmed_modal").fadeIn();
-		setTimeout(function()
-		{
-			$("#confirmed_modal, #overlay_PhillyPage").fadeOut();
-			$("#confirmed_modal p").remove();
-		}, 7000);
+		value:'01/01/2018'
 	});
 
 	//Change page if bank is changed when transaction type is transfer
@@ -35,32 +21,35 @@ $(document).ready(function() {
 			var bankValue = $(".bankSelect").val();
 			var transferValue = $(".transferAccountType").val();
 			
-			if(bankValue != null) {
-				if(transactionType == "Transfer") {
-					if(typeof transferValue != "undefined" && transferValue) {
-						window.open("transactions.php?new_transaction&transfer&bank="+bankValue+"&type="+transferValue, "_self");
-					} else {
-						window.open("transactions.php?new_transaction&transfer&bank="+bankValue, "_self");
-					}
-				}
+			if($(transferValue == 'user')) {
+				$('.addtTransferForm .firstOption').text('---- Select A User To Send To ----').attr('selected', true);
+				$('.addtTransferForm .accountOption').hide().attr('disabled', true);
+				$('.addtTransferForm .userOption').show().removeAttr('disabled');
+			} else if($(transferValue == 'account')) {
+				$('.addtTransferForm .firstOption').text('---- Select Account To Send To ----').attr('selected', true);
+				$('.addtTransferForm .accountOption').show().removeAttr('disabled');
+				$('.addtTransferForm .userOption').hide().attr('disabled', true);
 			}
 		});
 	
-	//Bring up pictures to see before deleting or bring up all pictures
+	// Bring up pictures to see before deleting or bring up all pictures
 		$("body").on("change", ".transactionSelect", function(e) {
 			var addtFormGroups = $(".alternateFormGroups");
 			var transactionType = $(".transactionSelect").val();
 
 			$(addtFormGroups).slideUp(function() {
 				if(transactionType == "Transfer") {
-					$('.addtTransferForm').each(function() {
-						$(this).slideDown();
-					});
+					$('.receiptForm').slideUp();
+					$('.addtTransferForm').slideDown().find('select').removeAttr('disabled');
 				} else if(transactionType == "Withdrawl") {
-					$('.addtWithdrawlForm').slideDown();
+					$('.receiptForm').slideDown();
+					$('.addtWithdrawlForm').slideDown().find('select').removeAttr('disabled');
 				} else if(transactionType == "Deposit") {
-					$('.addtDepositForm').slideDown();
+					$('.receiptForm').slideDown();
+					$('.addtDepositForm').slideDown().find('select').removeAttr('disabled');
 				} else if(transactionType == "Purchase") {
+					$('.receiptForm').slideDown();
+					$('.addtDepositForm, .addtTransferForm, .addtWithdrawlForm').find('select').removeAttr('disabled');
 				}
 			});
 		});

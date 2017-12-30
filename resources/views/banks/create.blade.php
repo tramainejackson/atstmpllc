@@ -20,44 +20,42 @@
 					<div class="formDivTitle row">
 						<h2 class="">Create A New Bank</h2>
 					</div>
-					<div class="createBankContent row">
-						{!! Form::open(['action' => ['BankAccountController@store'], 'method' => 'POST']) !!}
-							<div class="form-group">
-								<label class="form-label">Bank Name</label>
-								<input type="text" name="bank_name" class="form-control" value="{{ old('bank_name') }}" placeholder="Enter Bank Name" required autofocus />
+					{!! Form::open(['action' => ['BankAccountController@store'], 'method' => 'POST']) !!}
+						<div class="form-group">
+							<label class="form-label">Bank Name</label>
+							<input type="text" name="bank_name" class="form-control" value="{{ old('bank_name') }}" placeholder="Enter Bank Name" required autofocus />
 
-								@if ($errors->has('bank_name'))
-									<span class="help-block text-danger">
-										<strong>{{ $errors->first('bank_name') }}</strong>
-									</span>
-								@endif
+							@if ($errors->has('bank_name'))
+								<span class="help-block text-danger">
+									<strong>{{ $errors->first('bank_name') }}</strong>
+								</span>
+							@endif
+						</div>
+						<div class="form-group">
+							<label class="form-label">Account Number</label>
+							<input type="text" name="account_num" class="newBankAN form-control" value="" placeholder="Enter Account Number" />
+						</div>
+						<div class="form-group">
+							<label class="form-label">Checking Balance</label>
+							<div class="input-group">
+								<span class="oi oi-dollar input-group-addon"></span>
+								<input type="number" name="checking_balance" class="form-control" value="" placeholder="0.00" step="0.01" />
 							</div>
-							<div class="form-group">
-								<label class="form-label">Account Number</label>
-								<input type="text" name="account_num" class="newBankAN form-control" value="" placeholder="Enter Account Number" />
+						</div>
+						<div class="form-group">
+							<label class="form-label">Saving Balance</label>
+							<div class="input-group">
+								<span class="oi oi-dollar input-group-addon"></span>
+								<input type="number" name="savings_balance" class="form-control" value="" placeholder="0.00" step="0.01" />
 							</div>
-							<div class="form-group">
-								<label class="form-label">Checking Balance</label>
-								<div class="input-group">
-									<span class="oi oi-dollar input-group-addon"></span>
-									<input type="number" name="checking_balance" class="form-control" value="" placeholder="0.00" step="0.01" />
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="form-label">Saving Balance</label>
-								<div class="input-group">
-									<span class="oi oi-dollar input-group-addon"></span>
-									<input type="number" name="savings_balance" class="form-control" value="" placeholder="0.00" step="0.01" />
-								</div>
-							</div>
-							<div class="row">
-								<input hidden type="text" name="added_by" value="{{ $user_id }}" />
-							</div>
-							<div class="form-group">
-								{{ Form::submit('Create New Bank', ['class' => 'btn btn-lg btn-primary']) }}
-							</div>
-						{!! Form::close() !!}
-					</div>
+						</div>
+						<div class="row">
+							<input hidden type="text" name="added_by" value="{{ $user_id }}" />
+						</div>
+						<div class="form-group">
+							{{ Form::submit('Create New Bank', ['class' => 'btn btn-lg btn-primary']) }}
+						</div>
+					{!! Form::close() !!}
 				</div>
 			</div>
 		</div>

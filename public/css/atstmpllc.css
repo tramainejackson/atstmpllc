@@ -10,6 +10,10 @@ button:hover {
 	cursor: pointer;
 }
 
+.hidden {
+	display: none;
+}
+
 .oi {
     top: 0px !important;
 }
