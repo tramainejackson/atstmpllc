@@ -14,11 +14,14 @@
 			</ul>
 			<ul class="navbar-nav">
 				<li class="navLinks">
-					<a href="{{ route('logout') }}" class="navi_option" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log Out <span class="oi oi-account-logout"></span></a>
+					<a href="{{ route('logout') }}" class="navi_option" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><span>Logout</span></a>
 			
 					<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 						{{ csrf_field() }}
 					</form>
+				</li>
+				<li class="">
+					<a href="{{ route('logout') }}" class="navi_option" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><span class="oi oi-account-logout"></span></a>
 				</li>
 			</ul>
 		</div>

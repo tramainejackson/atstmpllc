@@ -24,6 +24,7 @@ class CreateTransactionsTable extends Migration
             $table->string('deposit_type', 10)->nullable();
             $table->string('withdrawl_type', 10)->nullable();
             $table->string('transfer_type', 10)->nullable();
+            $table->string('transfer_from', 10)->nullable();
             $table->string('transfer_to', 10)->nullable();
             $table->double('amount', 15, 2)->nullable();
             $table->date('transaction_date')->nullable();

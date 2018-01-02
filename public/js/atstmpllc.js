@@ -19,13 +19,13 @@ $(document).ready(function() {
 		$("body").on("change", ".bankSelect, .transferAccountType", function(e) {
 			var transactionType = $(".transactionSelect").val();
 			var bankValue = $(".bankSelect").val();
-			var transferValue = $(".transferAccountType").val();
-			
-			if($(transferValue == 'user')) {
+			var transferValue = $(".transferAccountType option:selected");
+
+			if($(transferValue).val() == 'user') {
 				$('.addtTransferForm .firstOption').text('---- Select A User To Send To ----').attr('selected', true);
 				$('.addtTransferForm .accountOption').hide().attr('disabled', true);
 				$('.addtTransferForm .userOption').show().removeAttr('disabled');
-			} else if($(transferValue == 'account')) {
+			} else if($(transferValue).val() == 'account') {
 				$('.addtTransferForm .firstOption').text('---- Select Account To Send To ----').attr('selected', true);
 				$('.addtTransferForm .accountOption').show().removeAttr('disabled');
 				$('.addtTransferForm .userOption').hide().attr('disabled', true);
@@ -37,21 +37,21 @@ $(document).ready(function() {
 			var addtFormGroups = $(".alternateFormGroups");
 			var transactionType = $(".transactionSelect").val();
 
-			$(addtFormGroups).slideUp(function() {
-				if(transactionType == "Transfer") {
-					$('.receiptForm').slideUp();
-					$('.addtTransferForm').slideDown().find('select').removeAttr('disabled');
-				} else if(transactionType == "Withdrawl") {
-					$('.receiptForm').slideDown();
-					$('.addtWithdrawlForm').slideDown().find('select').removeAttr('disabled');
-				} else if(transactionType == "Deposit") {
-					$('.receiptForm').slideDown();
-					$('.addtDepositForm').slideDown().find('select').removeAttr('disabled');
-				} else if(transactionType == "Purchase") {
-					$('.receiptForm').slideDown();
-					$('.addtDepositForm, .addtTransferForm, .addtWithdrawlForm').find('select').removeAttr('disabled');
-				}
-			});
+			$(addtFormGroups).slideUp().find('select').attr('disabled', true);
+			
+			if(transactionType == "Transfer") {
+				$('.receiptForm').slideUp();
+				$('.addtTransferForm').slideDown().find('select').removeAttr('disabled');
+			} else if(transactionType == "Withdrawl") {
+				$('.receiptForm').slideDown();
+				$('.addtWithdrawlForm').slideDown().find('select').removeAttr('disabled');
+			} else if(transactionType == "Deposit") {
+				$('.receiptForm').slideDown();
+				$('.addtDepositForm').slideDown().find('select').removeAttr('disabled');
+			} else if(transactionType == "Purchase") {
+				$('.receiptForm').slideDown();
+				$('.addtDepositForm, .addtTransferForm, .addtWithdrawlForm').find('select').removeAttr('disabled');
+			}
 		});
 		
 	//Show transaction photo in colorbox plugins

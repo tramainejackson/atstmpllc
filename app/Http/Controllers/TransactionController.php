@@ -8,6 +8,9 @@ use App\UserAccount;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Http\File;
 
 class TransactionController extends Controller
 {
@@ -62,70 +65,77 @@ class TransactionController extends Controller
 
 		// Create a new transaction instance
 		$trans = new Transaction();
+		$date = date_create($request->trans_date);
 		$trans->user_id = Auth::id();
 		$trans->company_id = $current_user->company_id;
 		$trans->bank_account_id = $bank->id;
 		$trans->amount = $request->trans_amount;
-		$trans->date = $request->trans_date;
+		$trans->transaction_date = date_format($date, "Y/m/d");
 		$trans->type = $request->type;
+		$message = "";
 
 		// Do if transaction type is a transfer
 		if($trans->type == 'Transfer') {
-		$trans->account_type = $request->account_type;
-		$trans->transfer_type = $request->transfer_type;
-		$trans->transfer_to = isset($_POST["transfer_to"]) ? (substr_count($_POST["transfer_to"], "user") > 0 ? str_ireplace("user_", "", $_POST["transfer_to"]) : str_ireplace("account_", "", $_POST["transfer_to"])) : null;
-			
+			$trans->transfer_type = $request->transfer_type;
+			$trans->transfer_to = $request->transfer_to;
+			$trans->transfer_from = $request->transfer_from;
 		} else {
-			// $trans->receipt_photo   = isset($_FILES["receipt_photo"]) ? $trans->checkNewPicture($_FILES["receipt_photo"]) : "";
 
-			// if($trans->receipt_photo != "" || $trans->receipt_photo != false) {
-				// $trans->receipt_photo = $trans->receipt_photo[1];
-				// $trans->receipt = "Y";
-			// } else {
-				// $trans->receipt = "N";
-			// }
+			if($request->hasFile('receipt_photo')) {
+				$trans->receipt = $request->receipt;
+				// $trans->receipt_photo   = isset($_FILES["receipt_photo"]) ? $trans->checkNewPicture($_FILES["receipt_photo"]) : "";
+
+				// if($trans->receipt_photo != "" || $trans->receipt_photo != false) {
+					// $trans->receipt_photo = $trans->receipt_photo[1];
+					// $trans->receipt = "Y";
+				// } else {
+					// $trans->receipt = "N";
+				// }
+			}
 			
 			if($trans->type == 'Deposit') {
+				$trans->account_type = $request->account_type;
 				$trans->deposit_type = $request->deposit_type;
 			} elseif($trans->type == 'Withdrawl') {
+				$trans->account_type = $request->account_type;
 				$trans->withdrawl_type = $request->withdrawl_type;
 			}
 		}
 		
-
-        dd($trans);
 		if($trans->save()) {
-			// Successful
-			$message = "Transaction added successfully.";
-			if($trans->type == "Purchase") {
-				$message = "Purchase of $".$trans->amount." was saved successfully.";
-				$session->message("<li class='okItem'>Purchase of $".$trans->amount." was saved successfully.</li>");
-				$bank->make_purchase($trans->amount);
-				redirect_to("transactions.php?view_transactions&id=" . $current_user->user_id);
-			} elseif($trans->type == "Refund") {
-				$message = "Refund of $".$trans->amount." was saved successfully.";
-				$session->message("<li class='okItem'>Refund of $".$trans->amount." was saved successfully.</li>");
-				$bank->make_refund($trans->amount);
-				redirect_to("transactions.php?view_transactions&id=" . $current_user->user_id);
-			} elseif($trans->type == "Withdrawl") {
-				$message = "Withdrawl of $".$trans->amount." was saved successfully.";
-				$session->message("<li class='okItem'>Withdrawl of $".$trans->amount." was saved successfully.</li>");
-				$bank->make_withdrawl($trans->amount, $trans->withdrawl_type, $trans->account_type, $session->user_id);
-				redirect_to("transactions.php?view_transactions&id=" . $current_user->user_id);
-			} elseif($trans->type == "Deposit") {
-				$message = "Deposit of $".$trans->amount." was saved successfully.";
-				$session->message("<li class='okItem'>Deposit of $".$trans->amount." was saved successfully.</li>");
-				$bank->make_deposit($trans->amount, $trans->deposit_type, $trans->account_type, $session->user_id);
-				redirect_to("transactions.php?view_transactions&id=" . $current_user->user_id);
-			} elseif($trans->type == "Transfer") {
-				$message = "Transfer of $".$trans->amount." was saved successfully.";
-				$session->message("<li class='okItem'>Transfer of $".$trans->amount." was saved successfully.</li>");
-				$bank->make_transfer($trans->amount, $trans->transfer_type, $trans->transfer_to, $trans->account_type, $session->user_id);
-				redirect_to("transactions.php?view_transactions&id=" . $current_user->user_id);
-			} else {
-				$session->message("<li class='errorItem'>Transaction type unrecognized.</li>");
-				redirect_to("transactions.php?view_transactions&id=" . $current_user->user_id);
-			}
+			$message .= "<li class='okItem'>Transaction Added Successfully</li>";
+			// // Successful
+			// $message = "Transaction added successfully.";
+			// if($trans->type == "Purchase") {
+				// $message = "Purchase of $".$trans->amount." was saved successfully.";
+				// $session->message("<li class='okItem'>Purchase of $".$trans->amount." was saved successfully.</li>");
+				// $bank->make_purchase($trans->amount);
+				// redirect_to("transactions.php?view_transactions&id=" . $current_user->user_id);
+			// } elseif($trans->type == "Refund") {
+				// $message = "Refund of $".$trans->amount." was saved successfully.";
+				// $session->message("<li class='okItem'>Refund of $".$trans->amount." was saved successfully.</li>");
+				// $bank->make_refund($trans->amount);
+				// redirect_to("transactions.php?view_transactions&id=" . $current_user->user_id);
+			// } elseif($trans->type == "Withdrawl") {
+				// $message = "Withdrawl of $".$trans->amount." was saved successfully.";
+				// $session->message("<li class='okItem'>Withdrawl of $".$trans->amount." was saved successfully.</li>");
+				// $bank->make_withdrawl($trans->amount, $trans->withdrawl_type, $trans->account_type, $session->user_id);
+				// redirect_to("transactions.php?view_transactions&id=" . $current_user->user_id);
+			// } elseif($trans->type == "Deposit") {
+				// $message = "Deposit of $".$trans->amount." was saved successfully.";
+				// $session->message("<li class='okItem'>Deposit of $".$trans->amount." was saved successfully.</li>");
+				// $bank->make_deposit($trans->amount, $trans->deposit_type, $trans->account_type, $session->user_id);
+				// redirect_to("transactions.php?view_transactions&id=" . $current_user->user_id);
+			// } elseif($trans->type == "Transfer") {
+				// $message = "Transfer of $".$trans->amount." was saved successfully.";
+				// $session->message("<li class='okItem'>Transfer of $".$trans->amount." was saved successfully.</li>");
+				// $bank->make_transfer($trans->amount, $trans->transfer_type, $trans->transfer_to, $trans->account_type, $session->user_id);
+				// redirect_to("transactions.php?view_transactions&id=" . $current_user->user_id);
+			// } else {
+				// $session->message("<li class='errorItem'>Transaction type unrecognized.</li>");
+				// redirect_to("transactions.php?view_transactions&id=" . $current_user->user_id);
+			// }
+			return redirect()->action('TransactionController@show', $trans)->with('status', $message);
 		} else {
 			// Failure
 			$session->message("<li class='errorItem'>Transaction unsuccessful.</li>");
@@ -152,7 +162,12 @@ class TransactionController extends Controller
      */
     public function edit(Transaction $transaction)
     {
-        //
+        $user = Auth::user();
+		$user_id = Auth::id();
+		$user_name = $user->firstname . " " . $user->lastname;
+        $companyTransactions = Transaction::where('company_id', $user->company_id)->get();
+		
+		return view('transactions.edit', compact('user', 'companyTransactions'));
     }
 
     /**

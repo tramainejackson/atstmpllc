@@ -73,17 +73,17 @@
 									<option value="user">User Transfer</option>
 								</select>
 							</div>
+							<div class="form-group addtDepositForm alternateFormGroups hidden">
+								<label class="form-label">Account Type</label>
+								<select class="form-control custom-select" name="account_type" disabled>
+									<option value="checking" selected>Checking</option>
+									<option value="savings">Savings</option>
+								</select>
+							</div>
 							<div class="form-row addtTransferForm alternateFormGroups hidden">
 								<div class="col-12">
-									<label class="form-label">Account Type</label>
-									<select class="form-control custom-select" name="account_type" disabled>
-										<option value="checking" selected>Checking</option>
-										<option value="savings">Savings</option>
-									</select>
-								</div>
-								<div class="col-12">
 									<label class="form-label">Send From</label>
-									<select class="form-control custom-select" name="account_type" disabled>
+									<select class="form-control custom-select" name="transfer_from" disabled>
 										<option value="blank" disabled>---- Select Account To Send From ----</option>
 										<option value="checking" selected>Checking</option>
 										<option value="savings">Savings</option>
@@ -93,8 +93,8 @@
 									<label class="form-label">Send To</label>
 									<select class="form-control custom-select" name="transfer_to" disabled>
 										<option value="blank" class="firstOption" disabled>---- Select Account To Send To ----</option>
-										<option value="account_checking" class="accountOption">Checking</option>
-										<option value="account_savings"  class="accountOption">Savings</option>
+										<option value="checking" class="accountOption">Checking</option>
+										<option value="savings"  class="accountOption">Savings</option>
 										
 										@php 
 											$toUsers = \App\User::where([

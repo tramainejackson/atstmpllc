@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\UserAccount;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Http\File;
 
 class UserAccountController extends Controller
 {
