@@ -3,10 +3,14 @@
 ---------------------------------------
 
 Dont allow dupe username or email on user update page
-Fix logout icon
-No receipt needed for transfer
-Fix user profile image on home page
 Complete transaction pages
 Complate shares pages
+Make ajax call to get the transfer to users
+Update create shares function
+Add which bank to add user to on create user page
+Add a before/after amount of bank account on transactions
+Done: Fix user profile image on home page
+Done: No receipt needed for transfer
+Done: Fix logout icon
 Done: Give login page a background behind the form
 export HTTP_PROXY="http://155.247.166.25:8080"

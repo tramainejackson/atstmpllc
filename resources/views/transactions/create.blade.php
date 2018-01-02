@@ -30,12 +30,12 @@
 							<div class="form-row mb-4">
 								<div class="col-6">
 									<label class="form-label">Bank</label>
-									<select class="bankSelect form-control custom-select" name="bank_id">
+									<select class="bankSelect form-control custom-select" name="user_id">
 										<option value="blank" selected disabled>----- Select a Bank -----</option>
 										@if($userAccounts->count() > 0)
 											@foreach($userAccounts as $userAccount)
 												@php $bankAccount = \App\BankAccount::find($userAccount->bank_account_id); @endphp
-													<option value="{{ $bankAccount->id }}">{{ $bankAccount->bank_name . " - $" . number_format($bankAccount->checking_balance, 2) }}</option>
+													<option value="{{ $userAccount->id }}">{{ $bankAccount->bank_name . " - $" . number_format($bankAccount->checking_balance, 2) }}</option>
 											@endforeach
 										@endif
 									</select>
@@ -104,7 +104,7 @@
 										@endphp
 										@if($toUsers->isNotEmpty())
 											@foreach($toUsers as $toUser)
-												<option value="" class="userOption hidden" disabled>{{ $toUser->firstname }}</option>
+												<option value="{{ $toUser->id }}" class="userOption hidden" disabled>{{ $toUser->firstname }}</option>
 											@endforeach
 										@else
 											<option value="" disabled>No other user available to send to</option>

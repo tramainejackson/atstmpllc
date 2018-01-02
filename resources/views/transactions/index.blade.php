@@ -19,7 +19,7 @@
 					<a href="/transactions/create" class="btn col-3">Create A New Transaction</a>
 				</div>
 			</div>
-			<div class="col-12 col-xl-8 mx-auto">
+			<div class="col-12">
 				<h2 class="mb-4 text-muted">{{ $user->company->company_name }} Transactions</h2>
 			</div>
 		</div>
@@ -34,7 +34,7 @@
 							<div class="indTransInfo">
 								<div class="">
 									<span class="spanLabel">User Completed:</span>
-									<span class="itemContent"><a href="/transactions/{{ $transaction->user_id }}">{{ $transaction->user->firstname }}</a></span>
+									<span class="itemContent"><a href="/transactions/{{ $transaction->user_account_id }}">{{ $transaction->user_account->user->firstname }}</a></span>
 								</div>
 								<div class="">
 									<span class="spanLabel">Amount:</span>

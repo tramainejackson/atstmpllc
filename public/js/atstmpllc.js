@@ -18,18 +18,23 @@ $(document).ready(function() {
 	//Change page if bank is changed when transaction type is transfer
 		$("body").on("change", ".bankSelect, .transferAccountType", function(e) {
 			var transactionType = $(".transactionSelect").val();
-			var bankValue = $(".bankSelect").val();
+			var bankValue = $(".bankSelect option:selected");
 			var transferValue = $(".transferAccountType option:selected");
-
-			if($(transferValue).val() == 'user') {
-				$('.addtTransferForm .firstOption').text('---- Select A User To Send To ----').attr('selected', true);
-				$('.addtTransferForm .accountOption').hide().attr('disabled', true);
-				$('.addtTransferForm .userOption').show().removeAttr('disabled');
-			} else if($(transferValue).val() == 'account') {
-				$('.addtTransferForm .firstOption').text('---- Select Account To Send To ----').attr('selected', true);
-				$('.addtTransferForm .accountOption').show().removeAttr('disabled');
-				$('.addtTransferForm .userOption').hide().attr('disabled', true);
+			
+			if($(bankValue).val() == 'blank') {
+				$(".bankSelect").focus();
+			} else {
+				if($(transferValue).val() == 'user') {
+					$('.addtTransferForm .firstOption').text('---- Select A User To Send To ----').attr('selected', true);
+					$('.addtTransferForm .accountOption').hide().attr('disabled', true);
+					$('.addtTransferForm .userOption').show().removeAttr('disabled');
+				} else if($(transferValue).val() == 'account') {
+					$('.addtTransferForm .firstOption').text('---- Select Account To Send To ----').attr('selected', true);
+					$('.addtTransferForm .accountOption').show().removeAttr('disabled');
+					$('.addtTransferForm .userOption').hide().attr('disabled', true);
+				}
 			}
+
 		});
 	
 	// Bring up pictures to see before deleting or bring up all pictures

@@ -17,13 +17,6 @@ class Transaction extends Model
     protected $dates = ['deleted_at'];
 	
 	/**
-	* Get the user associated with the transaction
-	*/
-	public function user() {
-		return $this->belongsTo('App\User');
-	}
-	
-	/**
 	* Get the user account associated with the transaction
 	*/
 	public function user_account() {

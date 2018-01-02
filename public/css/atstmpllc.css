@@ -22,6 +22,11 @@ button:hover {
     background: #9f3f37b5;
 }
 
+.addBoxShadow {
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 3px #4f4f4f;
+}
+
 #admin_page_login {
     background-image: url(../../images/raleigh_skyline.jpg);
     background-position: center center;
@@ -177,11 +182,25 @@ a.navbar-brand {
 
 
 /*Home Page*/
-.myheader {margin: 75px auto;position: relative;width: 40%;border: solid 1.5px black;border-radius: 5px;box-shadow: 4px 3px 8px 0px darkgrey;}
+.myheader {
+	margin: 75px auto;
+	position: relative;
+	width: 40%;
+	border: solid 1.5px black;
+	border-radius: 5px;
+	box-shadow: 4px 3px 8px 0px darkgrey;
+}
 
 .pictureHeader {
-    /* width: 40%; */
     margin: 0 auto;
+}
+
+.pictureHeader img {
+    max-width: 100%;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+	margin: 0 auto;
+    display: -webkit-box;
 }
 
 .nameHeader, .lastLogin {
@@ -192,12 +211,6 @@ a.navbar-brand {
 .nameHeader h2 {
     margin: 0;
     padding: 1% 0% 2%;
-}
-
-.pictureHeader img {
-    max-width: 100%;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
 }
 
 .bankAccounts {

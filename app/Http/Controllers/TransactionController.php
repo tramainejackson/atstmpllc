@@ -59,18 +59,16 @@ class TransactionController extends Controller
 			'trans_amount' => 'min:0.01|numeric',
 		]);
 		
-		// Get bank selected and logged in User
-		$bank = BankAccount::find($request->bank_id);
-		$current_user = Auth::user();
+		// Get user account selected and logged in User
+		$user_account = UserAccount::find($request->user_id);
 
 		// Create a new transaction instance
 		$trans = new Transaction();
 		$date = date_create($request->trans_date);
-		$trans->user_id = Auth::id();
-		$trans->company_id = $current_user->company_id;
-		$trans->bank_account_id = $bank->id;
+		$trans->user_account_id = $user_account->id;
 		$trans->amount = $request->trans_amount;
 		$trans->transaction_date = date_format($date, "Y/m/d");
+		$trans->company_id = $user_account->user->company_id;
 		$trans->type = $request->type;
 		$message = "";
 
@@ -79,6 +77,7 @@ class TransactionController extends Controller
 			$trans->transfer_type = $request->transfer_type;
 			$trans->transfer_to = $request->transfer_to;
 			$trans->transfer_from = $request->transfer_from;
+			// dd($request);
 		} else {
 
 			if($request->hasFile('receipt_photo')) {
@@ -104,42 +103,31 @@ class TransactionController extends Controller
 		
 		if($trans->save()) {
 			$message .= "<li class='okItem'>Transaction Added Successfully</li>";
-			// // Successful
-			// $message = "Transaction added successfully.";
-			// if($trans->type == "Purchase") {
-				// $message = "Purchase of $".$trans->amount." was saved successfully.";
-				// $session->message("<li class='okItem'>Purchase of $".$trans->amount." was saved successfully.</li>");
-				// $bank->make_purchase($trans->amount);
-				// redirect_to("transactions.php?view_transactions&id=" . $current_user->user_id);
-			// } elseif($trans->type == "Refund") {
-				// $message = "Refund of $".$trans->amount." was saved successfully.";
-				// $session->message("<li class='okItem'>Refund of $".$trans->amount." was saved successfully.</li>");
-				// $bank->make_refund($trans->amount);
-				// redirect_to("transactions.php?view_transactions&id=" . $current_user->user_id);
-			// } elseif($trans->type == "Withdrawl") {
-				// $message = "Withdrawl of $".$trans->amount." was saved successfully.";
-				// $session->message("<li class='okItem'>Withdrawl of $".$trans->amount." was saved successfully.</li>");
-				// $bank->make_withdrawl($trans->amount, $trans->withdrawl_type, $trans->account_type, $session->user_id);
-				// redirect_to("transactions.php?view_transactions&id=" . $current_user->user_id);
-			// } elseif($trans->type == "Deposit") {
-				// $message = "Deposit of $".$trans->amount." was saved successfully.";
-				// $session->message("<li class='okItem'>Deposit of $".$trans->amount." was saved successfully.</li>");
-				// $bank->make_deposit($trans->amount, $trans->deposit_type, $trans->account_type, $session->user_id);
-				// redirect_to("transactions.php?view_transactions&id=" . $current_user->user_id);
-			// } elseif($trans->type == "Transfer") {
-				// $message = "Transfer of $".$trans->amount." was saved successfully.";
-				// $session->message("<li class='okItem'>Transfer of $".$trans->amount." was saved successfully.</li>");
-				// $bank->make_transfer($trans->amount, $trans->transfer_type, $trans->transfer_to, $trans->account_type, $session->user_id);
-				// redirect_to("transactions.php?view_transactions&id=" . $current_user->user_id);
-			// } else {
-				// $session->message("<li class='errorItem'>Transaction type unrecognized.</li>");
-				// redirect_to("transactions.php?view_transactions&id=" . $current_user->user_id);
-			// }
+			
+			// Successful
+			if($trans->type == "Purchase") {
+				$message .= "<li class='okItem'>Purchase of $".$trans->amount." was saved successfully.</li>";
+				$user_account->make_purchase($trans->amount, $trans->user_account_id);
+			} elseif($trans->type == "Refund") {
+				$message .= "<li class='okItem'>Refund of $".$trans->amount." was saved successfully.</li>";
+				$user_account->make_refund($trans->amount);
+			} elseif($trans->type == "Withdrawl") {
+				$message .= "<li class='okItem'>Withdrawl of $".$trans->amount." was saved successfully.</li>";
+				$user_account->make_withdrawl($trans->amount, $trans->withdrawl_type, $trans->user_account_id);
+			} elseif($trans->type == "Deposit") {
+				$message .= "<li class='okItem'>Deposit of $".$trans->amount." was saved successfully.</li>";
+				$user_account->make_deposit($trans->amount, $trans->deposit_type, $trans->account_type, $trans->user_account_id);
+			} elseif($trans->type == "Transfer") {
+				$message .= "<li class='okItem'>Transfer of $".$trans->amount." was saved successfully.</li>";
+				$user_account->make_transfer($trans->amount, $trans->transfer_type, $trans->transfer_to, $trans->account_type, $trans->user_account_id);
+			} else {
+				$message .= "<li class='errorItem'>Transaction type unrecognized.</li>";
+			}
 			return redirect()->action('TransactionController@show', $trans)->with('status', $message);
 		} else {
 			// Failure
-			$session->message("<li class='errorItem'>Transaction unsuccessful.</li>");
-			redirect_to("transactions.php?view_transactions&id=" . $current_user->user_id);
+			$message = "<li class='errorItem'>Transaction unsuccessful.</li>";
+			redirect()->back()->with('status', $message);
 		}
     }
 
@@ -151,7 +139,12 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction)
     {
-        //
+        $user = Auth::user();
+		$user_id = UserAccount::where('user_id', Auth::id())->first();
+		$user_name = $user->firstname . " " . $user->lastname;
+		$user_transactions = Transaction::where('user_account_id', $user_id->id)->get();
+		
+		return view('transactions.show', compact('user_name', 'user_transactions'));
     }
 
     /**
