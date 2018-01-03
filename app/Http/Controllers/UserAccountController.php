@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\UserAccount;
+use App\BankAccount;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -25,9 +26,11 @@ class UserAccountController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(BankAccount $bankAccount)
     {
-        //
+		$company_users = $bankAccount->company->users;
+
+        return view('accounts.bank.create', compact('bankAccount', 'company_users'));
     }
 
     /**
@@ -36,9 +39,17 @@ class UserAccountController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, BankAccount $bankAccount)
     {
-        //
+		$new_user = $bankAccount->user_accounts()->create([
+			'user_id' => $request->user_id,
+			'edit_bank' => $request->edit_bank,
+		]);
+
+		// Recreate shares here
+		//
+		
+        return view('accounts.bank.create', compact('bankAccount', 'company_users'));
     }
 
     /**
@@ -85,4 +96,18 @@ class UserAccountController extends Controller
     {
         //
     }
+	
+	/**
+     * Display the specified resource.
+     *
+     * @param  \App\UserAccount  $userAccount
+     * @return \Illuminate\Http\Response
+     */
+    public function bank_accounts(BankAccount $bankAccount)
+    {
+		$bank_accounts = $bankAccount->user_accounts;
+		
+		return view('accounts.bank.bank_users', compact('bank_accounts'));
+    }
+
 }

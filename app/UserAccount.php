@@ -38,6 +38,15 @@ class UserAccount extends Model
 		return $this->hasMany('App\Transaction');
 	}
 	
+	/**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'user_id', 'bank_account_id', 'edit_bank'
+    ];
+	
 	public function make_deposit($amount=0, $type="", $account="", $user_account=0) {
 		$user_account = UserAccount::find($user_account);
 		$bank = BankAccount::find($user_account->bank_account->id);
@@ -136,11 +145,10 @@ class UserAccount extends Model
 		}
 	}
 
-	public function make_transfer($amount=0, $type="", $to="", $account="", $user_account=0) {
-		$accountType = $account;
+	public function make_transfer($amount=0, $type="", $to="", $fromAccount="", $user_account=0) {
+		$accountType = $fromAccount;
 		$sendTo = is_numeric($to) ? UserAccount::where('user_id', $to)->first() : $to;
 		$sendFrom = UserAccount::find($user_account);
-		// dd($sendFrom);
 		$bank = BankAccount::find($sendFrom->bank_account->id);
 		
 		if($type == "user") {

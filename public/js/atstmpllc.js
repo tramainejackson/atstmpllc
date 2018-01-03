@@ -25,6 +25,7 @@ $(document).ready(function() {
 				$(".bankSelect").focus();
 			} else {
 				if($(transferValue).val() == 'user') {
+					get_users($(bankValue).val());
 					$('.addtTransferForm .firstOption').text('---- Select A User To Send To ----').attr('selected', true);
 					$('.addtTransferForm .accountOption').hide().attr('disabled', true);
 					$('.addtTransferForm .userOption').show().removeAttr('disabled');
@@ -63,39 +64,25 @@ $(document).ready(function() {
 		$('a.transImg').magnificPopup({type:'image'});
 });
 
-//Transaction form error check function
-	function transErrorCheck() {
-		var errors = 0;
-		var errorMsg = "";
-		var errorModal;
-		var transactionAmount = $(".transAmount");
-		var transferType = $(".transferAccountType");
-		var bank = $(".bankSelect");
-
-		if(transactionAmount.val() == "") {
-			errors++;
-			errorMsg += "<li class='errorItem'>" + errors + ". " + "Transaction Amount Cannot Be Empty</li>";
-			transactionAmount.addClass("error_border");
-		} if(transferType.length > 0) {
-			if(transferType.val() == null || transferType.val() == "blank") {
-				errors++;
-				errorMsg += "<li class='errorItem'>" + errors + ". " + "Transfer Type Needs To Be Selected</li>";
-				transferType.addClass("error_border");
-			}
-		} if(bank.val() == null || bank.val() == "blank"){
-			errors++;
-			errorMsg += "<li class='errorItem'>" + errors + ". " + "A Bank To Be Selected</li>";
-			bank.addClass("error_border");
-		}
-		
-		$("#return_messages ul").empty();
-		$("#return_messages ul").append(errorMsg);
-		if(errors > 0) {
-			event.preventDefault();			
+// Ajax request for user accounts for selected bank
+function get_users(bank_id) {
+	$.ajax({
+	  method: "GET",
+	  url: "/account/" + bank_id + "/bank"
+	})
+	
+	.fail(function() {
+		alert( "Error: nothing returned");		
+	})
+	.done(function(data) {
+		if($(".sendToUserSelect .userOption").length > 0) {
+			$(".sendToUserSelect .userOption").removed();
+			$(data).appendTo($(".sendToUserSelect"));
 		} else {
-			return true;
+			$(data).appendTo($(".sendToUserSelect"));
 		}
-	}
+	});
+}
 	
 //User form error check function
 	function userErrorCheck() {

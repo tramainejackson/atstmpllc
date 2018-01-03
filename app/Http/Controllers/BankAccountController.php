@@ -149,4 +149,17 @@ class BankAccountController extends Controller
     {
         //
     }
+	
+	/**
+     * Display the specified resource.
+     *
+     * @param  \App\UserAccount  $userAccount
+     * @return \Illuminate\Http\Response
+     */
+    public function bank_accounts(BankAccount $bankAccount)
+    {
+		$bank_accounts = $bankAccount->user_accounts;
+		
+		return view('banks.bank_users', compact('bank_accounts'));
+    }
 }

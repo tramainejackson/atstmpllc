@@ -44,7 +44,7 @@
 					<span>Here's a list of all your banks</span>
 				</div>
 				<div class="col-md-9 col-sm-9 col-xs-9">
-					@if($user_accounts->count() > 0)
+					@if($user_accounts)
 						@foreach($user_accounts as $user_account)
 							@php $bankAccount = \App\BankAccount::find($user_account->bank_account_id); @endphp
 
@@ -133,50 +133,48 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col">
-					<div class="allTransactions">
-						@if($transactions->count() > 0)
-							@foreach($transactions as $transaction)
-								<div class="indTransaction addBoxShadow col-md-3 col-sm-5 col-xs-5 {{ strtolower($transaction->type) }}">
-									<div class="myTransactionHeader">
-										<h2 class=""><span class="itemContent">{{ $transaction->type }}</span><span class="transactionDate">{{ $transaction->date }}</span></h2>
-									</div>
-									<div class="myTransactionInfo {{ $transaction->type }}">
-										<div class="">
-											<span class="spanLabel">Amount:</span>
-											<span class="itemContent">{{ "$" . $transaction->amount }}</span>
-										</div>
-										@if($transaction->type != "Transfer")
-											<div class="">
-												<span class="spanLabel">Receipt:</span>
-												@if($transaction->receipt == "Y")
-													<a class="transImg" href="{{ $transaction->receipt_photo }}">Receipt Photo</a>
-												@else
-													<span class="itemContent">{{ $transaction->receipt }}</span>
-												@endif
-											</div>
-										@endif
-										@if($transaction->type == "Transfer")
-											<div class="">
-												<span class="spanLabel">Transfer To:</span>
-												@if($transaction->transfer_type == "user")
-													@php $toUser = \App\User::find($transaction->transfer_to); @endphp
-													<span class="itemContent"><?php echo $toUser->full_name(); ?></span>
-												@else
-													<span class="itemContent">{{ ucwords($transaction->transfer_to) }}</span>
-												@endif
-											</div>
-										@endif
-									</div>
+				@if($transactions->count() > 0)
+					@foreach($transactions as $transaction)
+						<div class="col-xl-3">
+							<div class="indTransaction addBoxShadow {{ strtolower($transaction->type) }}">
+								<div class="myTransactionHeader">
+									<h2 class=""><span class="itemContent">{{ $transaction->type }}</span><span class="transactionDate">{{ $transaction->date }}</span></h2>
 								</div>
-							@endforeach
-						@else
-							<div class="emptyAccountHeader col-md-12">
-								<h2 class="">You do not have any recent transactions added.</h2>
+								<div class="myTransactionInfo {{ $transaction->type }}">
+									<div class="">
+										<span class="spanLabel">Amount:</span>
+										<span class="itemContent">{{ "$" . $transaction->amount }}</span>
+									</div>
+									@if($transaction->type != "Transfer")
+										<div class="">
+											<span class="spanLabel">Receipt:</span>
+											@if($transaction->receipt == "Y")
+												<a class="transImg" href="{{ $transaction->receipt_photo }}">Receipt Photo</a>
+											@else
+												<span class="itemContent">{{ $transaction->receipt }}</span>
+											@endif
+										</div>
+									@endif
+									@if($transaction->type == "Transfer")
+										<div class="">
+											<span class="spanLabel">Transfer To:</span>
+											@if($transaction->transfer_type == "user")
+												@php $toUser = \App\User::find($transaction->transfer_to); @endphp
+												<span class="itemContent">{{ $toUser->firstname }}</span>
+											@else
+												<span class="itemContent">{{ ucwords($transaction->transfer_to) }}</span>
+											@endif
+										</div>
+									@endif
+								</div>
 							</div>
-						@endif
+						</div>
+					@endforeach
+				@else
+					<div class="emptyAccountHeader col-md-12">
+						<h2 class="">You do not have any recent transactions added.</h2>
 					</div>
-				</div>
+				@endif
 			</div>
 		</div>
 	</div>

@@ -5,10 +5,11 @@
 Dont allow dupe username or email on user update page
 Complete transaction pages
 Complate shares pages
-Make ajax call to get the transfer to users
 Update create shares function
 Add which bank to add user to on create user page
 Add a before/after amount of bank account on transactions
+Maybe add refund as a transaction option
+Done: Make ajax call to get the transfer to users
 Done: Fix user profile image on home page
 Done: No receipt needed for transfer
 Done: Fix logout icon

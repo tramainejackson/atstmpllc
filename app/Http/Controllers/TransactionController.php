@@ -60,12 +60,19 @@ class TransactionController extends Controller
 		]);
 		
 		// Get user account selected and logged in User
-		$user_account = UserAccount::find($request->user_id);
+		$bank_account = BankAccount::find($request->bank_id);
+		
+		// Get user account selected and logged in User
+		$user_account = UserAccount::where([
+			['bank_account_id', '=', $bank_account->id],
+			['user_id', '=', Auth::id()]
+		])->first();
 
 		// Create a new transaction instance
 		$trans = new Transaction();
 		$date = date_create($request->trans_date);
 		$trans->user_account_id = $user_account->id;
+		$trans->user_id = $user_account->user_id;
 		$trans->amount = $request->trans_amount;
 		$trans->transaction_date = date_format($date, "Y/m/d");
 		$trans->company_id = $user_account->user->company_id;
@@ -119,7 +126,7 @@ class TransactionController extends Controller
 				$user_account->make_deposit($trans->amount, $trans->deposit_type, $trans->account_type, $trans->user_account_id);
 			} elseif($trans->type == "Transfer") {
 				$message .= "<li class='okItem'>Transfer of $".$trans->amount." was saved successfully.</li>";
-				$user_account->make_transfer($trans->amount, $trans->transfer_type, $trans->transfer_to, $trans->account_type, $trans->user_account_id);
+				$user_account->make_transfer($trans->amount, $trans->transfer_type, $trans->transfer_to, $trans->transfer_from, $trans->user_account_id);
 			} else {
 				$message .= "<li class='errorItem'>Transaction type unrecognized.</li>";
 			}

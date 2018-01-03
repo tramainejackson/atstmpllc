@@ -30,12 +30,12 @@
 							<div class="form-row mb-4">
 								<div class="col-6">
 									<label class="form-label">Bank</label>
-									<select class="bankSelect form-control custom-select" name="user_id">
-										<option value="blank" selected disabled>----- Select a Bank -----</option>
+									<select class="bankSelect form-control custom-select" name="bank_id">
+										<option value="blank" disabled>----- Select a Bank -----</option>
 										@if($userAccounts->count() > 0)
 											@foreach($userAccounts as $userAccount)
 												@php $bankAccount = \App\BankAccount::find($userAccount->bank_account_id); @endphp
-													<option value="{{ $userAccount->id }}">{{ $bankAccount->bank_name . " - $" . number_format($bankAccount->checking_balance, 2) }}</option>
+													<option value="{{ $bankAccount->id }}"{{ $loop->first ? ' selected' : ''}}>{{ $bankAccount->bank_name . " - $" . number_format($bankAccount->checking_balance, 2) }}</option>
 											@endforeach
 										@endif
 									</select>
@@ -91,24 +91,10 @@
 								</div>
 								<div class="col-12">
 									<label class="form-label">Send To</label>
-									<select class="form-control custom-select" name="transfer_to" disabled>
+									<select class="form-control custom-select sendToUserSelect" name="transfer_to" disabled>
 										<option value="blank" class="firstOption" disabled>---- Select Account To Send To ----</option>
 										<option value="checking" class="accountOption">Checking</option>
 										<option value="savings"  class="accountOption">Savings</option>
-										
-										@php 
-											$toUsers = \App\User::where([
-												['id', '<>', Auth::id()],
-												['company_id', $user->company_id]
-											])->get(); 
-										@endphp
-										@if($toUsers->isNotEmpty())
-											@foreach($toUsers as $toUser)
-												<option value="{{ $toUser->id }}" class="userOption hidden" disabled>{{ $toUser->firstname }}</option>
-											@endforeach
-										@else
-											<option value="" disabled>No other user available to send to</option>
-										@endif
 									</select>
 								</div>
 							</div>

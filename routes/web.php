@@ -19,7 +19,15 @@ Auth::routes();
 
 Route::resource('bank', 'BankAccountController');
 
-Route::resource('account', 'UserAccountController');
+Route::get('bank/{bankAccount}/users', 'BankAccountController@bank_accounts');
+
+// Route::resource('account', 'UserAccountController');
+
+Route::get('account/create/{bankAccount}', 'UserAccountController@create');
+
+Route::post('account/{bankAccount}', 'UserAccountController@store');
+
+Route::get('account/{bankAccount}/bank', 'UserAccountController@bank_accounts');
 
 Route::resource('users', 'HomeController');
 

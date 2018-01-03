@@ -257,13 +257,6 @@ a.navbar-brand {
     background: darkseagreen;
 }
 
-.indBankAccount {
-    margin-top: 1%;
-    margin-bottom: 1%;
-    padding: 1% 1%;
-    width: 75%;
-}
-
 .indBankAccount:nth-of-type(odd) {
     background: beige;
 }
@@ -272,7 +265,16 @@ a.navbar-brand {
     background: aquamarine;
 }
 
-.bankAccountHeader {}
+.indBankAccountLinks a {
+	text-decoration: none;
+	background: burlywood;
+	transition: 0.2s;
+	color: white;
+}
+
+.indBankAccountLinks a:hover:not(:last-of-type) {
+	background: darkcyan;
+}
 
 .bankAccountHeader h2, .bankAccountHeader a {
     display: -webkit-inline-box;
@@ -313,17 +315,6 @@ a.navbar-brand {
     /* padding: 0% 1%; */
 }
 
-.indBankAccountLinks a {
-	text-decoration: none;
-	background: burlywood;
-	transition: 0.2s;
-	color: white;
-}
-
-.indBankAccountLinks a:hover:not(:last-of-type) {
-	background: darkcyan;
-}
-
 .myAccounts {
 	background: bisque;
 	margin: 0% 0px;
@@ -353,10 +344,6 @@ a.navbar-brand {
     border-right: solid 2px;
     display: -webkit-inline-box;
     display: inline-block;
-}
-
-.allTransactions {
-	padding: 0% 3%;
 }
 
 .myTransactions {
