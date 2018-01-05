@@ -43,7 +43,7 @@
 				<div class="col-md-3 col-sm-3 col-xs-3">
 					<span>Here's a list of all your banks</span>
 				</div>
-				<div class="col-md-9 col-sm-9 col-xs-9">
+				<div class="col-xl-7 col-sm-9 col-9">
 					@if($user_accounts)
 						@foreach($user_accounts as $user_account)
 							@php $bankAccount = \App\BankAccount::find($user_account->bank_account_id); @endphp
@@ -89,7 +89,7 @@
 				<div class="col-md-3 col-sm-3 col-xs-3">
 					<span>Here's a list of your balances with all your banks</span>
 				</div>
-				<div class="col-md-9 col-sm-9 col-xs-9">
+				<div class="col-xl-9 col-sm-9 col-xs-9">
 					@if($user_accounts->count() > 0)
 						@foreach($user_accounts as $user_account)
 							<div class="indShareAccount addBoxShadow">

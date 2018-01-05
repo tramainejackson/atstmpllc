@@ -160,6 +160,6 @@ class BankAccountController extends Controller
     {
 		$bank_accounts = $bankAccount->user_accounts;
 		
-		return view('banks.bank_users', compact('bank_accounts'));
+		return view('banks.bank_users', compact('bank_accounts', 'bankAccount'));
     }
 }

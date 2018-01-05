@@ -49,7 +49,7 @@ class UserAccountController extends Controller
 		// Recreate shares here
 		//
 		
-        return view('accounts.bank.create', compact('bankAccount', 'company_users'));
+        return view('bank.index', compact('bankAccount', 'new_user'));
     }
 
     /**

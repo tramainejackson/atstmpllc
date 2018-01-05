@@ -47,7 +47,6 @@
 										<option value="Transfer">Transfer</option>
 										<option value="Deposit">Deposit</option>
 										<option value="Withdrawl">Withdrawl</option>
-										<option value="Refund">Refund</option>
 									</select>
 								</div>
 							</div>
@@ -125,7 +124,7 @@
 								</div>
 								<div class="col-6">
 									<label class="form-label">Receipt Photo</label>
-									<input type="file" name="receipt_photo" class="form-control" value="" placeholder="" />
+									<input type="file" name="receipt_photo[]" class="form-control" value="" placeholder="" multiple />
 								</div>
 							</div>
 							<div class="form-group">

@@ -78,25 +78,52 @@ class TransactionController extends Controller
 		$trans->company_id = $user_account->user->company_id;
 		$trans->type = $request->type;
 		$message = "";
+		$error = "";
 
 		// Do if transaction type is a transfer
 		if($trans->type == 'Transfer') {
 			$trans->transfer_type = $request->transfer_type;
 			$trans->transfer_to = $request->transfer_to;
 			$trans->transfer_from = $request->transfer_from;
-			// dd($request);
 		} else {
 
+			// Store picture if one was uploaded
 			if($request->hasFile('receipt_photo')) {
-				$trans->receipt = $request->receipt;
-				// $trans->receipt_photo   = isset($_FILES["receipt_photo"]) ? $trans->checkNewPicture($_FILES["receipt_photo"]) : "";
+				foreach($request->file('receipt_photo') as $newImage) {
+					$fileName = $newImage->getClientOriginalName();
+					
+					// Check to see if images is too large
+					if($newImage->getError() == 1) {
+						$error .= "The file " . $fileName . " is too large and could not be uploaded";
+					} elseif($newImage->getError() == 0) {
+						// Check to see if images is about 25MB
+						// If it is then resize it
+						if($newImage->getClientSize() < 25000000) {
+							if($newImage->guessExtension() == 'jpeg' || $newImage->guessExtension() == 'png' || $newImage->guessExtension() == 'gif' || $newImage->guessExtension() == 'webp' || $newImage->guessExtension() == 'jpg') {
+								$image = Image::make($newImage->getRealPath())->orientate();
+								$path = $newImage->store('public/images');
+								$image->save(storage_path('app/' . $path));
 
-				// if($trans->receipt_photo != "" || $trans->receipt_photo != false) {
-					// $trans->receipt_photo = $trans->receipt_photo[1];
-					// $trans->receipt = "Y";
-				// } else {
-					// $trans->receipt = "N";
-				// }
+								$trans->receipt = 'Y';
+								$trans->receipt_photo = str_ireplace('public/images/', '', $path);
+							} else {
+								$error .= "<li class='errorItem'>The file " . $fileName . " could not be added bcause it is the wrong image type</li>";
+							}
+						} else {
+							// Resize the image before storing. Will need to hash the filename first
+							$path = $newImage->store('public/images');
+							$image = Image::make($newImage)->orientate()->resize(1500, null, function ($constraint) {
+								$constraint->aspectRatio();
+								$constraint->upsize();
+							});
+							$image->save(storage_path('app/'. $path));
+						}
+					} else {
+						$error .= "<li class='errorItem'>The file " . $fileName . " may be corrupt and could not be uploaded</li>";
+					}
+				}
+			} else {
+				$error .= "<li class='errorItem'>The file " . $fileName . " may be corrupt and could not be uploaded</li>";
 			}
 			
 			if($trans->type == 'Deposit') {

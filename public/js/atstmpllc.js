@@ -60,8 +60,10 @@ $(document).ready(function() {
 			}
 		});
 		
-	//Show transaction photo in colorbox plugins
-		$('a.transImg').magnificPopup({type:'image'});
+	//Show transaction photo in Magnific Popup plugins
+		$('a.transImg').magnificPopup({
+			type:'image'
+		});
 });
 
 // Ajax request for user accounts for selected bank

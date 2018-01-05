@@ -14,6 +14,11 @@
 		<div class="col-12">
 			@include('layouts.nav')
 		</div>
+		<div class="col-10 mt-4 mx-auto">
+			<div class="userNavLinks d-flex justify-content-around">
+				<a href="/bank" class="btn col-2">All Banks</a>
+			</div>
+		</div>
 		<div class="col-8 mx-auto">
 			<div class="createNewBank">
 				<div class="formDiv">

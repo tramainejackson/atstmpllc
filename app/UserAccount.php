@@ -133,7 +133,7 @@ class UserAccount extends Model
 		
 		if($bank_users->count() > 1) {
 			if($bank->save()) {
-				$bank->recreate_shares();
+				// $bank->recreate_shares();
 			} else {
 				// $session->message("<li class='errorItem'>User accounts were not deducted any money.");
 			}

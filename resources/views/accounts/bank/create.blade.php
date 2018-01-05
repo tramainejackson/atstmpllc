@@ -16,7 +16,7 @@
 		</div>
 		<div class="col-8 my-4 mx-auto">
 			<div class="userNavLinks d-flex justify-content-around">
-				<a href="/users" class="btn col-3">Edit Bank Users</a>
+				<a class="btn col-2 editBankLink text-truncate" href="bank/{{ $bankAccount->id }}/users" class="">Edit Bank Users</a>
 			</div>
 		</div>
 		<div class="col-8 mx-auto">
@@ -30,7 +30,7 @@
 							<label class="form-label">Select User To Add</label>
 							<select class="custom-select form-control" name="user_id">
 								@foreach($company_users as $company_user)
-									<option value="{{ $company_user->id }}" {{ $company_user->id == Auth::id() || $company_user->user_accounts()->where('bank_account_id', $bankAccount->id)->first() ? 'disabled' : '' }}>{{ $company_user->firstname . ' ' . $company_user->lastname}}{{ $company_user->id == Auth::id() || $company_user->user_accounts()->where('bank_account_id', $bankAccount->id)->first() ? ' - has an active account' : '' }}</option>
+									<option value="{{ $company_user->id }}" {{ $company_user->id == Auth::id() || $company_user->user_accounts()->where('bank_account_id', $bankAccount->id)->first() ? ' disabled' : '' }}>{{ $company_user->firstname . ' ' . $company_user->lastname}}{{ $company_user->id == Auth::id() || $company_user->user_accounts()->where('bank_account_id', $bankAccount->id)->first() ? ' - has an active account' : '' }}</option>
 								@endforeach
 							</select>
 						@else

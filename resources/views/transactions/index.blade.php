@@ -44,7 +44,7 @@
 										<div class="">
 											<span class="spanLabel">Receipt:</span>
 											@if($transaction->receipt == "Y")
-												<a class="transImg" href="{{ $transaction->receipt_photo }}">Receipt Photo</a>
+												<a class="transImg" href="{{ asset('/storage/images/' . $transaction->receipt_photo) }}">Receipt Photo</a>
 											@else
 												<span class="itemContent">{{ $transaction->receipt }}</span>
 											@endif
