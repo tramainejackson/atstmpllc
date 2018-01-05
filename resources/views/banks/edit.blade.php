@@ -41,14 +41,14 @@
 							<label class="form-label">Checking Balance</label>
 							<div class="input-group">
 								<span class="oi oi-dollar input-group-addon"></span>
-								<input type="number" name="checking_balance" class="form-control" value="{{ number_format($bankAccount->checking_balance, 2) }}" placeholder="Enter Checking Balance" step="0.01"/>
+								<input type="number" name="checking_balance" class="form-control" value="{{ $bankAccount->checking_balance }}" placeholder="Enter Checking Balance" step="0.01"/>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="form-label">Saving Balance</label>
 							<div class="input-group">
 								<span class="oi oi-dollar input-group-addon"></span>
-								<input type="number" name="savings_balance" class="form-control" value="{{ 		number_format($bankAccount->savings_balance, 2) }}" placeholder="Enter Savings Balance" step="0.01" />
+								<input type="number" name="savings_balance" class="form-control" value="{{ 		$bankAccount->savings_balance }}" placeholder="Enter Savings Balance" step="0.01" />
 							</div>
 						</div>
 						<div class="form-group">

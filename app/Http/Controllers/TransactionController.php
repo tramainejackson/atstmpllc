@@ -123,7 +123,7 @@ class TransactionController extends Controller
 					}
 				}
 			} else {
-				$error .= "<li class='errorItem'>The file " . $fileName . " may be corrupt and could not be uploaded</li>";
+				$error .= "<li class='errorItem'>The uploaded file may be corrupt and could not be uploaded</li>";
 			}
 			
 			if($trans->type == 'Deposit') {
@@ -150,7 +150,7 @@ class TransactionController extends Controller
 				$user_account->make_withdrawl($trans->amount, $trans->withdrawl_type, $trans->user_account_id);
 			} elseif($trans->type == "Deposit") {
 				$message .= "<li class='okItem'>Deposit of $".$trans->amount." was saved successfully.</li>";
-				$user_account->make_deposit($trans->amount, $trans->deposit_type, $trans->account_type, $trans->user_account_id);
+				$bank_account->make_deposit($trans->amount, $trans->account_type);
 			} elseif($trans->type == "Transfer") {
 				$message .= "<li class='okItem'>Transfer of $".$trans->amount." was saved successfully.</li>";
 				$user_account->make_transfer($trans->amount, $trans->transfer_type, $trans->transfer_to, $trans->transfer_from, $trans->user_account_id);

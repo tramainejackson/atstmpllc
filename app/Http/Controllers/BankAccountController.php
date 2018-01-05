@@ -47,6 +47,7 @@ class BankAccountController extends Controller
      */
     public function store(Request $request)
     {
+		// dd($request);
 		// Validate incoming data
 		$this->validate($request, [
 			'bank_name' => 'required|max:50',
@@ -55,6 +56,7 @@ class BankAccountController extends Controller
 		// Create a new bank account instance
 		$newBank = new BankAccount();
 		
+		$newBank->company_id = Auth::user()->company_id;
 		$newBank->bank_name = $request->bank_name;
 		$newBank->account_num = $request->account_num;
 		$newBank->checking_balance = $request->checking_balance;
@@ -67,7 +69,7 @@ class BankAccountController extends Controller
 			$newUserAccount->bank_account_id = $newBank->id;
 			$newUserAccount->user_id = $newBank->created_by;
 			$newUserAccount->checking_share = $newBank->checking_balance;
-			$newUserAccount->savings_share = $newBank->savings_share;
+			$newUserAccount->savings_share = $newBank->savings_balance;
 			$newUserAccount->share_pct = 1;
 			
 			if($newUserAccount->save()) {
@@ -109,31 +111,19 @@ class BankAccountController extends Controller
      */
     public function update(Request $request, $id)
     { 
+		// dd($request);
 		$message = "";
         $bankAccount = BankAccount::find($id);
 		$bankAccount->bank_name = $request->bank_name;
 		$bankAccount->account_num = $request->account_num;
 		$bankAccount->checking_balance = $request->checking_balance;
 		$bankAccount->savings_balance = $request->savings_balance;
-		$bankAccount->recreate_shares();
+		// $bankAccount->recreate_shares();
 
 		if($bankAccount->save()) {
 			$message .= "<li class='okItem'>Bank information saved</li>";
-		} 
-		
-		foreach($request->user_account_id as $key => $user_account) {
-		// dd($request);
-			if($user_account != null) {
-				$user_account = UserAccount::find($user_account->id);
-				$user_account->edit_bank = $request->edit_bank[$key];		
-
-				if($user_account->save()) {
-					$message .= "<li class='okItem'>Changes made to user " . $user_account->firstname . "</li>";
-					
-				} else {
-					$message .= "<li class='errorItem'>No changes made to user " . $user_account->firstname . "</li>";
-				}
-			}
+		} else {
+			$message .= "<li class='errorItem'>Bank information not updated. Please try saving again</li>";
 		}
 
 		return redirect()->action('BankAccountController@edit', $bankAccount)->with('status', $message);

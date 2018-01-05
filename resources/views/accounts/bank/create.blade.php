@@ -14,15 +14,18 @@
 		<div class="col-12">
 			@include('layouts.nav')
 		</div>
-		<div class="col-8 my-4 mx-auto">
-			<div class="userNavLinks d-flex justify-content-around">
-				<a class="btn col-2 editBankLink text-truncate" href="bank/{{ $bankAccount->id }}/users" class="">Edit Bank Users</a>
-			</div>
+		<div class="col-12 my-4 ">
+			<h2 class="text-muted">{{ $bankAccount->bank_name }}</h2>
 		</div>
 		<div class="col-8 mx-auto">
+			<div class="userNavLinks d-flex justify-content-around">
+				<a class="btn col-2 editBankLink text-truncate" href="/bank/{{ $bankAccount->id }}/users" class="">Edit Bank Users</a>
+			</div>
+		</div>
+		<div class="col-8 mx-auto my-4">
 			<div class="formDiv">
 				{!! Form::open(['action' => ['UserAccountController@store', $bankAccount->id], 'method' => 'POST']) !!}
-					<div class="formDivTitle row">
+					<div class="formDivTitle">
 						<h2 class=""> {{ $bankAccount->bank_name }} - Add New User</h2>
 					</div>
 					<div class="form-group">

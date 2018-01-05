@@ -257,6 +257,10 @@ a.navbar-brand {
     background: darkseagreen;
 }
 
+.indBankAccount {
+    height: 100%;
+}
+
 .indBankAccount:nth-of-type(odd) {
     background: beige;
 }
@@ -499,6 +503,12 @@ form div input, form div select, input[type=file] {
 .userNavLinks a:hover {
 	color: whitesmoke;
     background: cornflowerblue;
+}
+
+.userNavLinks a.btn-danger:hover {
+    color: #fff;
+    background-color: #c82333;
+    border-color: #bd2130;
 }
 
 .removeUserNotification {

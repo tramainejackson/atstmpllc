@@ -48,7 +48,7 @@
 						@foreach($user_accounts as $user_account)
 							@php $bankAccount = \App\BankAccount::find($user_account->bank_account_id); @endphp
 
-							<div class="indBankAccount addBoxShadow">
+							<div class="indBankAccount addBoxShadow p-4">
 								<div class="bankAccountHeader">
 									<h2 class="">{{ $bankAccount->bank_name }}</h2>
 									@if($user_account->edit_bank == "Y")

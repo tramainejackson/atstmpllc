@@ -2,6 +2,9 @@
 			ATSTMPLLC
 ---------------------------------------
 
+Add ability to remove users from bank
+Add ability to remove bank
+Add bank to transaction views
 Dont allow dupe username or email on user update page
 Complete transaction pages
 Complate shares pages

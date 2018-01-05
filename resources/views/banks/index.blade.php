@@ -14,6 +14,20 @@
 		<div class="col-12">
 			@include('layouts.nav')
 		</div>
+		<div class="col-12 my-4">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col">
+						<h2 class="text-muted">My Available Banks</h2>
+						<div class="userNavLinks d-flex justify-content-around">
+							<a href="/bank/create" class="btn col-2">Add A New Bank</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row align-items-stretch">
 		@if($userAccounts->count() > 0)
 			@foreach($userAccounts as $userAccount)
 				<div class="col-6 my-3">	
@@ -53,13 +67,15 @@
 								<div class="">
 									@if($userAccount->edit_bank == "Y")
 										<div class="">
-											<h3 class="">Share Split</h3>
+											<h3 class="">Account Ownership</h3>
 										</div>	
 										<div class="">
 											@php $allUserAccounts = \App\UserAccount::where('bank_account_id', $bankAccount->id)->get(); @endphp
 											@foreach($allUserAccounts as $allUserAccount)
-												<span>{{ $allUserAccount->user->firstname }}:</span>
-												<span>{{ ($allUserAccount->share_pct * 100) . "%" }}</span>
+												<div class="">
+													<span>{{ $allUserAccount->user->firstname }}:</span>
+													<span>{{ ($allUserAccount->share_pct * 100) . "%" }}</span>
+												</div>
 											@endforeach
 										</div>
 									@endif
@@ -72,7 +88,6 @@
 										<a class="btn col-2 editBankLink text-truncate" href="/bank/{{ $bankAccount->id }}/users" class="">Edit Bank Users</a>
 										<a class="btn col-2  text-truncate editBankLink" href="/bank/{!! $bankAccount->id !!}/edit" class="">Edit Bank</a>
 										<a class="btn btn-danger col-2 editBankLink text-truncate" href="bank.php?create_share={{ $bankAccount->id }}" class="">Remove Bank</a>
-										</div>
 									@endif
 								</div>
 							</div>

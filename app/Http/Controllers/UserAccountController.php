@@ -49,7 +49,7 @@ class UserAccountController extends Controller
 		// Recreate shares here
 		//
 		
-        return view('bank.index', compact('bankAccount', 'new_user'));
+        return redirect()->action('BankAccountController@bank_accounts', compact('bankAccount'));
     }
 
     /**
@@ -81,9 +81,40 @@ class UserAccountController extends Controller
      * @param  \App\UserAccount  $userAccount
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserAccount $userAccount)
+    public function update(Request $request, BankAccount $bankAccount)
     {
-        //
+		// dd($request);
+		$bank_accounts = $bankAccount->user_accounts;
+		$totalCurrentShare = 0;
+		$message = "";
+		
+		foreach($request->ownership as $share_pct) {
+			$totalCurrentShare += $share_pct;
+		}
+		
+		if($totalCurrentShare > 100) {
+			$message .= "<li class='errorItem'>Total percent share cannot total more than 100%</li>";
+			
+			return redirect()->back()->with(['status' => $message]);
+		} else {
+			foreach($request->user as $key => $value) {
+				// Get user account
+				$userAccount = UserAccount::find($value);
+				$userAccount->share_pct = number_format($request->ownership[$key] / 100, 2);
+				$userAccount->edit_bank = $request->edit_bank[$key];
+				// dd($userAccount);
+				$userAccount->checking_share = $userAccount->share_pct * $bankAccount->checking_balance;
+				$userAccount->savings_share = $userAccount->share_pct * $bankAccount->savings_balance;
+
+				if($userAccount->save()) {
+					$message .= "<li class='okItem'>Changes made to user " . $userAccount->first_name . "</li>";
+				} else {
+					$message .= "<li class='errorItem'>No changes made to user " . $userAccount->first_name . "</li>";
+				}
+			}
+			
+			return redirect()->back()->with(['status' => $message, 'bank_accounts' => $bank_accounts, 'bankAccount' => $bankAccount]);
+		}
     }
 
     /**
@@ -107,7 +138,7 @@ class UserAccountController extends Controller
     {
 		$bank_accounts = $bankAccount->user_accounts;
 		
-		return view('accounts.bank.bank_users', compact('bank_accounts'));
+		return view('accounts.bank.bank_users', compact('bank_accounts', 'bankAccount'));
     }
 
 }

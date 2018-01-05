@@ -25,6 +25,8 @@ Route::get('bank/{bankAccount}/users', 'BankAccountController@bank_accounts');
 
 Route::get('account/create/{bankAccount}', 'UserAccountController@create');
 
+Route::put('bank/{bankAccount}/users', 'UserAccountController@update');
+
 Route::post('account/{bankAccount}', 'UserAccountController@store');
 
 Route::get('account/{bankAccount}/bank', 'UserAccountController@bank_accounts');

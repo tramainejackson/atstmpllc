@@ -53,8 +53,8 @@
 										<div class="">
 											<span class="spanLabel">Transfer To:</span>
 											@if($transaction->transfer_type == "user")
-												@php $toUser = \App\User::find($transaction->transfer_to); @endphp
-												<span class="itemContent">{{ $toUser->firstname }}</span>
+												@php $toUser = \App\UserAccount::find($transaction->transfer_to); @endphp
+												<span class="itemContent">{{ $toUser->user->firstname }}</span>
 											@else
 												<span class="itemContent">{{ ucwords($transaction->transfer_to) }}</span>
 											@endif
