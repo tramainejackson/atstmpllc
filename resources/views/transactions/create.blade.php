@@ -35,7 +35,7 @@
 										@if($userAccounts->count() > 0)
 											@foreach($userAccounts as $userAccount)
 												@php $bankAccount = \App\BankAccount::find($userAccount->bank_account_id); @endphp
-													<option value="{{ $bankAccount->id }}"{{ $loop->first ? ' selected' : ''}}>{{ $bankAccount->bank_name . " - $" . number_format($bankAccount->checking_balance, 2) }}</option>
+													<option value="{{ $bankAccount->id }}"{{ $loop->first ? ' selected' : ''}}>{{ $bankAccount->bank_name . " - $" . number_format($bankAccount->checking_balance, 2) . " (Checking)" }}</option>
 											@endforeach
 										@endif
 									</select>
@@ -82,18 +82,28 @@
 							<div class="form-row addtTransferForm alternateFormGroups hidden">
 								<div class="col-12">
 									<label class="form-label">Send From</label>
-									<select class="form-control custom-select" name="transfer_from" disabled>
+									<select class="form-control custom-select sendFromUserSelect" name="transfer_from" disabled>
 										<option value="blank" disabled>---- Select Account To Send From ----</option>
-										<option value="checking" selected>Checking</option>
-										<option value="savings">Savings</option>
+										@if($userAccounts->count() > 0)
+											@foreach($userAccounts as $userAccount)
+												@php $bankAccount = \App\BankAccount::find($userAccount->bank_account_id); @endphp
+													<option value="{{ $bankAccount->id }}" class="{{ !$loop->first ? 'hidden' : ''}}"{{ $loop->first ? ' selected' : ''}}>{{ "Checking" . " - $" . number_format($bankAccount->checking_balance, 2) }}</option>
+													<option value="{{ $bankAccount->id }}" class="{{ !$loop->first ? 'hidden' : ''}}">{{ "Savings" . " - $" . number_format($bankAccount->savings_balance, 2) }}</option>
+											@endforeach
+										@endif
 									</select>
 								</div>
 								<div class="col-12">
 									<label class="form-label">Send To</label>
 									<select class="form-control custom-select sendToUserSelect" name="transfer_to" disabled>
 										<option value="blank" class="firstOption" disabled>---- Select Account To Send To ----</option>
-										<option value="checking" class="accountOption">Checking</option>
-										<option value="savings"  class="accountOption">Savings</option>
+										@if($userAccounts->count() > 0)
+											@foreach($userAccounts as $userAccount)
+												@php $bankAccount = \App\BankAccount::find($userAccount->bank_account_id); @endphp
+													<option value="{{ $bankAccount->id }}" class="accountOption{{ !$loop->first ? ' hidden' : ''}}"{{ $loop->first ? ' selected' : ''}}>{{ "Checking" . " - $" . number_format($bankAccount->checking_balance, 2) }}</option>
+													<option value="{{ $bankAccount->id }}" class="accountOption{{ !$loop->first ? ' hidden' : ''}}">{{ "Savings" . " - $" . number_format($bankAccount->savings_balance, 2) }}</option>
+											@endforeach
+										@endif
 									</select>
 								</div>
 							</div>

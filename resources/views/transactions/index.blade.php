@@ -37,6 +37,10 @@
 									<span class="itemContent"><a href="/transactions/{{ $transaction->user_account_id }}">{{ $transaction->user_account->user->firstname }}</a></span>
 								</div>
 								<div class="">
+									<span class="spanLabel">Bank:</span>
+									<span>{{ $transaction->bank_account->bank_name }}</span>
+								</div>
+								<div class="">
 									<span class="spanLabel">Amount:</span>
 									<span class="itemContent">{{ "$" . $transaction->amount }}</span>
 									
@@ -46,7 +50,7 @@
 											@if($transaction->receipt == "Y")
 												<a class="transImg" href="{{ asset('/storage/images/' . $transaction->receipt_photo) }}">Receipt Photo</a>
 											@else
-												<span class="itemContent">{{ $transaction->receipt }}</span>
+												<span class="itemContent">None Attached</span>
 											@endif
 										</div>
 									@endif

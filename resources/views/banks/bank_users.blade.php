@@ -40,7 +40,7 @@
 									<input class="form-control" name="" value="{{ $bank_account->user->firstname . ' ' . $bank_account->user->last_name }}" disabled />
 									<input hidden type="number" name="user[]" class="" value="{{ $bank_account->id }}" />
 								</div>
-								<div class="col-5">
+								<div class="col-3">
 									<label class="form-label">Can Edit Bank</label>
 									<select class="form-control custom-select" name="edit_bank[]">
 										<option value="Y" {{ $bank_account->edit_bank == 'Y' ? 'selected' : ''}}>Yes</option>
@@ -53,6 +53,10 @@
 										<input type="number" name="ownership[]" class="form-control" value="{{ $bank_account->share_pct * 100 > 0 ? number_format($bank_account->share_pct * 100, 2) : '' }}" placeholder="Add Owrnership %" step="0.01" />
 										<span class="input-group-addon" id="">%</span>
 									</div>
+								</div>
+								<div class="col-2">
+									<label class="form-label">&nbsp;</label>
+									<a href="#{{ $bank_account->id }}" class="btn btn-danger{{ $bank_account->user->id == Auth::id() ? ' disabled' : ' removeBankUser' }}">Remove From Bank</a>
 								</div>
 							</div>
 						@endforeach

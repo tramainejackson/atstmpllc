@@ -135,9 +135,22 @@ class BankAccountController extends Controller
      * @param  \App\BankAccount  $bankAccount
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BankAccount $bankAccount)
+    public function destroy($id)
     {
-        //
+		$bankAccount = BankAccount::find($id);
+		$message = "";
+
+		if($bankAccount->delete()) {
+			$message = "<li class='okItem'>".$bankAccount->bank_name." Deleted Successfully</li>";
+			
+			if($bankAccount->user_accounts()->delete()) {
+				$message = "<li class='okItem'>Individual Accounts Deleted Successfully</li>";
+			}
+		} else {
+			
+		}
+		
+		return redirect()->action('BankAccountController@index')->with('status', $message);
     }
 	
 	/**
@@ -151,5 +164,16 @@ class BankAccountController extends Controller
 		$bank_accounts = $bankAccount->user_accounts;
 		
 		return view('banks.bank_users', compact('bank_accounts', 'bankAccount'));
+    }
+	
+	/**
+     * Display the specified resource.
+     *
+     * @param  \App\UserAccount  $userAccount
+     * @return \Illuminate\Http\Response
+     */
+    public function bank_remove(BankAccount $bankAccount)
+    {
+		return view('banks.remove', compact('bankAccount'));
     }
 }

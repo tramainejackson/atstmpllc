@@ -5,65 +5,88 @@ $(document).ready(function() {
 	var windowWidth = document.body.clientWidth;
 	var documentHeight = document.body.clientHeight;
 	
-// Make the body min height the same size as the window height 	
+	// Make the body min height the same size as the window height 	
 	$("body#admin_page_login").css({minHeight:windowHeight});
 	
-// Initialize datetimepicker
+	// 
+	$('li.logOutLink a').hover(function() {
+		console.log('here');
+		$('li.logOutLink a').css({color : '#c1cad2'});
+	}, function() {
+		$('li.logOutLink a').css({color : '#525252'});
+	});
+	
+	// Initialize datetimepicker
 	$('.datetimepicker').datetimepicker({
 		timepicker:false,
 		format:'m/d/Y',
 		value:'01/01/2018'
 	});
 
+	// Bring up delete bank modal when button is clicked
+	$('body').on('click', '.removeBank', function(e) {
+		e.preventDefault();
+		remove_bank($(this).attr('href').slice(1));
+	});
+	
+	// Bring up delete bank modal when button is clicked
+	$('body').on('click', '.removeBankUser', function(e) {
+		e.preventDefault();
+		remove_bank_user($(this).attr('href').slice(1));
+	});
+	
 	//Change page if bank is changed when transaction type is transfer
-		$("body").on("change", ".bankSelect, .transferAccountType", function(e) {
-			var transactionType = $(".transactionSelect").val();
-			var bankValue = $(".bankSelect option:selected");
-			var transferValue = $(".transferAccountType option:selected");
+	$("body").on("change", ".bankSelect, .transferAccountType", function(e) {
+		var transactionType = $(".transactionSelect").val();
+		var bankValue = $(".bankSelect option:selected");
+		var transferValue = $(".transferAccountType option:selected");
+		
+		// Bring up the checking and savings for the selected bank
+		// and make all other accounts hidden and disabled
+		$('.addtTransferForm .sendToUserSelect option[value=' + $(bankValue).val() + '], .addtTransferForm .sendFromUserSelect option[value=' + $(bankValue).val() + ']').removeAttr('disabled').removeClass("hidden").show().attr('selected', true);
+		$('.addtTransferForm .sendToUserSelect option:not([value=' + $(bankValue).val() + ']), .addtTransferForm .sendFromUserSelect option:not([value=' + $(bankValue).val() + '])').attr('disabled', true).addClass("hidden").hide();;
+		
+		if($(transferValue).val() == 'user') {
+			get_users($(bankValue).val());
+			$('.addtTransferForm .firstOption').text('---- Select A User To Send To ----').attr('selected', true);
+			$('.addtTransferForm .accountOption').hide().attr('disabled', true);
+			$('.addtTransferForm .userOption').show().removeAttr('disabled');
 			
-			if($(bankValue).val() == 'blank') {
-				$(".bankSelect").focus();
-			} else {
-				if($(transferValue).val() == 'user') {
-					get_users($(bankValue).val());
-					$('.addtTransferForm .firstOption').text('---- Select A User To Send To ----').attr('selected', true);
-					$('.addtTransferForm .accountOption').hide().attr('disabled', true);
-					$('.addtTransferForm .userOption').show().removeAttr('disabled');
-				} else if($(transferValue).val() == 'account') {
-					$('.addtTransferForm .firstOption').text('---- Select Account To Send To ----').attr('selected', true);
-					$('.addtTransferForm .accountOption').show().removeAttr('disabled');
-					$('.addtTransferForm .userOption').hide().attr('disabled', true);
-				}
-			}
-
-		});
+		} else if($(transferValue).val() == 'account') {
+			$('.addtTransferForm .firstOption').text('---- Select Account To Send To ----').attr('selected', true);
+			// $('.addtTransferForm .accountOption').show().removeAttr('disabled');
+			// $('.addtTransferForm .userOption').hide().attr('disabled', true);
+		}
+	});
 	
 	// Bring up pictures to see before deleting or bring up all pictures
-		$("body").on("change", ".transactionSelect", function(e) {
-			var addtFormGroups = $(".alternateFormGroups");
-			var transactionType = $(".transactionSelect").val();
+	$("body").on("change", ".transactionSelect", function(e) {
+		var addtFormGroups = $(".alternateFormGroups");
+		var transactionType = $(".transactionSelect").val();
 
-			$(addtFormGroups).slideUp().find('select').attr('disabled', true);
-			
-			if(transactionType == "Transfer") {
-				$('.receiptForm').slideUp();
-				$('.addtTransferForm').slideDown().find('select').removeAttr('disabled');
-			} else if(transactionType == "Withdrawl") {
-				$('.receiptForm').slideDown();
-				$('.addtWithdrawlForm').slideDown().find('select').removeAttr('disabled');
-			} else if(transactionType == "Deposit") {
-				$('.receiptForm').slideDown();
-				$('.addtDepositForm').slideDown().find('select').removeAttr('disabled');
-			} else if(transactionType == "Purchase") {
-				$('.receiptForm').slideDown();
-				$('.addtDepositForm, .addtTransferForm, .addtWithdrawlForm').find('select').removeAttr('disabled');
-			}
-		});
+		$(addtFormGroups).slideUp().find('select').attr('disabled', true);
+		
+		if(transactionType == "Transfer") {
+			$('.receiptForm').slideUp();
+			$('.addtTransferForm').slideDown().find('select').removeAttr('disabled');
+		} else if(transactionType == "Withdrawl") {
+			$('.receiptForm').slideDown();
+			$('.addtWithdrawlForm').slideDown().find('select').removeAttr('disabled');
+		} else if(transactionType == "Deposit") {
+			$('.receiptForm').slideDown();
+			$('.addtDepositForm').slideDown().find('select').removeAttr('disabled');
+		} else if(transactionType == "Purchase") {
+			$('.receiptForm').slideDown();
+			$('.addtDepositForm, .addtTransferForm, .addtWithdrawlForm').find('select').removeAttr('disabled');
+		}
+	});
 		
 	//Show transaction photo in Magnific Popup plugins
-		$('a.transImg').magnificPopup({
-			type:'image'
-		});
+	$('a.transImg').magnificPopup({
+		type:'image'
+	});
+	
+
 });
 
 // Ajax request for user accounts for selected bank
@@ -85,7 +108,47 @@ function get_users(bank_id) {
 		}
 	});
 }
+
+// Ajax request for user accounts for selected bank
+function remove_bank(bank_id) {
+	$.ajax({
+	  method: "GET",
+	  url: "/bank/" + bank_id + "/remove"
+	})
 	
+	.fail(function() {
+		alert( "Error: nothing returned");		
+	})
+	.done(function(data) {
+		if($('.modal.removeBankModal').length > 0) {
+			$('.modal.removeBankModal').remove();
+		}
+		
+		$(data).appendTo('#app');
+		$('.modal.removeBankModal').modal('show');
+	});
+}
+
+// Ajax request for user accounts for selected bank
+function remove_bank_user(bank_user_id) {
+	$.ajax({
+	  method: "GET",
+	  url: "/account/" + bank_user_id + "/remove"
+	})
+	
+	.fail(function() {
+		alert( "Error: nothing returned");		
+	})
+	.done(function(data) {
+		if($('.modal.removeUserAccountModal').length > 0) {
+			$('.modal.removeUserAccountModal').remove();
+		}
+		
+		$(data).appendTo('#app');
+		$('.modal.removeUserAccountModal').modal('show');
+	});
+}
+
 //User form error check function
 	function userErrorCheck() {
 		var errors = 0;

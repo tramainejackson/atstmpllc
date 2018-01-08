@@ -33,7 +33,7 @@
 							<label class="form-label">Select User To Add</label>
 							<select class="custom-select form-control" name="user_id">
 								@foreach($company_users as $company_user)
-									<option value="{{ $company_user->id }}" {{ $company_user->id == Auth::id() || $company_user->user_accounts()->where('bank_account_id', $bankAccount->id)->first() ? ' disabled' : '' }}>{{ $company_user->firstname . ' ' . $company_user->lastname}}{{ $company_user->id == Auth::id() || $company_user->user_accounts()->where('bank_account_id', $bankAccount->id)->first() ? ' - has an active account' : '' }}</option>
+									<option value="{{ $company_user->id }}" {{ $company_user->id == Auth::id() || $company_user->user_accounts()->where('bank_account_id', $bankAccount->id)->first() ? ' disabled' : '' }} selected>{{ $company_user->firstname . ' ' . $company_user->lastname}}{{ $company_user->id == Auth::id() || $company_user->user_accounts()->where('bank_account_id', $bankAccount->id)->first() ? ' - has an active account' : '' }}</option>
 								@endforeach
 							</select>
 						@else
@@ -48,7 +48,12 @@
 						</select>
 					</div>
 					<div class="form-group">
-						{{ Form::submit('Add User', ['class' => 'btn btn-lg btn-primary']) }}
+						@if($company_users->count() > $bankAccount->user_accounts()->count())
+							{{ Form::submit('Add User', ['class' => 'btn btn-lg btn-primary']) }}
+						@else
+							{{ Form::submit('Add User', ['class' => 'btn btn-lg btn-disabled', 'disabled' => true]) }}
+							<p class="">All Users Have Been Added To This Bank</p>
+						@endif
 					</div>
 				{!! Form::close() !!}
 			</div>

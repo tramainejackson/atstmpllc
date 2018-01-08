@@ -123,7 +123,14 @@ class UserAccountController extends Controller
      */
     public function destroy(UserAccount $userAccount)
     {
-        //
+        if($userAccount->delete()) {
+			$message = "<li class='okItem'>".$userAccount->user->firstname." Remove From Bank Successfully</li>";
+		} else {
+			$message = "<li class='errorItem'>".$userAccount->user->firstname." Unable To Be Removed From Bank. Please Try Again</li>";
+			return redirect()->action('UserAccountController@bank_accounts')->with('status', $message);
+		}
+		
+		return redirect()->action('BankAccountController@index')->with('status', $message);
     }
 	
 	/**
@@ -137,6 +144,17 @@ class UserAccountController extends Controller
 		$bank_accounts = $bankAccount->user_accounts;
 		
 		return view('accounts.bank.bank_users', compact('bank_accounts', 'bankAccount'));
+    }
+	
+	/**
+     * Display the specified resource.
+     *
+     * @param  \App\UserAccount  $userAccount
+     * @return \Illuminate\Http\Response
+     */
+    public function user_account_remove(UserAccount $userAccount)
+    {
+		return view('accounts.bank.remove_user', compact('userAccount'));
     }
 
 }

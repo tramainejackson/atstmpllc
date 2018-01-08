@@ -21,7 +21,10 @@ Route::resource('bank', 'BankAccountController');
 
 Route::get('bank/{bankAccount}/users', 'BankAccountController@bank_accounts');
 
+Route::get('bank/{bankAccount}/remove', 'BankAccountController@bank_remove');
+
 // Route::resource('account', 'UserAccountController');
+Route::get('account/{userAccount}/remove', 'UserAccountController@user_account_remove');
 
 Route::get('account/create/{bankAccount}', 'UserAccountController@create');
 
@@ -30,6 +33,8 @@ Route::put('bank/{bankAccount}/users', 'UserAccountController@update');
 Route::post('account/{bankAccount}', 'UserAccountController@store');
 
 Route::get('account/{bankAccount}/bank', 'UserAccountController@bank_accounts');
+
+Route::delete('account/{userAccount}', 'UserAccountController@destroy');
 
 Route::resource('users', 'HomeController');
 

@@ -2,16 +2,16 @@
 			ATSTMPLLC
 ---------------------------------------
 
-Add ability to remove users from bank
-Add ability to remove bank
-Add bank to transaction views
+Paginate transactions
 Dont allow dupe username or email on user update page
 Figure out how transfers affect account amounts.
-Update create shares function
-If all users added to bank, find a way to have one of them selected
-Add which bank to add user to on create user page
-Add a before/after amount of bank account on transactions
 Maybe add refund as a transaction option
+Done: Add ability to remove users from bank
+Done: Add ability to remove bank
+Done: Add bank to transaction views
+Done: If all users added to bank, find a way to have one of them selected
+Done: Update create shares function
+Done: Add a amount of bank account on transactions create page
 Done: Complete transaction pages
 Done: Complate shares pages
 Done: Make ajax call to get the transfer to users

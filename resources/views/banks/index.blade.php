@@ -84,10 +84,10 @@
 							<div class="indBankAccountLinks container-fluid">
 								<div class="row align-items-center justify-content-around">
 									@if($userAccount->edit_bank == "Y")
-										<a class="btn col-2 editBankLink text-truncate" href="/account/create/{{ $bankAccount->id }}" class="">Add Bank User</a>
-										<a class="btn col-2 editBankLink text-truncate" href="/bank/{{ $bankAccount->id }}/users" class="">Edit Bank Users</a>
-										<a class="btn col-2  text-truncate editBankLink" href="/bank/{!! $bankAccount->id !!}/edit" class="">Edit Bank</a>
-										<a class="btn btn-danger col-2 editBankLink text-truncate" href="bank.php?create_share={{ $bankAccount->id }}" class="">Remove Bank</a>
+										<a class="btn col-2 editBankLink text-truncate" href="/account/create/{{ $bankAccount->id }}">Add Bank User</a>
+										<a class="btn col-2 editBankLink text-truncate" href="/bank/{{ $bankAccount->id }}/users">Edit Bank Users</a>
+										<a class="btn col-2  text-truncate editBankLink" href="/bank/{!! $bankAccount->id !!}/edit">Edit Bank</a>
+										<a class="btn btn-danger col-2 editBankLink text-truncate removeBank" href="#{{ $bankAccount->id }}">Remove Bank</a>
 									@endif
 								</div>
 							</div>
