@@ -59,10 +59,8 @@ class TransactionController extends Controller
 			'trans_amount' => 'min:0.01|numeric',
 		]);
 		
-		// Get user account selected and logged in User
+		// Get user account selected and bank account
 		$bank_account = BankAccount::find($request->bank_id);
-		
-		// Get user account selected and logged in User
 		$user_account = UserAccount::where([
 			['bank_account_id', '=', $bank_account->id],
 			['user_id', '=', Auth::id()]
@@ -72,6 +70,7 @@ class TransactionController extends Controller
 		$trans = new Transaction();
 		$date = date_create($request->trans_date);
 		$trans->user_account_id = $user_account->id;
+		$trans->bank_account_id = $bank_account->id;
 		$trans->user_id = $user_account->user_id;
 		$trans->amount = $request->trans_amount;
 		$trans->transaction_date = date_format($date, "Y/m/d");
@@ -126,12 +125,8 @@ class TransactionController extends Controller
 				$error .= "<li class='errorItem'>The uploaded file may be corrupt and could not be uploaded</li>";
 			}
 			
-			if($trans->type == 'Deposit') {
+			if($trans->type == 'Deposit' || $trans->type == 'Withdrawl') {
 				$trans->account_type = $request->account_type;
-				$trans->deposit_type = $request->deposit_type;
-			} elseif($trans->type == 'Withdrawl') {
-				$trans->account_type = $request->account_type;
-				$trans->withdrawl_type = $request->withdrawl_type;
 			}
 		}
 		
@@ -141,19 +136,19 @@ class TransactionController extends Controller
 			// Successful
 			if($trans->type == "Purchase") {
 				$message .= "<li class='okItem'>Purchase of $".$trans->amount." was saved successfully.</li>";
-				$user_account->make_purchase($trans->amount, $trans->user_account_id);
+				$bank_account->make_purchase($trans->amount);
 			} elseif($trans->type == "Refund") {
 				$message .= "<li class='okItem'>Refund of $".$trans->amount." was saved successfully.</li>";
-				$user_account->make_refund($trans->amount);
+				$bank_account->make_refund($trans->amount);
 			} elseif($trans->type == "Withdrawl") {
 				$message .= "<li class='okItem'>Withdrawl of $".$trans->amount." was saved successfully.</li>";
-				$user_account->make_withdrawl($trans->amount, $trans->withdrawl_type, $trans->user_account_id);
+				$bank_account->make_withdrawl($trans->amount);
 			} elseif($trans->type == "Deposit") {
 				$message .= "<li class='okItem'>Deposit of $".$trans->amount." was saved successfully.</li>";
 				$bank_account->make_deposit($trans->amount, $trans->account_type);
 			} elseif($trans->type == "Transfer") {
 				$message .= "<li class='okItem'>Transfer of $".$trans->amount." was saved successfully.</li>";
-				$user_account->make_transfer($trans->amount, $trans->transfer_type, $trans->transfer_to, $trans->transfer_from, $trans->user_account_id);
+				$bank_account->make_transfer($trans->amount, $trans->transfer_type, $trans->transfer_to, $trans->transfer_from, $trans->user_account_id);
 			} else {
 				$message .= "<li class='errorItem'>Transaction type unrecognized.</li>";
 			}

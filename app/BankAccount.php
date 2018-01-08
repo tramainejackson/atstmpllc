@@ -58,52 +58,27 @@ class BankAccount extends Model
 		}
 	}
 	
-	public function make_withdrawl($amount=0, $type="", $user_account=0) {
-		$user_account = UserAccount::find($user_account);
-		$bank = BankAccount::find($user_account->bank_account->id);
-		$withdrawlType = $type;
+	public function make_withdrawl($amount=0, $type="") {
+		$bank = $this;
+		$accountType = $type;
 		$message = "";
+	
+		// Remove withdrawl amount from checking account
+		$bank->checking_balance -= $amount;
 
-		if($withdrawlType == "personal") {			
-			// Make withdrawl to checking account
-			$bank->checking_balance = $bank->checking_balance - $amount;
-			$user_account->checking_share = $user_account->checking_share - $amount;
-		} elseif($withdrawlType == "company") {
-			$bank_users = $bank->user_accounts;
-			
-			// Make withdrawl to checking account
-			$bank->checking_balance = $bank->checking_balance + $amount;
-			foreach($bank_users as $bank_user) {
-				$shareDeposit = $bank_user->share_pct * $amount;
-				$bank_user->checking_share = $bank_user->checking_share - $shareDeposit;
-				$bank_user->save();
-			}
-		} else {
-			$message = "<li class='errorItem'>Withdrawl type not selected</li>";
-			return $message;
+		if($bank->save()) {
+			$this->recreate_shares();
 		}
-		
-		$bank->save();
-		$user_account->save();
 	}
 	
-	public function make_purchase($amount=0, $user_account=0) {
-		$user_account = UserAccount::find($user_account);
-		$bank = BankAccount::find($user_account->bank_account->id);
+	public function make_purchase($amount=0) {
+		$bank = $this;
 		$bank->checking_balance -= $amount;
-		$bank_users = $bank->user_accounts;
 		
-		if($bank_users->count() > 1) {
-			if($bank->save()) {
-				// $bank->recreate_shares();
-			} else {
-				// $session->message("<li class='errorItem'>User accounts were not deducted any money.");
-			}
+		if($bank->save()) {
+			$bank->recreate_shares();
 		} else {
-			$user_account->checking_share -= $amount;
-			if($user_account->save()) {
-				$bank->save();
-			}
+			// $session->message("<li class='errorItem'>User accounts were not deducted any money.");
 		}
 	}
 
@@ -165,23 +140,18 @@ class BankAccount extends Model
 			}
 		}
 	}
-
+	
 	public function recreate_shares() {
 		$bank_users = $this->user_accounts;
+// dd($bank_users);
+		foreach($bank_users as $bank_user) {
+			$bank_user->checking_share = $this->checking_balance * $bank_user->share_pct;
+			$bank_user->savings_share = $this->savings_balance * $bank_user->share_pct;
 
-		if($bank_users->count() > 1) {
-			foreach($bank_users as $bank_user) {
-				$personalTransaction = UserAccount::find($bank_user->id);
-				$personal_diff = $personalTransaction->find_user_deposit_withdrawl_diff($this->id);
-				$bank_user->checking_share = ($this->checking_balance * $bank_user->share_pct) + $personal_diff["checkingDiff"];
-				// dd($personal_diff);
-				$bank_user->savings_share = ($this->savings_balance * $bank_user->share_pct) + $personal_diff["savingDiff"];
-
-				if($bank_user->save()) {
-					// $session->message("<li class='okItem'>Changes made to user " . $indUser->user . "</li>");
-				} else {
-					// $session->message("<li class='errorItem'>No changes made to user " . $indUser->user . "</li>");
-				}
+			if($bank_user->save()) {
+				// $session->message("<li class='okItem'>Changes made to user " . $indUser->user . "</li>");
+			} else {
+				// $session->message("<li class='errorItem'>No changes made to user " . $indUser->user . "</li>");
 			}
 		}
 	}

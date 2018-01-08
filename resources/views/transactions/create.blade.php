@@ -44,26 +44,26 @@
 									<label class="form-label">Transaction Type</label>
 									<select class="transactionSelect form-control custom-select" name="type">
 										<option value="Purchase" selected>Purchase</option>
-										<option value="Transfer">Transfer</option>
 										<option value="Deposit">Deposit</option>
 										<option value="Withdrawl">Withdrawl</option>
+										<option value="Transfer">Transfer</option>
 									</select>
 								</div>
 							</div>
-							<div class="form-group addtDepositForm alternateFormGroups hidden">
+							<!-- <div class="form-group addtDepositForm alternateFormGroups hidden">
 								<label class="form-label">Deposit Type</label>
 								<select class="form-control" name="deposit_type" disabled>
 									<option value="personal" selected>Personal</option>
 									<option value="company">Company Income</option>
 								</select>
-							</div>
-							<div class="form-group addtWithdrawlForm alternateFormGroups hidden">
+							</div> -->
+							<!-- <div class="form-group addtWithdrawlForm alternateFormGroups hidden">
 								<label class="form-label">Withdrawl Type</label>
 								<select class="form-control" name="withdrawl_type" disabled>
 									<option value="personal" selected>Personal</option>
 									<option value="company">Company Withdrawl</option>
 								</select>
-							</div>
+							</div> -->
 							<div class="form-group addtTransferForm alternateFormGroups hidden">
 								<label class="form-label">Transfer Type</label>
 								<select class="transferAccountType custom-select form-control" name="transfer_type" disabled>

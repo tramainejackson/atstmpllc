@@ -6,13 +6,14 @@ Add ability to remove users from bank
 Add ability to remove bank
 Add bank to transaction views
 Dont allow dupe username or email on user update page
-Complete transaction pages
-Complate shares pages
+Figure out how transfers affect account amounts.
 Update create shares function
 If all users added to bank, find a way to have one of them selected
 Add which bank to add user to on create user page
 Add a before/after amount of bank account on transactions
 Maybe add refund as a transaction option
+Done: Complete transaction pages
+Done: Complate shares pages
 Done: Make ajax call to get the transfer to users
 Done: Fix user profile image on home page
 Done: No receipt needed for transfer

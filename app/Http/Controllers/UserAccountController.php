@@ -45,9 +45,6 @@ class UserAccountController extends Controller
 			'user_id' => $request->user_id,
 			'edit_bank' => $request->edit_bank,
 		]);
-
-		// Recreate shares here
-		//
 		
         return redirect()->action('BankAccountController@bank_accounts', compact('bankAccount'));
     }
@@ -83,7 +80,6 @@ class UserAccountController extends Controller
      */
     public function update(Request $request, BankAccount $bankAccount)
     {
-		// dd($request);
 		$bank_accounts = $bankAccount->user_accounts;
 		$totalCurrentShare = 0;
 		$message = "";
@@ -102,7 +98,6 @@ class UserAccountController extends Controller
 				$userAccount = UserAccount::find($value);
 				$userAccount->share_pct = number_format($request->ownership[$key] / 100, 2);
 				$userAccount->edit_bank = $request->edit_bank[$key];
-				// dd($userAccount);
 				$userAccount->checking_share = $userAccount->share_pct * $bankAccount->checking_balance;
 				$userAccount->savings_share = $userAccount->share_pct * $bankAccount->savings_balance;
 
@@ -112,6 +107,9 @@ class UserAccountController extends Controller
 					$message .= "<li class='errorItem'>No changes made to user " . $userAccount->first_name . "</li>";
 				}
 			}
+			
+			// Recreate shares here
+			$bankAccount->recreate_shares();
 			
 			return redirect()->back()->with(['status' => $message, 'bank_accounts' => $bank_accounts, 'bankAccount' => $bankAccount]);
 		}
