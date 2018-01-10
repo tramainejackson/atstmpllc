@@ -48,11 +48,11 @@ class HomeController extends Controller
 		$user = Auth::user();
 		$user_accounts = \App\UserAccount::where('user_id', Auth::id())->get();
 		$transactions = \App\Transaction::where('user_id', Auth::id())->get();
-		$user_photo = $user->picture;
 		$user_name = $user->firstname . " " . $user->lastname;
-		$last_login = $user->last_login != null ? $user->last_login : $user->created_at;
+		$date = explode('-', $user->last_login != null ? str_ireplace(' ', '-', $user->last_login) : str_ireplace(' ', '-', $user->created_at));
+		$last_login = \Carbon\Carbon::createFromDate($date[0], $date[1], $date[2]);
 		
-        return view('home', compact('user_accounts', 'transactions', 'user_photo', 'last_login', 'user_name'));
+        return view('home', compact('user_accounts', 'transactions', 'user_name', 'user', 'last_login'));
     }
 	
 	/**
@@ -93,17 +93,15 @@ class HomeController extends Controller
 		// Validate incoming data
 		$message = "";
 		$this->validate($request, [
-			'email' => 'required|max:50',
-			'username' => 'required|max:30',
+			'email' => 'required|max:50|unique:users,email,'.$id,
 			'firstname' => 'required|max:30',
 			'lastname' => 'required|max:30',
 		]);
 		
+		// Find current user instance
 		$current_user = Auth::user();
 		$user = User::find($id);
 		
-		// Create new user instance
-		$user->username = $request->username;
 		$user->email = $request->email;
 		$user->firstname = $request->firstname;
 		$user->lastname = $request->lastname;
@@ -246,9 +244,45 @@ class HomeController extends Controller
 		if($newUser->save()) {
 			$message .= "<li class='okItem'>User Saved Successfully</li>";
 		} else {
-			$message .= "<li class='errorItem'>Unable to add user.</li>.";
+			$message .= "<li class='errorItem'>Unable to add user</li>";
 		}
 		
 		return redirect()->action('HomeController@edit', $newUser)->with('status', $message);
+    }
+	
+	/**
+     * Show the create page.
+     *
+     * @return \Illuminate\Http\Response
+    */
+    public function destroy(User $user)
+    {		
+		$message = "";
+		
+		if($user->delete()) {
+			$message .= "<li class='okItem'>User Deleted Successfully.</li>";
+			
+			if($user->user_accounts()->delete()) {
+				$message .= "<li class='okItem'>User Bank Accounts Deleted Successfully.</li>";
+				
+				if($user->transactions()->delete()) {
+					$message .= "<li class='okItem'>User Transactions Deleted Successfully.</li>";
+
+					return redirect()->action('HomeController@index')->with('status', $message);
+				} else {
+					$message .= "<li class='errorItem'>Unable to Delete User Transactions.</li>";
+
+					return redirect()->action('HomeController@index')->with('status', $message);
+				}
+			} else {
+				$message .= "<li class='errorItem'>Unable to Delete User Bank Accounts.</li>";
+
+				return redirect()->action('HomeController@index')->with('status', $message);
+			}
+		} else {
+			$message .= "<li class='errorItem'>Unable to Delete User .</li>";
+
+			return redirect()->action('HomeController@edit', $user)->with('status', $message);
+		}
     }
 }

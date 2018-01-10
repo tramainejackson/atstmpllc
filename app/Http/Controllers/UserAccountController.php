@@ -102,9 +102,9 @@ class UserAccountController extends Controller
 				$userAccount->savings_share = $userAccount->share_pct * $bankAccount->savings_balance;
 
 				if($userAccount->save()) {
-					$message .= "<li class='okItem'>Changes made to user " . $userAccount->first_name . "</li>";
+					$message .= "<li class='okItem'>Updates made to user " . $userAccount->user->firstname . "</li>";
 				} else {
-					$message .= "<li class='errorItem'>No changes made to user " . $userAccount->first_name . "</li>";
+					$message .= "<li class='errorItem'>No changes made to user " . $userAccount->user->firstname . "</li>";
 				}
 			}
 			

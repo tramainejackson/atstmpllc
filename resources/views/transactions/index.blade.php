@@ -23,18 +23,25 @@
 				<h2 class="mb-4 text-muted">{{ $user->company->company_name }} Transactions</h2>
 			</div>
 		</div>
-		<div class="row">
-			@if($companyTransactions->isNotEmpty())
+		@if($companyTransactions->isNotEmpty())
+			<div class="d-flex align-items-center justify-content-center my-3">
+				<div class="">
+					{{ $companyTransactions->links() }}
+				</div>
+			</div>	
+			<div class="row">
 				@foreach($companyTransactions as $transaction)
+					@php $date = explode('-', $transaction->transaction_date); @endphp
+					@php $tranactionDate = \Carbon\Carbon::createFromDate($date[0], $date[1], $date[2]); @endphp
 					<div class="col-4">
 						<div class="indTrans addBoxShadow{{ ' ' .strtolower($transaction->type) }}">
 							<div class="indTransHeader">
-								<h2 class=""><span class="itemContent">{{ $transaction->type }}</span><span class="indTransactionDate">{{ $transaction->date }}</span></h2>
+								<h2 class=""><span class="itemContent">{{ $transaction->type }}</span><span class="indTransactionDate text-muted text-center d-block">{{ $tranactionDate->toFormattedDateString() }}</span></h2>
 							</div>
 							<div class="indTransInfo">
 								<div class="">
 									<span class="spanLabel">User Completed:</span>
-									<span class="itemContent"><a href="/transactions/{{ $transaction->user_account_id }}">{{ $transaction->user_account->user->firstname }}</a></span>
+									<span class="itemContent"><a href="/transactions/{{ $transaction->user_account_id }}">{{ $transaction->user->firstname }}</a></span>
 								</div>
 								<div class="">
 									<span class="spanLabel">Bank:</span>
@@ -70,11 +77,13 @@
 						</div>
 					</div>
 				@endforeach
-			@else
+			</div>
+		@else
+			<div class="row">
 				<div class="col-12">
 					<h2 class="">Your company does not have any transactions added yet. Click <a href="/transactions/create" class="">here</a> to create a transaction.</h2>
 				</div>
-			@endif
-		</div>
+			</div>
+		@endif
 	</div>
 @endsection

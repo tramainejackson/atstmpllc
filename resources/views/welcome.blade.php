@@ -13,8 +13,12 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
-				<div class="adminLoginHeader">
-					<h2 class="text-white">Login</h2>
+				<div class="adminLoginHeader row">
+					<h2 class="text-white col-6">Login</h2>
+					
+					<div class="col-6 text-right">
+						<a href="/register" class="btn btn-lg btn-dark">Register</a>
+					</div>
 				</div>
 			</div>
 			<div class="col-12">

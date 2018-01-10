@@ -14,8 +14,11 @@
 		<div class="row">
 			<div class="col-12">
 				<div class="panel panel-default">
-					<div class="adminLoginHeader">
-						<h2 class="text-white">Register</h2>
+					<div class="adminLoginHeader row">
+						<h2 class="text-white col-6">Register</h2>
+						<div class="col-6 text-right">
+							<a href="/login" class="btn btn-lg btn-dark">Login</a>
+						</div>
 					</div>
 
 					<div class="panel-body p-4 rounded text-light">
@@ -44,7 +47,7 @@
 										<input id="" type="text" class="form-control" name="firstname" value="{{ old('firstname') }}" required autofocus>
 
 										@if ($errors->has('firstname'))
-											<span class="help-block">
+											<span class="help-block text-warning">
 												<strong>{{ $errors->first('firstname') }}</strong>
 											</span>
 										@endif
@@ -58,7 +61,7 @@
 										<input id="lastname" type="text" class="form-control" name="lastname" value="{{ old('lastname') }}" required autofocus>
 
 										@if ($errors->has('lastname'))
-											<span class="help-block">
+											<span class="help-block text-warning">
 												<strong>{{ $errors->first('lastname') }}</strong>
 											</span>
 										@endif
@@ -73,7 +76,7 @@
 									<input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" required autofocus>
 
 									@if ($errors->has('username'))
-										<span class="help-block">
+										<span class="help-block text-warning">
 											<strong>{{ $errors->first('username') }}</strong>
 										</span>
 									@endif
@@ -87,7 +90,7 @@
 									<input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
 
 									@if ($errors->has('email'))
-										<span class="help-block">
+										<span class="help-block text-warning">
 											<strong>{{ $errors->first('email') }}</strong>
 										</span>
 									@endif
@@ -101,7 +104,7 @@
 									<input id="password" type="password" class="form-control" name="password" required>
 
 									@if ($errors->has('password'))
-										<span class="help-block">
+										<span class="help-block text-warning">
 											<strong>{{ $errors->first('password') }}</strong>
 										</span>
 									@endif

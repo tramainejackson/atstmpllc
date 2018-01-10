@@ -19,14 +19,14 @@
 		<div class="col-12">
 			<div class="myheader">
 				<div class="pictureHeader">
-					<img src="{{ $user_photo != null ? $user_photo : '/images/emptyface.jpg' }}" class="" />
+					<img src="{{ $user->picture != null ? $user->picture : '/images/emptyface.jpg' }}" class="" />
 				</div>
 				<div class="nameHeader">
 					<h2 class="">{{ $user_name }}</h2>
 				</div>
 				<div class="lastLogin">
 					<span class="lastLoginLabel">Last Login</span>
-					<span class="lastLoginDate">{{ $last_login }}</span>
+					<span class="lastLoginDate">{{ $last_login->toFormattedDateString() }}</span>
 				</div>
 			</div>
 		</div>

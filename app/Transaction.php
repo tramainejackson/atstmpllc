@@ -19,6 +19,13 @@ class Transaction extends Model
 	/**
 	* Get the user account associated with the transaction
 	*/
+	public function user() {
+		return $this->belongsTo('App\User');
+	}
+	
+	/**
+	* Get the user account associated with the transaction
+	*/
 	public function user_account() {
 		return $this->belongsTo('App\UserAccount');
 	}

@@ -36,7 +36,7 @@
 								<div class="col-9">
 									<div class="form-group">
 										<label class="form-label">Username</label>
-										<input type="text" name="username" class="form-control" value="{{ $user->username }}" />
+										<input type="text" name="username" class="form-control" value="{{ $user->username }}" disabled />
 										
 										@if($errors->has('username'))
 											<span class="help-block text-danger">
@@ -102,7 +102,7 @@
 							</div>
 						</div>
 					{!! Form::close() !!}
-					{!! Form::open(['action' => ['HomeController@update', $user->id], 'files' => 'true', 'method' => 'DELETE']) !!}
+					{!! Form::open(['action' => ['HomeController@destroy', 'user' => $user->id], 'files' => 'true', 'method' => 'DELETE']) !!}
 						<div class="container-fluid">
 							<div class="row">
 								<div class="form-group col-9 ml-auto">

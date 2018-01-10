@@ -24,7 +24,7 @@ class TransactionController extends Controller
 		$user = Auth::user();
 		$user_id = Auth::id();
 		$user_name = $user->firstname . " " . $user->lastname;
-        $companyTransactions = Transaction::where('company_id', $user->company_id)->get();
+        $companyTransactions = Transaction::where('company_id', $user->company_id)->orderBy('created_at', 'desc')->paginate('15');
 		
 		return view('transactions.index', compact('user', 'companyTransactions'));
     }

@@ -304,7 +304,7 @@ a.navbar-brand {
 .bankAccountInfo > div {
     border-bottom: solid 2px;
     border-right: solid 2px;
-    margin: 5% 0%;
+    margin: 5% 60% 5% 0%;
     padding: 0% 0% 1%;
 }
 
@@ -639,10 +639,7 @@ form div input, form div select, input[type=file] {
 }
 
 span.indTransactionDate {
-    position: absolute;
-    top: 0.5%;
-    right: 2%;
-    font-size: 50%;
+	font-size: 60%;
 }
 
 .userTransactionHeader {

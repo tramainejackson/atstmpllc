@@ -2,10 +2,12 @@
 			ATSTMPLLC
 ---------------------------------------
 
-Paginate transactions
-Dont allow dupe username or email on user update page
+Add ability to change profile image
 Figure out how transfers affect account amounts.
 Maybe add refund as a transaction option
+Create a show page for banks
+Done: Dont allow dupe username or email on user update page
+Done: Paginate transactions
 Done: Add ability to remove users from bank
 Done: Add ability to remove bank
 Done: Add bank to transaction views
