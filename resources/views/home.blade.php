@@ -19,7 +19,14 @@
 		<div class="col-12">
 			<div class="myheader">
 				<div class="pictureHeader">
-					<img src="{{ $user->picture != null ? $user->picture : '/images/emptyface.jpg' }}" class="" />
+					<img src="{{ $user->picture != null ? asset('/storage/images/' . $user->picture) : '/images/emptyface.jpg' }}" class="imgPreview" />
+					
+					{!! Form::open(['action' => ['HomeController@update_image', 'user' => $user->id], 'files' => true, 'method' => 'PUT']) !!}
+						<div class="row m-0 d-flex justify-content-between">
+							<input type="file" class="btn col-4" name="profile_img" />
+							<input type="submit" class="btn hidden align-self-right col-4 profile_img_submit" name="submit" value="Save New Picture" />
+						</div>
+					{!! Form::close() !!}
 				</div>
 				<div class="nameHeader">
 					<h2 class="">{{ $user_name }}</h2>

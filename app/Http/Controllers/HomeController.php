@@ -121,6 +121,59 @@ class HomeController extends Controller
     }
 	
 	/**
+     * Show the edit page for selected user
+    */
+    public function update_image(Request $request, User $user)
+    {		
+		$message = "";
+		
+		// Store picture if one was uploaded
+		if($request->hasFile('profile_img')) {
+			$newImage = $request->file('profile_img');
+			$fileName = $newImage->getClientOriginalName();
+			
+			// Check to see if images is too large
+			if($newImage->getError() == 1) {
+				$message .= "The file " . $fileName . " is too large and could not be uploaded";
+			} elseif($newImage->getError() == 0) {
+				// Check to see if images is about 25MB
+				// If it is then resize it
+				if($newImage->getClientSize() < 25000000) {
+					if($newImage->guessExtension() == 'jpeg' || $newImage->guessExtension() == 'png' || $newImage->guessExtension() == 'gif' || $newImage->guessExtension() == 'webp' || $newImage->guessExtension() == 'jpg') {
+						$image = Image::make($newImage->getRealPath())->orientate();
+						$path = $newImage->store('public/images');
+						$image->save(storage_path('app/' . $path));
+
+						$user->picture = str_ireplace('public/images/', '', $path);
+					} else {
+						$message .= "<li class='errorItem'>The file " . $fileName . " could not be added bcause it is the wrong image type</li>";
+					}
+				} else {
+					// Resize the image before storing. Will need to hash the filename first
+					$path = $newImage->store('public/images');
+					$image = Image::make($newImage)->orientate()->resize(1500, null, function ($constraint) {
+						$constraint->aspectRatio();
+						$constraint->upsize();
+					});
+					
+					$image->save(storage_path('app/'. $path));
+					$user->picture = str_ireplace('public/images/', '', $path);
+				}
+				
+				if($user->save()) {
+					$message .= "<li class='okItem'>Images changed successfully</li>";
+				}
+			} else {
+				$message .= "<li class='errorItem'>The file " . $fileName . " may be corrupt and could not be uploaded</li>";
+			}
+		} else {
+			$message .= "<li class='errorItem'>The file " . $fileName . " may be corrupt and could not be uploaded</li>";
+		}
+
+		return redirect()->action('HomeController@home')->with('status', $message);			
+    }
+	
+	/**
      * Store the new user.
      *
      * @return \Illuminate\Http\Response
@@ -148,98 +201,6 @@ class HomeController extends Controller
 		$newUser->lastname = $request->lastname;
 		$newUser->editable = $request->editable;
 		$newUser->company_id = $current_user->company_id;
-		
-		// Store picture if one was uploaded
-		// if($request->hasFile('upload_photo')) {
-			// foreach($request->file('upload_photo') as $newImage) {
-				// $addImage = new TripPictures();
-				// $fileName = $newImage->getClientOriginalName();
-				
-				// // Check to see if images is too large
-				// if($newImage->getError() == 1) {
-					// $error .= "The file " . $fileName . " is too large and could not be uploaded";
-				// } elseif($newImage->getError() == 0) {
-					// // Check to see if images is about 25MB
-					// // If it is then resize it
-					// if($newImage->getClientSize() < 25000000) {
-						// if($newImage->guessExtension() == 'jpeg' || $newImage->guessExtension() == 'png' || $newImage->guessExtension() == 'gif' || $newImage->guessExtension() == 'webp' || $newImage->guessExtension() == 'jpg') {
-							// $image = Image::make($newImage->getRealPath())->orientate();
-							// $path = $newImage->store('public/images');
-							// $image->save(storage_path('app/'. $path));
-
-							// $addImage->trip_id = $request->trip_id;
-							// $addImage->picture_name = $path;
-							
-							// if($addImage->save()) {
-								// $success++;
-							// }
-						// } else {
-							// $error .= "The file " . $fileName . " could not be added bcause it is the wrong image type.";
-						// }
-					// } else {
-						// // Resize the image before storing. Will need to hash the filename first
-						// $path = $newImage->store('public/images');
-						// $image = Image::make($newImage)->orientate()->resize(1500, null, function ($constraint) {
-							// $constraint->aspectRatio();
-							// $constraint->upsize();
-						// });
-						// $image->save(storage_path('app/'. $path));
-
-						// $addImage->trip_id = $request->trip_id;
-						// $addImage->picture_name = $path;
-						
-						// if($addImage->save()) {
-							// $success++;
-						// }
-					// }
-				// } else {
-					// $error .= "The file " . $fileName . " may be corrupt and could not be uploaded.";
-				// }
-			// }
-		// } else {
-			// foreach($request->file('upload_photo') as $newImage) {
-				// $addImage = new TripPictures();
-				// $fileName = $newImage->getClientOriginalName();
-
-				// if($newImage->getError() == 1) {
-					// $error .= "The file " . $fileName . " is too large and could not be uploaded";
-					// // $image = Image::make($newImage)->orientate();
-				// } elseif($newImage->getError() == 0) {
-					// // Change if statement to check size of images and make sure smaller than 5kb
-					// // If not resize to a smaller size
-					// if($newImage->getClientSize() < $newImage->getMaxFileSize()) {
-						// $path = $newImage->store('public/images');
-						// $image = Image::make($newImage)->orientate();
-						// $image->save(storage_path('app/'. $path));
-
-						// $addImage->trip_id = $request->trip_id;
-						// $addImage->picture_name = $path;
-						
-						// if($addImage->save()) {
-							// $success++;
-						// }
-					// } else {
-						// // Resize the image before storing. Will need to hash the filename first
-						// $path = $newImage->store('public/images');
-						// $image = Image::make($newImage)->orientate()->resize(1500, null, function ($constraint) {
-							// $constraint->aspectRatio();
-							// $constraint->upsize();
-						// });
-						// $image->save(storage_path('app/'. $path));
-
-						// $addImage->trip_id = $request->trip_id;
-						// $addImage->picture_name = $path;
-						
-						// if($addImage->save()) {
-							// $success++;
-						// }
-					// }
-				// } else {
-					// $error .= "The file " . $fileName . " may be corrupt and could not be uploaded.";
-				// }
-			// }
-		// }
-		// $newUser->picture = isset($_FILES["picture"]) ? $newUser->checkNewPicture($_FILES["picture"]) : "";
 
 		if($newUser->save()) {
 			$message .= "<li class='okItem'>User Saved Successfully</li>";

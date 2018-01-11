@@ -2,10 +2,12 @@
 			ATSTMPLLC
 ---------------------------------------
 
-Add ability to change profile image
 Figure out how transfers affect account amounts.
 Maybe add refund as a transaction option
 Create a show page for banks
+Done: Fix redirect messages
+Done: Add ability to change profile image
+Done: Install Imagick
 Done: Dont allow dupe username or email on user update page
 Done: Paginate transactions
 Done: Add ability to remove users from bank

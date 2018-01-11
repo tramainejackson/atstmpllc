@@ -38,6 +38,8 @@ Route::delete('account/{userAccount}', 'UserAccountController@destroy');
 
 Route::resource('users', 'HomeController');
 
+Route::put('/home/{user}', 'HomeController@update_image');
+
 Route::resource('transactions', 'TransactionController');
 
 Route::get('/home', 'HomeController@home')->name('home');
