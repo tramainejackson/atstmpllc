@@ -15,12 +15,12 @@
 			@include('layouts.nav')
 		</div>
 		<div class="col-8 my-4 mx-auto">
-			<div class="userNavLinks d-flex justify-content-around">
-				<a href="/users" class="btn col-3">All Users</a>
-				<a href="/users/create" class="btn col-3">Add New User</a>
+			<div class="userNavLinks d-flex flex-column flex-sm-row justify-content-around">
+				<a href="/users" class="btn my-1 col-12 col-sm-3">All Users</a>
+				<a href="/users/create" class="btn my-1 col-12 col-sm-3">Add New User</a>
 			</div>
 		</div>
-		<div class="col-8 mx-auto">
+		<div class="col-12 col-sm-8 mx-auto">
 			@if($user->editable == "Y")
 				<div class="formDiv">
 					{!! Form::open(['action' => ['HomeController@update', $user->id], 'files' => 'true', 'method' => 'PUT']) !!}
@@ -30,10 +30,10 @@
 						</div>
 						<div class="container-fluid">
 							<div class="row">
-								<div class="userImgDiv col-3 col-md-3 col-sm-4">
-									<img src="{{ $user->picture != null ? $user->picture : '/images/emptyface.jpg' }}" class="center-block" />
+								<div class="userImgDiv col-12 col-md-3 col-sm-4">
+									<img src="{{ $user->picture != null ? asset('/storage/images/' . $user->picture) : '/images/emptyface.jpg' }}" class="center-block" />
 								</div>
-								<div class="col-9">
+								<div class="col-12 col-sm-9">
 									<div class="form-group">
 										<label class="form-label">Username</label>
 										<input type="text" name="username" class="form-control" value="{{ $user->username }}" disabled />
@@ -105,7 +105,7 @@
 					{!! Form::open(['action' => ['HomeController@destroy', 'user' => $user->id], 'files' => 'true', 'method' => 'DELETE']) !!}
 						<div class="container-fluid">
 							<div class="row">
-								<div class="form-group col-9 ml-auto">
+								<div class="form-group col-12 col-sm-9 ml-auto">
 									{{ Form::submit('Delete User', ['class' => 'form-control btn btn-outline-danger']) }}
 								</div>
 							</div>

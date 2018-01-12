@@ -14,15 +14,15 @@
 		<div class="col-12">
 			@include('layouts.nav')
 		</div>
-		<div class="col-10 my-4 mx-auto">
-			<div class="userNavLinks d-flex justify-content-around">
-				<a href="/bank" class="btn col-2">All Banks</a>
-				<a href="/bank/create" class="btn col-2">Add A New Bank</a>
-				<a class="btn col-2" href="/bank/{{ $bankAccount->id }}/users" class="">Edit Bank Users</a>
-				<a class="btn btn-danger col-2" href="bank.php?create_share={{ $bankAccount->id }}" class="">Remove Bank</a>
+		<div class="col-12 col-sm-10 my-4 mx-auto">
+			<div class="userNavLinks row d-flex justify-content-around">
+				<a href="/bank" class="btn col-5 col-sm-2 my-1">All Banks</a>
+				<a href="/bank/create" class="btn col-5 col-sm-2 my-1">Add A New Bank</a>
+				<a class="btn col-5 col-sm-2 my-1" href="/bank/{{ $bankAccount->id }}/users" class="">Edit Bank Users</a>
+				<a class="btn btn-danger col-5 col-sm-2 my-1 removeBank" href="#{{ $bankAccount->id }}" class="">Remove Bank</a>
 			</div>
 		</div>
-		<div class="col-8 mx-auto">
+		<div class="col-12 col-sm-8 mx-auto">
 			<div class="editBank">
 				<div class="formDiv">
 					{!! Form::open(['action' => ['BankAccountController@update', $bankAccount->id], 'method' => 'PUT']) !!}
@@ -55,7 +55,7 @@
 							<input hidden type="text" name="bank_id" value="{{ $bankAccount->id }}" />
 						</div>
 						<div class="form-group">
-							{{ Form::submit('Update All', ['class' => 'form-control btn btn-outline-success']) }}
+							{{ Form::submit('Update Bank', ['class' => 'form-control btn btn-outline-success']) }}
 						</div>
 					{!! Form::close() !!}
 				</div>

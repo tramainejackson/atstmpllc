@@ -39,10 +39,10 @@
 		</div>
 		<div class="bankAccounts container-fluid px-3">
 			<div class="row">
-				<div class="col-md-10 col-sm-10 col-xs-10">
+				<div class="col-md-10 col-sm-10 col-7">
 					<h1 class="">Banks</h1>				
 				</div>
-				<div class="col-md-2 col-sm-2 col-xs-2">
+				<div class="col-md-2 col-sm-2 col-5 align-self-center">
 					<a class="btn btn-info" href="/bank/create">Add A Bank</a>
 				</div>
 			</div>
@@ -50,12 +50,12 @@
 				<div class="col-md-3 col-sm-3 col-xs-3">
 					<span>Here's a list of all your banks</span>
 				</div>
-				<div class="col-xl-7 col-sm-9 col-9">
+				<div class="col-xl-7 col-sm-9 col-12">
 					@if($user_accounts)
 						@foreach($user_accounts as $user_account)
 							@php $bankAccount = \App\BankAccount::find($user_account->bank_account_id); @endphp
 
-							<div class="indBankAccount addBoxShadow p-4">
+							<div class="indBankAccount addBoxShadow p-sm-4">
 								<div class="bankAccountHeader">
 									<h2 class="">{{ $bankAccount->bank_name }}</h2>
 									@if($user_account->edit_bank == "Y")
@@ -113,7 +113,7 @@
 										<span class="itemContent">{{ $user_account->savings_share != null ? '$' . number_format($user_account->savings_share, 2) : '$0.00' }}</span>
 									</div>
 									<div class="">
-										<span class="spanLabel">Percentage of Account:</span>
+										<span class="spanLabel">Ownership of Account:</span>
 										<span class="itemContent">{{ ($user_account->share_pct * 100) . "%" }}</span>
 									</div>
 								</div>
@@ -132,10 +132,10 @@
 				<div class="col-xl-10 col-sm-6">
 					<h1 class="">My Recent Transactions</h1>
 				</div>
-				<div class="col-xl-1 col-sm-3">
+				<div class="col-xl-1 col-sm-3 col-12 my-2">
 					<a class="btn btn-info d-block text-truncate" href="/transactions/create">Create</a></button>
 				</div>
-				<div class="col-xl-1 col-sm-3">
+				<div class="col-xl-1 col-sm-3 col-12 my-2">
 					<a class="btn btn-info d-block text-truncate" href="/transactions/">View All</a></button>
 				</div>
 			</div>
@@ -156,7 +156,7 @@
 										<div class="">
 											<span class="spanLabel">Receipt:</span>
 											@if($transaction->receipt == "Y")
-												<a class="transImg" href="{{ $transaction->receipt_photo }}">Receipt Photo</a>
+												<a class="transImg" href="{{ $transaction->receipt_photo != null ? asset('/storage/images/' . $transaction->receipt_photo) : '/images/emptyface.jpg' }}">Receipt Photo</a>
 											@else
 												<span class="itemContent">{{ $transaction->receipt }}</span>
 											@endif

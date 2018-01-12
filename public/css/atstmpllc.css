@@ -655,14 +655,51 @@ span.indTransactionDate {
     background: linear-gradient(transparent, transparent, darkred);
 }
 
-@media only screen and (max-width:768px) {
-input.balanceInput {
-    padding: 0.5% 1% 0.5% 2.75%;
+@media only screen and (max-width:575px) {
+	.myheader {
+		margin: 20px auto;
+		width: 100%;
+		border: none;
+	}
+	
+	.bankAccounts, .myAccounts {
+		padding: 5% 0%;
+	}
+	
+	.bankAccountHeader a {
+		position: absolute;
+		bottom: 5px;
+		left: 35%;
+	}
+	
+	.indBankAccount {
+		/* height: 100%; */
+		margin: 1% 0%;
+		padding: 5% 0% 10%;
+	}
+	
+	.indShareAccount {
+		width: 100%;
+	}
+	
+	.bankAccountInfo > div {
+		border-bottom: solid 2px;
+		border-right: solid 2px;
+		margin: 5% 5%;
+		padding: 0% 0% 1%;
+	}
+	
+	.navLinks.logOutLink {
+	}
+	
+	.logOutLink {
+		width: fit-content;
+		padding: 0% 2% 0%;
+	}
 }
-
-a.editBankLink {
-    margin-top: 1%;
-    font-size: 120%;
-    border-radius: 5px;
-}
-}
+@media only screen and (min-width:576) {}
+@media only screen and (min-width:768px) {}
+@media only screen and (min-width:992px) {}
+@media only screen and (max-width:1199px) {}
+@media only screen and (min-width:1200px) {}
+@media only screen and (min-width:1400px) {}

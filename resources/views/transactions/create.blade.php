@@ -16,10 +16,10 @@
 		</div>
 		<div class="col-8 my-4 mx-auto">
 			<div class="userNavLinks d-flex justify-content-around">
-				<a href="/transactions" class="btn col-3">All Transactions</a>
+				<a href="/transactions" class="btn col-12 col-sm-3">All Transactions</a>
 			</div>
 		</div>
-		<div class="col-8 mx-auto">
+		<div class="col-12 col-sm-8 mx-auto">
 			<div class="formDiv">
 				@if($userAccounts->isNotEmpty())
 					<div class="formDivTitle row">
@@ -28,7 +28,7 @@
 					{!! Form::open(['action' => ['TransactionController@store'], 'files' => true, 'method' => 'POST']) !!}
 						<div class="formDiv">
 							<div class="form-row mb-4">
-								<div class="col-6">
+								<div class="col-12 col-sm-6">
 									<label class="form-label">Bank</label>
 									<select class="bankSelect form-control custom-select" name="bank_id">
 										<option value="blank" disabled>----- Select a Bank -----</option>
@@ -40,7 +40,7 @@
 										@endif
 									</select>
 								</div>
-								<div class="col-6">
+								<div class="col-12 col-sm-6">
 									<label class="form-label">Transaction Type</label>
 									<select class="transactionSelect form-control custom-select" name="type">
 										<option value="Purchase" selected>Purchase</option>
@@ -125,14 +125,14 @@
 								<input type="text" name="trans_date" class="form-control datetimepicker" value="" required />
 							</div>
 							<div class="form-row receiptForm">
-								<div class="col-6">
+								<div class="col-12 col-sm-6">
 									<label class="form-label">Receipt</label>
 									<select class="form-control custom-select" name="receipt">
 										<option value="Y">Yes</option>
 										<option value="N">No</option>
 									</select>
 								</div>
-								<div class="col-6">
+								<div class="col-12 col-sm-6">
 									<label class="form-label">Receipt Photo</label>
 									<input type="file" name="receipt_photo[]" class="form-control" value="" placeholder="" multiple />
 								</div>

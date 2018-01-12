@@ -2,6 +2,7 @@
 			ATSTMPLLC
 ---------------------------------------
 
+Fix bank_users blade for mobile css
 Figure out how transfers affect account amounts.
 Maybe add refund as a transaction option
 Create a show page for banks

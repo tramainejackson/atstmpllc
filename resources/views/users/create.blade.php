@@ -16,17 +16,17 @@
 		</div>
 		<div class="col-8 my-4 mx-auto">
 			<div class="userNavLinks d-flex justify-content-around">
-				<a href="/users" class="btn col-3">All Users</a>
+				<a href="/users" class="btn col-12 col-sm-3">All Users</a>
 			</div>
 		</div>
-		<div class="col-8 mx-auto">
+		<div class="col-12 col-sm-8 mx-auto">
 			<div class="formDiv">
 				{!! Form::open(['action' => ['HomeController@store'], 'files' => true, 'method' => 'POST']) !!}
 					<div class="formDivTitle row">
 						<h2 class="">Create New User</h2>
 					</div>
 					<div class="form-row">
-						<div class="col-6">
+						<div class="col-12 col-sm-6">
 							<label class="form-label">First Name</label>
 							<input type="text" name="firstname" class="form-control" placeholder="Enter First Name" value="{{ old('firstname') }}" required autofocus />
 							
@@ -36,7 +36,7 @@
 								</span>
 							@endif
 						</div>
-						<div class="col-6">
+						<div class="col-12 col-sm-6">
 							<label class="form-label">Last Name</label>
 							<input type="text" name="lastname" class="form-control" placeholder="Enter Last Name" value="{{ old('lastname') }}" required />
 							

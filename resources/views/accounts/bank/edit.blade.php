@@ -16,11 +16,11 @@
 		</div>
 		<div class="col-8 my-4 mx-auto">
 			<div class="userNavLinks d-flex justify-content-around">
-				<a href="/users" class="btn col-3">All Users</a>
-				<a href="/users/create" class="btn col-3">Add New User</a>
+				<a href="/users" class="btn col-12 col-sm-3">All Users</a>
+				<a href="/users/create" class="btn col-12 col-sm-3">Add New User</a>
 			</div>
 		</div>
-		<div class="col-8 mx-auto">
+		<div class="col-12 col-sm-8 mx-auto">
 			@if($user->editable == "Y")
 				<div class="formDiv">
 					{!! Form::open(['action' => ['HomeController@update', $user->id], 'files' => 'true', 'method' => 'PUT']) !!}

@@ -16,7 +16,7 @@
 			</div>
 			<div class="col-8 my-4 mx-auto">
 				<div class="userNavLinks d-flex justify-content-around">
-					<a href="/transactions/create" class="btn col-3">Create A New Transaction</a>
+					<a href="/transactions/create" class="btn col-12 col-sm-3">Create A New Transaction</a>
 				</div>
 			</div>
 			<div class="col-12">
@@ -33,7 +33,7 @@
 				@foreach($companyTransactions as $transaction)
 					@php $date = explode('-', $transaction->transaction_date); @endphp
 					@php $tranactionDate = \Carbon\Carbon::createFromDate($date[0], $date[1], $date[2]); @endphp
-					<div class="col-4">
+					<div class="col-12 col-sm-4">
 						<div class="indTrans addBoxShadow{{ ' ' .strtolower($transaction->type) }}">
 							<div class="indTransHeader">
 								<h2 class=""><span class="itemContent">{{ $transaction->type }}</span><span class="indTransactionDate text-muted text-center d-block">{{ $tranactionDate->toFormattedDateString() }}</span></h2>

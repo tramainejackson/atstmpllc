@@ -47,7 +47,7 @@ class HomeController extends Controller
     {
 		$user = Auth::user();
 		$user_accounts = \App\UserAccount::where('user_id', Auth::id())->get();
-		$transactions = \App\Transaction::where('user_id', Auth::id())->get();
+		$transactions = \App\Transaction::where('user_id', Auth::id())->orderBy('created_at', 'desc')->take(10)->get();
 		$user_name = $user->firstname . " " . $user->lastname;
 		$date = explode('-', $user->last_login != null ? str_ireplace(' ', '-', $user->last_login) : str_ireplace(' ', '-', $user->created_at));
 		$last_login = \Carbon\Carbon::createFromDate($date[0], $date[1], $date[2]);

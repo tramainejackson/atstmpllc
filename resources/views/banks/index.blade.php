@@ -20,7 +20,7 @@
 					<div class="col">
 						<h2 class="text-muted">My Available Banks</h2>
 						<div class="userNavLinks d-flex justify-content-around">
-							<a href="/bank/create" class="btn col-2">Add A New Bank</a>
+							<a href="/bank/create" class="btn col-sm-2 col-12">Add A New Bank</a>
 						</div>
 					</div>
 				</div>
@@ -30,7 +30,7 @@
 	<div class="row align-items-stretch">
 		@if($userAccounts->count() > 0)
 			@foreach($userAccounts as $userAccount)
-				<div class="col-6 my-3">	
+				<div class="col-sm-6 col-12 my-3">	
 					@php $bankAccount = \App\BankAccount::find($userAccount->bank_account_id); @endphp
 					@if($userAccount->edit_bank == "Y")
 						<div class="indBankAccount addBoxShadow px-4 py-2">

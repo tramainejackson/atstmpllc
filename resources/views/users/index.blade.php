@@ -16,7 +16,7 @@
 		</div>
 		<div class="col-8 my-4 mx-auto">
 			<div class="userNavLinks d-flex justify-content-around">
-				<a href="/users/create" class="btn col-3">Add New User</a>
+				<a href="/users/create" class="btn col-12 col-sm-3">Add New User</a>
 			</div>
 		</div>
 		<div class="col-12 col-xl-8 mx-auto">
@@ -26,10 +26,10 @@
 				</div>
 				@foreach($users as $user)
 					@if($user->editable == "Y")
-						<div class="col-12 col-xl-4">
+						<div class="col-12 my-3 col-xl-4">
 							<div class="card">
 								@if($user->picture != null)
-									<img src="{{ $user_photo }}" class="img-card-top" />
+									<img src="{{ asset('/storage/images/' . $user->picture) }}" class="img-card-top" />
 								@else
 									<img src="../images/emptyface.jpg" class="img-card-top" />
 								@endif

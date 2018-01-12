@@ -19,10 +19,10 @@
 		</div>
 		<div class="col-8 mx-auto">
 			<div class="userNavLinks d-flex justify-content-around">
-				<a class="btn col-2 editBankLink text-truncate" href="/bank/{{ $bankAccount->id }}/users" class="">Edit Bank Users</a>
+				<a class="btn col-12 col-sm-2 editBankLink text-truncate" href="/bank/{{ $bankAccount->id }}/users" class="">Edit Bank Users</a>
 			</div>
 		</div>
-		<div class="col-8 mx-auto my-4">
+		<div class="col-12 col-sm-8 mx-auto my-4">
 			<div class="formDiv">
 				{!! Form::open(['action' => ['UserAccountController@store', $bankAccount->id], 'method' => 'POST']) !!}
 					<div class="formDivTitle">
