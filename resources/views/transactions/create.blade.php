@@ -110,7 +110,9 @@
 							<div class="form-group{{ $errors->has('trans_amount') ? ' has-error' : '' }}">
 								<label class="form-label">Amount</label>
 								<div class="input-group">
-									<span class="oi oi-dollar input-group-addon"></span>
+									<div class="input-group-prepend">
+										<span class="oi oi-dollar input-group-text"></span>
+									</div>
 									<input type="number" name="trans_amount" title="Remeber to add the cents." class="balanceInput transAmount form-control" value="" placeholder="0.00" step="0.01" />
 								</div>
 								
@@ -134,7 +136,15 @@
 								</div>
 								<div class="col-12 col-sm-6">
 									<label class="form-label">Receipt Photo</label>
-									<input type="file" name="receipt_photo[]" class="form-control" value="" placeholder="" multiple />
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text">Upload</span>
+										</div>
+										<div class="custom-file">
+											<input type="file" name="receipt_photo[]" class="custom-file-input" value="" placeholder="" multiple />
+											<label class="custom-file-label" for="inputGroupFile02">Choose file</label>
+										</div>
+									</div>
 								</div>
 							</div>
 							<div class="form-group">

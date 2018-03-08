@@ -23,7 +23,15 @@
 					
 					{!! Form::open(['action' => ['HomeController@update_image', 'user' => $user->id], 'files' => true, 'method' => 'PUT']) !!}
 						<div class="row m-0 d-flex justify-content-between">
-							<input type="file" class="btn col-4" name="profile_img" />
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text">Upload</span>
+								</div>
+								<div class="custom-file">
+									<input type="file" class="btn col-4 custom-file-input" name="profile_img" id="customFile" />
+									<label for="customFile" class="custom-file-label">Change Photo</label>
+								</div>
+							</div>
 							<input type="submit" class="btn hidden align-self-right col-4 profile_img_submit" name="submit" value="Save New Picture" />
 						</div>
 					{!! Form::close() !!}

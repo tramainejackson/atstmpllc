@@ -3,8 +3,9 @@
 
 <!-- Bootstrap core CSS -->
 <link href="/css/app.css" rel="stylesheet">
+<link href="/css/mdb/all.css" rel="stylesheet">
 
 <!-- Custom CSS -->
-<link href="/css/atstmpllc.css" rel="stylesheet">
 <link href="/css/jquery.datetimepicker.css" rel="stylesheet">
 <link href="/css/magnific-popup.css" rel="stylesheet">
+<link href="/css/atstmpllc.css" rel="stylesheet">

@@ -39,6 +39,10 @@ button:hover {
 	border-color: red;
 }
 
+.custom-file-label, .custom-file-label::after {
+	line-height: 1.0;
+}
+
 /*Login Page*/
 form#admin_form {
     max-width: 50%;
