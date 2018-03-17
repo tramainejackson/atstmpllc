@@ -17,9 +17,6 @@
 	@if(substr_count(request()->server('HTTP_USER_AGENT'), 'rv:') > 0)
 		<link href="/css/myIEcss.css" rel="stylesheet">
 	@endif
-	
-	<!-- Scripts -->
-	@yield('scripts')
 </head>
 <body>
 	<div id="app">
@@ -38,6 +35,7 @@
 		@yield('content')
 		
     </div>
-
+	<!-- Scripts -->
+	@yield('scripts')
 </body>
 </html>

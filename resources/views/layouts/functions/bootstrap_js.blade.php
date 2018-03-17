@@ -1,6 +1,12 @@
-<!-- Bootstrap core JS -->
-<script src="/js/app.js"></script>
+<!-- SCRIPTS -->
+<!-- JQuery -->
+<script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="/js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="/js/mdb.min.js"></script>
 
 <!-- Custom JS -->
-<script src="/js/jquery.datetimepicker.full.min.js"></script>
 <script src="/js/atstmpllc.js"></script>

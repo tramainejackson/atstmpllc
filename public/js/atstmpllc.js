@@ -16,12 +16,18 @@ $(document).ready(function() {
 		$('li.logOutLink a').css({color : '#525252'});
 	});
 	
+	// Animations initialization
+	new WOW().init();
+	
 	// Initialize datetimepicker
-	$('.datetimepicker').datetimepicker({
-		timepicker:false,
-		format:'m/d/Y',
-		value:'01/01/2018'
-	});
+	$('.datetimepicker').pickadate();
+		
+	// Initialize datetimepicker
+	// $('.datetimepicker').datetimepicker({
+		// timepicker:false,
+		// format:'m/d/Y',
+		// value:'01/01/2018'
+	// });
 
 	// Bring up delete bank modal when button is clicked
 	$('body').on('click', '.removeBank', function(e) {
@@ -82,9 +88,9 @@ $(document).ready(function() {
 	});
 		
 	//Show transaction photo in Magnific Popup plugins
-	$('a.transImg').magnificPopup({
-		type:'image'
-	});
+	// $('a.transImg').magnificPopup({
+		// type:'image'
+	// });
 	
 	// Call function for preview when uploading new images
 	$(".pictureHeader .btn").change(function () {
