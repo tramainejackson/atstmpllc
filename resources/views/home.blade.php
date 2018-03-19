@@ -47,18 +47,18 @@
 		</div>
 		<div class="bankAccounts container-fluid px-3">
 			<div class="row">
-				<div class="col-md-10 col-sm-10 col-7">
+				<div class="col-6">
 					<h1 class="">Banks</h1>				
 				</div>
-				<div class="col-md-2 col-sm-2 col-5 align-self-center">
+				<div class="col text-right">
 					<a class="btn btn-info" href="/bank/create">Add A Bank</a>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-3 col-sm-3 col-xs-3">
+				<div class="col-12">
 					<span>Here's a list of all your banks</span>
 				</div>
-				<div class="col-xl-7 col-sm-9 col-12">
+				<div class="col">
 					@if($user_accounts)
 						@foreach($user_accounts as $user_account)
 							@php $bankAccount = \App\BankAccount::find($user_account->bank_account_id); @endphp
@@ -101,10 +101,10 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-3 col-sm-3 col-xs-3">
+				<div class="col-12">
 					<span>Here's a list of your balances with all your banks</span>
 				</div>
-				<div class="col-xl-9 col-sm-9 col-xs-9">
+				<div class="col">
 					@if($user_accounts->count() > 0)
 						@foreach($user_accounts as $user_account)
 							<div class="indShareAccount addBoxShadow">
@@ -136,14 +136,14 @@
 			</div>
 		</div>
 		<div class="myTransactions container-fluid px-3">
-			<div class="row">
-				<div class="col-xl-10 col-sm-6">
+			<div class="row mb-2">
+				<div class="col-12">
 					<h1 class="">My Recent Transactions</h1>
 				</div>
-				<div class="col-xl-1 col-sm-3 col-12 my-2">
+				<div class="col-12">
 					<a class="btn btn-info d-block text-truncate" href="/transactions/create">Create</a></button>
 				</div>
-				<div class="col-xl-1 col-sm-3 col-12 my-2">
+				<div class="col-12">
 					<a class="btn btn-info d-block text-truncate" href="/transactions/">View All</a></button>
 				</div>
 			</div>

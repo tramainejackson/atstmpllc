@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-fixed-top adminNavColor">
 	<div class="container-fluid">
 		<div class="navbar-header">
-			<button type="button" class="navbar-toggle d-inline-block d-lg-none rounded" data-toggle="collapse" data-target="#myNavbar">
-				<span class="oi oi-menu"></span>
+			<button type="button" class="btn navbar-toggle d-inline-block d-lg-none unique-color-dark" data-toggle="collapse" data-target="#myNavbar">
+				<i class="fa fa-bars" aria-hidden="true"></i>
 			</button>
 			<a class="navbar-brand" href="/home">{{ Auth::user()->company->company_name }}</a>
 		</div>

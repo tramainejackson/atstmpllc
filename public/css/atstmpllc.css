@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Allerta+Stencil|Artifika|Cinzel+Decorative|Fanwood+Text|Fredericka+the+Great|Fugaz+One|Germania+One|Graduate|Grand+Hotel|IM+Fell+Double+Pica|Montserrat|Slabo+27px|Source+Sans+Pro);
+
 html, body, header, .view {
   height: 100%;
 }
@@ -706,7 +708,11 @@ span.indTransactionDate {
 		padding: 0% 2% 0%;
 	}
 }
-@media only screen and (min-width:576) {}
+@media only screen and (min-width:576px) {
+	.myheader {
+		width: 70%;
+	}
+}
 @media only screen and (min-width:768px) {}
 @media only screen and (min-width:992px) {}
 @media only screen and (max-width:1199px) {}
