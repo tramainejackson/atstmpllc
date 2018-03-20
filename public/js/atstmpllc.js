@@ -21,13 +21,6 @@ $(document).ready(function() {
 	
 	// Initialize datetimepicker
 	$('.datetimepicker').pickadate();
-		
-	// Initialize datetimepicker
-	// $('.datetimepicker').datetimepicker({
-		// timepicker:false,
-		// format:'m/d/Y',
-		// value:'01/01/2018'
-	// });
 
 	// Bring up delete bank modal when button is clicked
 	$('body').on('click', '.removeBank', function(e) {
@@ -93,7 +86,7 @@ $(document).ready(function() {
 	// });
 	
 	// Call function for preview when uploading new images
-	$(".pictureHeader .btn").change(function () {
+	$("[name='profile_img']").change(function () {
 		imagePreview(this);
 	});
 	
@@ -169,11 +162,10 @@ function remove_bank_user(bank_user_id) {
 function imagePreview(input) {
     if (input.files && input.files[0]) {
 		var reader = new FileReader();
-		console.log("test");
 		$('.imgPreview').remove();
 		
 		reader.onload = function (e) {
-			$('<img class="imgPreview" src="' + e.target.result + '" width="450" height="300"/>').prependTo('.pictureHeader');
+			$('<img class="imgPreview mx-auto" src="' + e.target.result + '" width="450" height="300"/>').prependTo($('.view.overlay'));
 			$('.profile_img_submit').show();
 		}
 		reader.readAsDataURL(input.files[0]);

@@ -35,6 +35,7 @@
 		@yield('content')
 		
     </div>
+	
 	<!-- Scripts -->
 	@yield('scripts')
 </body>

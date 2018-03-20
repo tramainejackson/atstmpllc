@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Http\File;
+use Carbon\Carbon;
 use App\User;
 
 class HomeController extends Controller
@@ -46,13 +47,11 @@ class HomeController extends Controller
 	public function home()
     {
 		$user = Auth::user();
-		$user_accounts = \App\UserAccount::where('user_id', Auth::id())->get();
-		$transactions = \App\Transaction::where('user_id', Auth::id())->orderBy('created_at', 'desc')->take(10)->get();
-		$user_name = $user->firstname . " " . $user->lastname;
-		$date = explode('-', $user->last_login != null ? str_ireplace(' ', '-', $user->last_login) : str_ireplace(' ', '-', $user->created_at));
-		$last_login = \Carbon\Carbon::createFromDate($date[0], $date[1], $date[2]);
+		$user_accounts = $user->user_accounts;
+		$transactions = $user->transactions()->orderBy('created_at', 'desc')->take(10)->get();
+		$last_login = new Carbon($user->last_login != null ? $user->last_login : $user->created_at);
 		
-        return view('home', compact('user_accounts', 'transactions', 'user_name', 'user', 'last_login'));
+        return view('home', compact('user_accounts', 'transactions', 'user', 'last_login'));
     }
 	
 	/**

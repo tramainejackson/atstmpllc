@@ -3,7 +3,7 @@
 /public/images/*
 /public/storage/*
 /public/music/*
-/storage/*.key
+/storage
 /vendor
 /.idea
 /.vagrant

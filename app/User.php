@@ -57,4 +57,8 @@ class User extends Authenticatable
 	public function transactions() {
 		return $this->hasMany('App\Transaction');
 	}
+	
+	public function full_name() {
+		return $this->firstname . " " . $this->lastname;
+	}
 }

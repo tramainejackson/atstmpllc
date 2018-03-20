@@ -9,18 +9,20 @@
 @endsection
 
 @section('content')
-<div class="" id="admin_page_login">
-	<div class="container">
-		<div class="row">
-			<div class="col-12">
-				<div class="panel panel-default">
+<div class="view" id="admin_page_login">
+	<!-- Mask & flexbox options-->
+    <div class="mask d-flex justify-content-center align-items-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
 					<div class="adminLoginHeader row">
-						<h2 class="text-white col-6">Register</h2>
+						<h2 class="text-white col-6 wow fadeInDown" data-wow-delay="0.5s" style="visibility:none;">Register</h2>
 						<div class="col-6 text-right">
-							<a href="/login" class="btn btn-lg btn-dark">Login</a>
+							<a href="/login" class="btn btn-lg btn-dark wow fadeInDown" data-wow-delay="0.5s" style="visibility:none;">Login</a>
 						</div>
 					</div>
-
+				</div>
+				<div class="col-12 wow fadeInRight" data-wow-delay="0.5s" style="visibility:none;">
 					<div class="panel-body p-4 rounded text-light">
 						<form class="form-horizontal" method="POST" action="{{ route('register') }}">
 							{{ csrf_field() }}
