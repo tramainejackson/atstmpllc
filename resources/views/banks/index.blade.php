@@ -33,63 +33,63 @@
 				<div class="col-sm-6 col-12 my-3">	
 					@php $bankAccount = \App\BankAccount::find($userAccount->bank_account_id); @endphp
 					@if($userAccount->edit_bank == "Y")
-						<div class="indBankAccount addBoxShadow px-4 py-2">
-							<div class="bankAccountHeader">
-								<h2 class="">{{ $bankAccount->bank_name}}</h2>
-							</div>
-							<div class="bankAccountInfo">
-								<div class="">
-									<div class="">
-										<h3 class="">Checking: </h3>
-									</div>
-									<div class="">
-										<span class="spanLabel">Balance:</span>
-										<span class="itemContent">{{ "$" . number_format($bankAccount->checking_balance, 2) }}</span>
-									</div>
-									<div class="">
-										<span class="spanLabel">My Share:</span>
-										<span class="itemContent">{{ "$" . number_format($userAccount->checking_share, 2) }}</span>
-									</div>
+						<div class="row indBankAccount addBoxShadow py-2">
+							<div class="col-12 col-xl-6">
+								<div class="bankAccountHeader">
+									<h2 class="coolText5">{{ $bankAccount->bank_name}}</h2>
 								</div>
-								<div class="">
+								<div class="bankAccountInfo">
 									<div class="">
-										<h3 class="">Saving: </h3>
-									</div>
-									<div class="">
-										<span class="spanLabel">Balance:</span>
-										<span class="itemContent">{{ "$" . number_format($bankAccount->savings_balance, 2) }}</span>
-									</div>
-									<div class="">
-										<span class="spanLabel">My Share:</span>
-										<span class="itemContent">{{ "$" . number_format($userAccount->savings_share, 2) }}</span>
-									</div>
-								</div>
-								<div class="">
-									@if($userAccount->edit_bank == "Y")
 										<div class="">
-											<h3 class="">Account Ownership</h3>
-										</div>	
-										<div class="">
-											@php $allUserAccounts = \App\UserAccount::where('bank_account_id', $bankAccount->id)->get(); @endphp
-											@foreach($allUserAccounts as $allUserAccount)
-												<div class="">
-													<span>{{ $allUserAccount->user->firstname }}:</span>
-													<span>{{ ($allUserAccount->share_pct * 100) . "%" }}</span>
-												</div>
-											@endforeach
+											<h3 class="">Checking: </h3>
 										</div>
-									@endif
+										<div class="">
+											<span class="spanLabel">Balance:</span>
+											<span class="itemContent">{{ "$" . number_format($bankAccount->checking_balance, 2) }}</span>
+										</div>
+										<div class="">
+											<span class="spanLabel">My Share:</span>
+											<span class="itemContent">{{ "$" . number_format($userAccount->checking_share, 2) }}</span>
+										</div>
+									</div>
+									<div class="">
+										<div class="">
+											<h3 class="">Saving: </h3>
+										</div>
+										<div class="">
+											<span class="spanLabel">Balance:</span>
+											<span class="itemContent">{{ "$" . number_format($bankAccount->savings_balance, 2) }}</span>
+										</div>
+										<div class="">
+											<span class="spanLabel">My Share:</span>
+											<span class="itemContent">{{ "$" . number_format($userAccount->savings_share, 2) }}</span>
+										</div>
+									</div>
+									<div class="">
+										@if($userAccount->edit_bank == "Y")
+											<div class="">
+												<h3 class="">Account Ownership</h3>
+											</div>	
+											<div class="">
+												@php $allUserAccounts = \App\UserAccount::where('bank_account_id', $bankAccount->id)->get(); @endphp
+												@foreach($allUserAccounts as $allUserAccount)
+													<div class="">
+														<span>{{ $allUserAccount->user->firstname }}:</span>
+														<span>{{ ($allUserAccount->share_pct * 100) . "%" }}</span>
+													</div>
+												@endforeach
+											</div>
+										@endif
+									</div>
 								</div>
 							</div>
-							<div class="indBankAccountLinks container-fluid">
-								<div class="row align-items-center justify-content-around">
-									@if($userAccount->edit_bank == "Y")
-										<a class="btn col-2 editBankLink text-truncate" href="/account/create/{{ $bankAccount->id }}">Add Bank User</a>
-										<a class="btn col-2 editBankLink text-truncate" href="/bank/{{ $bankAccount->id }}/users">Edit Bank Users</a>
-										<a class="btn col-2  text-truncate editBankLink" href="/bank/{!! $bankAccount->id !!}/edit">Edit Bank</a>
-										<a class="btn btn-danger col-2 editBankLink text-truncate removeBank" href="#{{ $bankAccount->id }}">Remove Bank</a>
-									@endif
-								</div>
+							<div class="col-12 col-xl-6 d-flex align-items-center justify-content-around flex-column">
+								@if($userAccount->edit_bank == "Y")
+									<a class="btn btn-block text-truncate blue" href="/account/create/{{ $bankAccount->id }}">Add Bank User</a>
+									<a class="btn btn-block text-truncate blue" href="/bank/{{ $bankAccount->id }}/users">Edit Bank Users</a>
+									<a class="btn btn-block text-truncate blue" href="/bank/{!! $bankAccount->id !!}/edit">Edit Bank</a>
+									<a class="btn btn-block btn-danger text-truncate removeBank" href="#{{ $bankAccount->id }}">Remove Bank</a>
+								@endif
 							</div>
 						</div>
 					@else

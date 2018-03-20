@@ -43,14 +43,18 @@
 						<div class="form-group">
 							<label class="form-label">Checking Balance</label>
 							<div class="input-group">
-								<span class="oi oi-dollar input-group-addon"></span>
+								<div class="input-group-prepend">
+									<span class="oi oi-dollar input-group-text"></span>
+								</div>
 								<input type="number" name="checking_balance" class="form-control" value="" placeholder="0.00" step="0.01" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="form-label">Saving Balance</label>
 							<div class="input-group">
-								<span class="oi oi-dollar input-group-addon"></span>
+								<div class="input-group-prepend">
+									<span class="oi oi-dollar input-group-text"></span>
+								</div>
 								<input type="number" name="savings_balance" class="form-control" value="" placeholder="0.00" step="0.01" />
 							</div>
 						</div>

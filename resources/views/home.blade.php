@@ -104,6 +104,9 @@
 								<div class="carousel-item{{ $loop->first ? ' active' : '' }}">
 									<div class="view">
 										<div class="full-bg-img flex-center mask white-text{{ fmod($loop->iteration, 2) != 0 ? ' rgba-blue-light' : ' rgba-brown-light' }}">
+											<div class="bankCount rgba-black-strong p-2 m-2 rounded-circle">
+												<span>{{ $loop->iteration }}/{{ $loop->count }}</span>
+											</div>
 											<div class="col-5 text-center">
 												<!-- Bank Accounts -->
 												<div class="align-items-center bankAccountHeader d-flex justify-content-between w-100">
@@ -152,16 +155,18 @@
 								</div>
 						@endforeach
 						
-						<!--Controls-->
-						<a class="carousel-control-prev" href="#bank_carousel" role="button" data-slide="prev">
-							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-							<span class="sr-only">Previous</span>
-						</a>
-						<a class="carousel-control-next" href="#bank_carousel" role="button" data-slide="next">
-							<span class="carousel-control-next-icon" aria-hidden="true"></span>
-							<span class="sr-only">Next</span>
-						</a>
-						<!--/.Controls-->
+						@if($user_accounts->count() > 1)
+							<!--Controls-->
+							<a class="carousel-control-prev" href="#bank_carousel" role="button" data-slide="prev">
+								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+								<span class="sr-only">Previous</span>
+							</a>
+							<a class="carousel-control-next" href="#bank_carousel" role="button" data-slide="next">
+								<span class="carousel-control-next-icon" aria-hidden="true"></span>
+								<span class="sr-only">Next</span>
+							</a>
+							<!--/.Controls-->
+						@endif
 					@else
 						<div class="emptyAccountHeader">
 							<h2 class="">You do not currently have any accounts added.</h2>
@@ -176,25 +181,27 @@
 		<!-- User Most Recent Transactions -->
 		<div class="myTransactions container-fluid px-3">
 			<div class="row mb-2">
-				<div class="col-12">
+				<div class="col-12 col-xl-8">
 					<h1 class="">My Recent Transactions</h1>
 				</div>
-				<div class="col-12">
+				<div class="col-12 col-xl-2">
 					<a class="btn btn-info d-block text-truncate" href="/transactions/create">Create</a></button>
 				</div>
-				<div class="col-12">
+				<div class="col-12 col-xl-2">
 					<a class="btn btn-info d-block text-truncate" href="/transactions/">View All</a></button>
 				</div>
 			</div>
 			<div class="row">
 				@if($transactions->count() > 0)
 					@foreach($transactions as $transaction)
-						<div class="col-xl-3">
-							<div class="indTransaction addBoxShadow {{ strtolower($transaction->type) }}">
-								<div class="myTransactionHeader">
-									<h2 class=""><span class="itemContent">{{ $transaction->type }}</span><span class="transactionDate">{{ $transaction->date }}</span></h2>
+					@php $transDate = new Carbon\Carbon($transaction->transaction_date); @endphp
+						<div class="col-12 col-xl-4 my-2">
+							<div class="card card-cascade">
+								<div class="indTransaction view gradient-card-header blue-gradient {{ strtolower($transaction->type) }}">
+									<h2 class="">{{ $transaction->type }}</h2>
+									<span class="transactionDate"><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;{{ $transDate->format('m/d/Y') }}</span>
 								</div>
-								<div class="myTransactionInfo {{ $transaction->type }}">
+								<div class="myTransactionInfo card-body text-center {{ $transaction->type }}">
 									<div class="">
 										<span class="spanLabel">Amount:</span>
 										<span class="itemContent">{{ "$" . $transaction->amount }}</span>

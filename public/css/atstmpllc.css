@@ -80,7 +80,6 @@ form#admin_form label {
 }
 
 .adminLoginHeader {
-	margin: 10% 0%;
 }
 
 /*Feedback*/
@@ -259,6 +258,12 @@ a.navbar-brand {
     float: none;
 }
 
+.bankCount {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
 .banksHeader a:hover, .createBankLink a:hover {
     background: darkseagreen;
 }
@@ -297,6 +302,7 @@ a.navbar-brand {
     padding: 0% 5% 1% 1%;
     border-bottom: solid 2px;
     border-right: solid 2px;
+	font-size: 300%;
 }
 
 .bankAccountInfo > div > div h3 {
@@ -350,10 +356,6 @@ a.navbar-brand {
     margin: 1% 2%;
 }
 
-.myTransactionInfo {
-	padding: 0.5% 1%;
-}
-
 .indTransaction {
     margin: 1% 4.1%;
     /* width: 25%; */
@@ -378,16 +380,9 @@ a.navbar-brand {
     padding: 5% 0% 5%;
 }
 
-span.transactionDate {
-    position: absolute;
-    top: 0.5%;
-    right: 2%;
-    font-size: 50%;
-}
+span.transactionDate {}
 
-.indTransaction.withdrawl {
-    /* background: coral; */
-}
+.indTransaction.withdrawl {}
 
 .indTransaction.withdrawl .myTransactionHeader h2 {
     background: coral;

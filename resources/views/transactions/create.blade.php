@@ -30,7 +30,7 @@
 							<div class="form-row mb-4">
 								<div class="col-12 col-sm-6">
 									<label class="form-label">Bank</label>
-									<select class="bankSelect form-control custom-select" name="bank_id">
+									<select class="bankSelect form-control custom-select browser-default" name="bank_id">
 										<option value="blank" disabled>----- Select a Bank -----</option>
 										@if($userAccounts->count() > 0)
 											@foreach($userAccounts as $userAccount)
@@ -42,7 +42,7 @@
 								</div>
 								<div class="col-12 col-sm-6">
 									<label class="form-label">Transaction Type</label>
-									<select class="transactionSelect form-control custom-select" name="type">
+									<select class="transactionSelect form-control custom-select browser-default" name="type">
 										<option value="Purchase" selected>Purchase</option>
 										<option value="Deposit">Deposit</option>
 										<option value="Withdrawl">Withdrawl</option>
@@ -66,7 +66,7 @@
 							</div> -->
 							<div class="form-group addtTransferForm alternateFormGroups hidden">
 								<label class="form-label">Transfer Type</label>
-								<select class="transferAccountType custom-select form-control" name="transfer_type" disabled>
+								<select class="transferAccountType custom-select form-control browser-default" name="transfer_type" disabled>
 									<option value="blank" disabled>----- Select a Transfer Type -----</option>
 									<option value="account" selected>Account Transfer</option>
 									<option value="user">User Transfer</option>
@@ -74,7 +74,7 @@
 							</div>
 							<div class="form-group addtDepositForm alternateFormGroups hidden">
 								<label class="form-label">Account Type</label>
-								<select class="form-control custom-select" name="account_type" disabled>
+								<select class="form-control custom-select browser-default" name="account_type" disabled>
 									<option value="checking" selected>Checking</option>
 									<option value="savings">Savings</option>
 								</select>
@@ -82,7 +82,7 @@
 							<div class="form-row addtTransferForm alternateFormGroups hidden">
 								<div class="col-12">
 									<label class="form-label">Send From</label>
-									<select class="form-control custom-select sendFromUserSelect" name="transfer_from" disabled>
+									<select class="form-control custom-select sendFromUserSelect browser-default" name="transfer_from" disabled>
 										<option value="blank" disabled>---- Select Account To Send From ----</option>
 										@if($userAccounts->count() > 0)
 											@foreach($userAccounts as $userAccount)
@@ -95,7 +95,7 @@
 								</div>
 								<div class="col-12">
 									<label class="form-label">Send To</label>
-									<select class="form-control custom-select sendToUserSelect" name="transfer_to" disabled>
+									<select class="form-control custom-select sendToUserSelect browser-default" name="transfer_to" disabled>
 										<option value="blank" class="firstOption" disabled>---- Select Account To Send To ----</option>
 										@if($userAccounts->count() > 0)
 											@foreach($userAccounts as $userAccount)
@@ -124,12 +124,12 @@
 							</div>
 							<div class="form-group">
 								<label class="form-label">Date</label>
-								<input type="text" name="trans_date" class="form-control datetimepicker" value="" required />
+								<input type="text" name="trans_date" class="form-control datetimepicker" value="" placeholder="Select Transaction Date" required />
 							</div>
 							<div class="form-row receiptForm">
 								<div class="col-12 col-sm-6">
 									<label class="form-label">Receipt</label>
-									<select class="form-control custom-select" name="receipt">
+									<select class="form-control custom-select browser-default" name="receipt">
 										<option value="Y">Yes</option>
 										<option value="N">No</option>
 									</select>
