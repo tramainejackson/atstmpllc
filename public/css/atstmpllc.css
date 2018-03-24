@@ -17,6 +17,11 @@ button:hover {
 	cursor: pointer;
 }
 
+.wow {
+    visibility: hidden;
+}
+  
+
 .coolText1{
 	font-family: 'Fredericka the Great', cursive;
 }
@@ -292,12 +297,12 @@ a.navbar-brand {
 	background: darkcyan;
 }
 
-.bankAccountHeader h2, .bankAccountHeader a {
+.bankAccountHeader h1, .bankAccountHeader a {
     display: -webkit-inline-box;
     display: -webkit-inline-box;
 }
 
-.bankAccountHeader h2 {
+.bankAccountHeader h1 {
     margin: 0% 0%;
     padding: 0% 5% 1% 1%;
     border-bottom: solid 2px;
@@ -350,34 +355,7 @@ a.navbar-brand {
 .myTransactionInfo {
     display: -webkit-inline-box;
     display: inline-block;
-    /* max-width: 25%; */
-    /* min-width: 0%; */
-    /* width: 20%; */
     margin: 1% 2%;
-}
-
-.indTransaction {
-    margin: 1% 4.1%;
-    /* width: 25%; */
-    /* display: -webkit-inline-box; */
-    /* display: inline-block; */
-    padding: 0% 0% 2%;
-    background: whitesmoke;
-}
-
-.indTransaction .myTransactionHeader h2 {
-	margin: 0;
-	padding: 0% 1%;
-	position: relative;
-	border-top-left-radius: 7.2px;
-    border-top-right-radius: 7.2px;
-}
-
-.indTransaction .myTransactionHeader h2 span.itemContent {
-    display: block;
-    text-align: -webkit-center;
-    text-align: center;
-    padding: 5% 0% 5%;
 }
 
 span.transactionDate {}

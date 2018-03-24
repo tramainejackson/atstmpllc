@@ -2,6 +2,7 @@
 			ATSTMPLLC
 ---------------------------------------
 
+Create a footer
 Fix bank_users blade for mobile css
 Figure out how transfers affect account amounts.
 Maybe add refund as a transaction option

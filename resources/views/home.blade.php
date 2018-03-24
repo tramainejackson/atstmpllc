@@ -196,10 +196,10 @@
 					@foreach($transactions as $transaction)
 					@php $transDate = new Carbon\Carbon($transaction->transaction_date); @endphp
 						<div class="col-12 col-xl-4 my-2">
-							<div class="card card-cascade">
+							<div class="card card-cascade narrower">
 								<div class="indTransaction view gradient-card-header blue-gradient {{ strtolower($transaction->type) }}">
 									<h2 class="">{{ $transaction->type }}</h2>
-									<span class="transactionDate"><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;{{ $transDate->format('m/d/Y') }}</span>
+									<span class="transactionDate"><i class="fa fa-calendar-o" aria-hidden="true"></i>&nbsp;&nbsp;{{ $transDate->format('m/d/Y') }}</span>
 								</div>
 								<div class="myTransactionInfo card-body text-center {{ $transaction->type }}">
 									<div class="">

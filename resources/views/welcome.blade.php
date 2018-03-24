@@ -16,16 +16,16 @@
 			<div class="row">
 				<div class="col-12">
 					<div class="adminLoginHeader row">
-						<h2 class="white-text col-6 wow fadeInDown" data-wow-delay="0.5s">Login</h2>
+						<h2 class="white-text col-6 wow fadeInDown" data-wow-delay="0.6s">Login</h2>
 						
 						<div class="col-6 text-right">
-							<a href="/register" class="btn btn-lg btn-dark wow fadeInDown" data-wow-delay="0.5s">Register</a>
+							<a href="/register" class="btn btn-lg btn-dark wow fadeInDown" data-wow-delay="0.6s">Register</a>
 						</div>
 					</div>
 				</div>
 				<div class="col-12">
-					<div class="panel-body p-4 rounded text-light">
-						<form class="form-horizontal wow fadeInDown" method="POST" action="{{ route('login') }}" data-wow-delay="0.3s">
+					<div class="panel-body p-4 rounded text-light wow fadeInDown" data-wow-delay="0.6s">
+						<form class="form-horizontal" method="POST" action="{{ route('login') }}">
 							{{ csrf_field() }}
 
 							<div class="md-form{{ $errors->has('username') ? ' has-error' : '' }}">

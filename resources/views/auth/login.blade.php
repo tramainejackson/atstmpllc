@@ -16,14 +16,14 @@
 			<div class="row">
 				<div class="col-12">
 					<div class="adminLoginHeader row">
-						<h2 class="white-text col-6 wow fadeInDown" data-wow-delay="0.5s" style="visibility:none;">Login</h2>
+						<h2 class="white-text col-6 wow fadeInDown" data-wow-delay="0.5s">Login</h2>
 						
 						<div class="col-6 text-right">
-							<a href="/register" class="btn btn-lg btn-dark wow fadeInDown" data-wow-delay="0.5s" style="visibility:none;">Register</a>
+							<a href="/register" class="btn btn-lg btn-dark wow fadeInDown" data-wow-delay="0.5s">Register</a>
 						</div>
 					</div>
 				</div>
-				<div class="col-12 wow fadeInRight" data-wow-delay="0.5s" style="visibility:none;">
+				<div class="col-12 wow fadeInRight" data-wow-delay="0.5s">
 					<div class="panel-body p-4 rounded text-light">
 						<form class="form-horizontal" method="POST" action="{{ route('login') }}">
 							{{ csrf_field() }}
