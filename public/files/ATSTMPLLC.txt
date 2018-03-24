@@ -5,6 +5,7 @@
 Create a footer
 Fix bank_users blade for mobile css
 Figure out how transfers affect account amounts.
+When user selects transfer to another user, change the send from to show the users share amount instead of bank account amount.
 Maybe add refund as a transaction option
 Done: Fix redirect messages
 Done: Add ability to change profile image

@@ -84,9 +84,10 @@ class BankAccount extends Model
 
 	public function make_transfer($amount=0, $type="", $to="", $fromAccount="", $user_account=0) {
 		$accountType = $fromAccount;
-		$sendTo = is_numeric($to) ? UserAccount::where('user_id', $to)->first() : $to;
+		$sendTo = is_numeric($to) ? $this->user_accounts->where('user_id', $to)->first() : $to;
 		$sendFrom = UserAccount::find($user_account);
 		$bank = BankAccount::find($sendFrom->bank_account->id);
+		// dd($sendFrom);
 		
 		if($type == "user") {
 			if($accountType == "checking") {
@@ -95,22 +96,8 @@ class BankAccount extends Model
 				if($sendFrom->save()) {
 					// $session->message("<li class='okItem'>Transfer from ".$sendFrom->user." of $" .$amount. " was successful.</li>");
 					$sendTo->checking_share += $amount; 
-					if($sendToUser->save()) {
+					if($sendTo->save()) {
 						// $session->message("<li class='okItem'>Transfer to ".$sendTo->user." of $" .$amount. " was successful.</li>"); 
-					}
-				}
-			} else {
-				$sendFrom->savings_share -= $amount;
-				$bank->checking_balance += $amount;
-				$bank->savings_balance -= $amount;
-				if($sendFrom->save()) {
-					// $session->message("<li class='okItem'>Transfer from ".$sendFrom->user." of $" .$amount. " was successful.</li>");
-					$sendToUser->checking_share += $amount;
-					if($sendToUser->save()) {
-						// $session->message("<li class='okItem'>Transfer to ".$sendTo->user." of $" .$amount. " was successful.</li>");
-						if($bank->save()) {
-						
-						}
 					}
 				}
 			}

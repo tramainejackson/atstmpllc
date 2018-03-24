@@ -87,8 +87,8 @@
 										@if($userAccounts->count() > 0)
 											@foreach($userAccounts as $userAccount)
 												@php $bankAccount = \App\BankAccount::find($userAccount->bank_account_id); @endphp
-													<option value="{{ $bankAccount->id }}" class="{{ !$loop->first ? 'hidden' : ''}}"{{ $loop->first ? ' selected' : ''}}>{{ "Checking" . " - $" . number_format($bankAccount->checking_balance, 2) }}</option>
-													<option value="{{ $bankAccount->id }}" class="{{ !$loop->first ? 'hidden' : ''}}">{{ "Savings" . " - $" . number_format($bankAccount->savings_balance, 2) }}</option>
+													<option value="{{ $bankAccount->id . 'c' }}" class="{{ !$loop->first ? 'hidden' : ''}}"{{ $loop->first ? ' selected' : ''}}>{{ "Checking" . " - $" . number_format($bankAccount->checking_balance, 2) }}</option>
+													<option value="{{ $bankAccount->id . 's' }}" class="{{ !$loop->first ? 'hidden' : ''}}">{{ "Savings" . " - $" . number_format($bankAccount->savings_balance, 2) }}</option>
 											@endforeach
 										@endif
 									</select>
@@ -100,8 +100,8 @@
 										@if($userAccounts->count() > 0)
 											@foreach($userAccounts as $userAccount)
 												@php $bankAccount = \App\BankAccount::find($userAccount->bank_account_id); @endphp
-													<option value="{{ $bankAccount->id }}" class="accountOption{{ !$loop->first ? ' hidden' : ''}}"{{ $loop->first ? ' selected' : ''}}>{{ "Checking" . " - $" . number_format($bankAccount->checking_balance, 2) }}</option>
-													<option value="{{ $bankAccount->id }}" class="accountOption{{ !$loop->first ? ' hidden' : ''}}">{{ "Savings" . " - $" . number_format($bankAccount->savings_balance, 2) }}</option>
+													<option value="{{ $bankAccount->id . 'c' }}" class="accountOption{{ !$loop->first ? ' hidden' : ''}}"{{ $loop->first ? ' selected' : ''}}>{{ "Checking" . " - $" . number_format($bankAccount->checking_balance, 2) }}</option>
+													<option value="{{ $bankAccount->id . 's' }}" class="accountOption{{ !$loop->first ? ' hidden' : ''}}">{{ "Savings" . " - $" . number_format($bankAccount->savings_balance, 2) }}</option>
 											@endforeach
 										@endif
 									</select>

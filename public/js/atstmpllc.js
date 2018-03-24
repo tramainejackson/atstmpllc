@@ -20,7 +20,11 @@ $(document).ready(function() {
 	new WOW().init();
 	
 	// Initialize datetimepicker
-	$('.datetimepicker').pickadate();
+	$('.datetimepicker').pickadate({
+		// Escape any “rule” characters with an exclamation mark (!).
+		format: 'mm/dd/yyyy',
+		formatSubmit: 'yyyy/mm/dd',
+	});
 
 	// Bring up delete bank modal when button is clicked
 	$('body').on('click', '.removeBank', function(e) {

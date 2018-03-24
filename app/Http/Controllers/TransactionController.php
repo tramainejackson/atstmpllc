@@ -56,7 +56,7 @@ class TransactionController extends Controller
 		// dd($request);
 		// Validate incoming data
 		$this->validate($request, [
-			'trans_amount' => 'min:0.01|numeric',
+			'trans_amount' => 'required|min:0.01|numeric',
 		]);
 		
 		// Get user account selected and bank account
@@ -68,12 +68,11 @@ class TransactionController extends Controller
 
 		// Create a new transaction instance
 		$trans = new Transaction();
-		$date = date_create($request->trans_date);
 		$trans->user_account_id = $user_account->id;
 		$trans->bank_account_id = $bank_account->id;
 		$trans->user_id = $user_account->user_id;
 		$trans->amount = $request->trans_amount;
-		$trans->transaction_date = date_format($date, "Y/m/d");
+		$trans->transaction_date = $request->trans_date_submit;
 		$trans->company_id = $user_account->user->company_id;
 		$trans->type = $request->type;
 		$message = "";
@@ -82,8 +81,14 @@ class TransactionController extends Controller
 		// Do if transaction type is a transfer
 		if($trans->type == 'Transfer') {
 			$trans->transfer_type = $request->transfer_type;
-			$trans->transfer_to = $request->transfer_to;
-			$trans->transfer_from = $request->transfer_from;
+			
+			if($trans->transfer_type == 'user') {
+				$trans->transfer_to = $request->transfer_to;
+				$trans->transfer_from = 'checking';
+			} else {
+				$trans->transfer_to = substr_count($request->transfer_to, 's') > 0 ? 'savings' : 'checking';
+				$trans->transfer_from = substr_count($request->transfer_from, 's') > 0 ? 'savings' : 'checking';
+			}
 		} else {
 
 			// Store picture if one was uploaded
