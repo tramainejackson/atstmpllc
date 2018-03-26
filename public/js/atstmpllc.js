@@ -43,22 +43,102 @@ $(document).ready(function() {
 		var transactionType = $(".transactionSelect").val();
 		var bankValue = $(".bankSelect option:selected");
 		var transferValue = $(".transferAccountType option:selected");
+		var sendToValues = $('.addtTransferForm .sendToUserSelect option, .addtTransferForm .sendToUserSelect option');
+		var sendFromValues = $('.addtTransferForm .sendFromUserSelect option, .addtTransferForm .sendFromUserSelect option');
+
+		// Make the blank option selected
+		$('.addtTransferForm .firstOption').attr('selected', true);
+		
+		// Remove all users from select if any present
+		$('.addtTransferForm .sendToUserSelect .userOption').remove();
 		
 		// Bring up the checking and savings for the selected bank
 		// and make all other accounts hidden and disabled
-		$('.addtTransferForm .sendToUserSelect option[value=' + $(bankValue).val() + '], .addtTransferForm .sendFromUserSelect option[value=' + $(bankValue).val() + ']').removeAttr('disabled').removeClass("hidden").show().attr('selected', true);
-		$('.addtTransferForm .sendToUserSelect option:not([value=' + $(bankValue).val() + ']), .addtTransferForm .sendFromUserSelect option:not([value=' + $(bankValue).val() + '])').attr('disabled', true).addClass("hidden").hide();;
+		$(sendFromValues).each(function() {
+			if($(this).val() == $(bankValue).val() + 'c' || $(this).val() == $(bankValue).val() + 's') {
+				$(this).removeAttr('disabled')
+					.removeClass("hidden")
+					.show();
+			} else {
+				$(this).removeAttr('disabled')
+					.addClass("hidden")
+					.hide();
+			}
+		});
 		
+		$(sendToValues).each(function() {
+			if($(this).val() == $(bankValue).val() + 'c' || $(this).val() == $(bankValue).val() + 's') {
+				$(this).removeAttr('disabled')
+					.removeClass("hidden")
+					.show();
+			} else {
+				$(this).attr('disabled', true)
+					.addClass("hidden")
+					.hide();
+			}
+		});
+		
+		// If transfer type is to a user
+		// Then get the users that have an account with that bank
+		// and make the send from account the users share amount
 		if($(transferValue).val() == 'user') {
 			get_users($(bankValue).val());
-			$('.addtTransferForm .firstOption').text('---- Select A User To Send To ----').attr('selected', true);
-			$('.addtTransferForm .accountOption').hide().attr('disabled', true);
-			$('.addtTransferForm .userOption').show().removeAttr('disabled');
+			$('.addtTransferForm .sendToUserSelect .firstOption')
+				.text('---- Select A User To Send To ----')
+				.attr({'selected':true, 'disabled': true})
+				.show();
+			$('.addtTransferForm .sendFromUserSelect .firstOption')
+				.attr({'selected':true, 'disabled': true})
+				.show();
+
+			$(sendToValues).each(function() {
+				if($(this).hasClass('accountOption')) {
+					$(this).hide()
+						.attr('disabled', true);
+				} else if($(this).hasClass('userOption')) {
+					$(this).show()
+						.removeAttr('disabled');
+				}
+			});
+			
+			$(sendFromValues).each(function() {
+				if($(this).val() == $(bankValue).val() + 'c' || $(this).val() == $(bankValue).val() + 's') {
+					$(this).attr('disabled', true)
+						.hide();
+				} else if($(this).val() == $(bankValue).val() + 'm') {
+					$(this).removeAttr('disabled')
+						.show();
+				}
+			});
 			
 		} else if($(transferValue).val() == 'account') {
-			$('.addtTransferForm .firstOption').text('---- Select Account To Send To ----').attr('selected', true);
-			// $('.addtTransferForm .accountOption').show().removeAttr('disabled');
-			// $('.addtTransferForm .userOption').hide().attr('disabled', true);
+			$('.addtTransferForm .sendToUserSelect .firstOption')
+				.text('---- Select Account To Send To ----')
+				.attr({'selected':true, 'disabled': true})
+				.show();
+			$('.addtTransferForm .sendFromUserSelect .firstOption')
+				.attr({'selected':true, 'disabled': true})
+				.show();
+				
+			$(sendToValues).each(function() {
+				if($(this).hasClass('accountOption') && ($(this).val() == $(bankValue).val() + 'c' || $(this).val() == $(bankValue).val() + 's')) {
+					$(this).show()
+						.removeAttr('disabled');
+				} else {
+					$(this).attr('disabled', true)
+						.hide();
+				}
+			});
+			
+			$(sendFromValues).each(function() {
+				if($(this).val() == $(bankValue).val() + 'c' || $(this).val() == $(bankValue).val() + 's') {
+					$(this).removeAttr('disabled')
+						.show();
+				} else if($(this).val() == $(bankValue).val() + 'm') {
+					$(this).attr('disabled', true)
+						.hide();
+				}
+			});
 		}
 	});
 	

@@ -53,7 +53,7 @@
 										<div class="">
 											<span class="spanLabel">Transfer To:</span>
 											@if($transaction->transfer_type == "user")
-												@php $toUser = $transaction->bank_account->user_accounts->where('user_id', $transaction->transfer_to)->first(); @endphp
+												@php $toUser = $transaction->bank_account->user_accounts->where('id', $transaction->transfer_to)->first(); @endphp
 												<span class="itemContent">{{ $toUser->user->firstname }}</span>
 											@else
 												<span class="itemContent">{{ ucwords($transaction->transfer_to) }}</span>

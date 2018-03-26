@@ -3,10 +3,13 @@
 ---------------------------------------
 
 Create a footer
+Add deletion of transactions
+Add bank to transactions card
+Add a count for how many transactions are showing
 Fix bank_users blade for mobile css
-Figure out how transfers affect account amounts.
-When user selects transfer to another user, change the send from to show the users share amount instead of bank account amount.
 Maybe add refund as a transaction option
+Done: Figure out how transfers and personal withdrawls affect account amounts.
+Done: When user selects transfer to another user, change the send from to show the users share amount instead of bank account amount.
 Done: Fix redirect messages
 Done: Add ability to change profile image
 Done: Install Imagick

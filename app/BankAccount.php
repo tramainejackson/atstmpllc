@@ -84,10 +84,10 @@ class BankAccount extends Model
 
 	public function make_transfer($amount=0, $type="", $to="", $fromAccount="", $user_account=0) {
 		$accountType = $fromAccount;
-		$sendTo = is_numeric($to) ? $this->user_accounts->where('user_id', $to)->first() : $to;
+		$sendTo = is_numeric($to) ? $this->user_accounts->where('id', $to)->first() : $to;
 		$sendFrom = UserAccount::find($user_account);
 		$bank = BankAccount::find($sendFrom->bank_account->id);
-		// dd($sendFrom);
+		// dd($sendTo);
 		
 		if($type == "user") {
 			if($accountType == "checking") {
@@ -130,10 +130,46 @@ class BankAccount extends Model
 	
 	public function recreate_shares() {
 		$bank_users = $this->user_accounts;
-// dd($bank_users);
+		$bank_withdrawls_personal = $this->transactions()->where('withdrawl_type', 'personal')->sum('amount');
+		$this->checking_balance += $bank_withdrawls_personal;
 		foreach($bank_users as $bank_user) {
+			$transfers_out = $bank_user->transactions()->where([
+				['transfer_type', 'user'],
+				['transfer_to', '<>', $bank_user->id],
+			])->get();
+			
+			$transfers_in = $this->transactions()->where([
+				['transfer_type', 'user'],
+				['transfer_to', $bank_user->id]
+			])->get();
+			
+			$personal_withdrawls = $bank_user->transactions()->where([
+				['type', 'Withdrawl'],
+				['withdrawl_type', 'personal']
+			])->get();
+			
+			// Get the balances that each user account should have
+			// in reference to the share percentage
 			$bank_user->checking_share = $this->checking_balance * $bank_user->share_pct;
 			$bank_user->savings_share = $this->savings_balance * $bank_user->share_pct;
+
+			// Reallocate the difference in the transfers to the
+			// users account
+			foreach($transfers_in as $in) {
+				$bank_user->checking_share += $in->amount;
+			}
+			
+			// Reallocate the difference in the transfers from the
+			// users account
+			foreach($transfers_out as $out) {
+				$bank_user->checking_share -= $out->amount;
+			}
+			
+			// Reallocate the difference in the personal withdrawls from the
+			// users account
+			foreach($personal_withdrawls as $pw) {
+				$bank_user->checking_share -= $pw->amount;
+			}
 
 			if($bank_user->save()) {
 				// $session->message("<li class='okItem'>Changes made to user " . $indUser->user . "</li>");

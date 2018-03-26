@@ -41,7 +41,7 @@
 							<div class="indTransInfo">
 								<div class="">
 									<span class="spanLabel">User Completed:</span>
-									<span class="itemContent"><a href="/transactions/{{ $transaction->user_account_id }}">{{ $transaction->user->firstname }}</a></span>
+									<span class="itemContent"><a href="/user/{{ $transaction->user_account_id }}/transactions">{{ $transaction->user->firstname }}</a></span>
 								</div>
 								<div class="">
 									<span class="spanLabel">Bank:</span>

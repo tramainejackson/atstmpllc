@@ -35,7 +35,7 @@
 										@if($userAccounts->count() > 0)
 											@foreach($userAccounts as $userAccount)
 												@php $bankAccount = \App\BankAccount::find($userAccount->bank_account_id); @endphp
-													<option value="{{ $bankAccount->id }}"{{ $loop->first ? ' selected' : ''}}>{{ $bankAccount->bank_name . " - $" . number_format($bankAccount->checking_balance, 2) . " (Checking)" }}</option>
+													<option value="{{ $bankAccount->id }}">{{ $bankAccount->bank_name . " - $" . number_format($bankAccount->checking_balance, 2) . " (Checking)" }}</option>
 											@endforeach
 										@endif
 									</select>
@@ -57,13 +57,13 @@
 									<option value="company">Company Income</option>
 								</select>
 							</div> -->
-							<!-- <div class="form-group addtWithdrawlForm alternateFormGroups hidden">
+							<div class="form-group addtWithdrawlForm alternateFormGroups hidden">
 								<label class="form-label">Withdrawl Type</label>
-								<select class="form-control" name="withdrawl_type" disabled>
+								<select class="form-control browser-default" name="withdrawl_type" disabled>
 									<option value="personal" selected>Personal</option>
 									<option value="company">Company Withdrawl</option>
 								</select>
-							</div> -->
+							</div>
 							<div class="form-group addtTransferForm alternateFormGroups hidden">
 								<label class="form-label">Transfer Type</label>
 								<select class="transferAccountType custom-select form-control browser-default" name="transfer_type" disabled>
@@ -83,12 +83,13 @@
 								<div class="col-12">
 									<label class="form-label">Send From</label>
 									<select class="form-control custom-select sendFromUserSelect browser-default" name="transfer_from" disabled>
-										<option value="blank" disabled>---- Select Account To Send From ----</option>
+										<option value="blank" class="firstOption" disabled>---- Select Account To Send From ----</option>
 										@if($userAccounts->count() > 0)
 											@foreach($userAccounts as $userAccount)
 												@php $bankAccount = \App\BankAccount::find($userAccount->bank_account_id); @endphp
 													<option value="{{ $bankAccount->id . 'c' }}" class="{{ !$loop->first ? 'hidden' : ''}}"{{ $loop->first ? ' selected' : ''}}>{{ "Checking" . " - $" . number_format($bankAccount->checking_balance, 2) }}</option>
 													<option value="{{ $bankAccount->id . 's' }}" class="{{ !$loop->first ? 'hidden' : ''}}">{{ "Savings" . " - $" . number_format($bankAccount->savings_balance, 2) }}</option>
+													<option value="{{ $bankAccount->id . 'm' }}" class="hidden">{{ "My Bank Share - $" . number_format($userAccount->checking_share, 2) }}</option>
 											@endforeach
 										@endif
 									</select>
@@ -124,7 +125,13 @@
 							</div>
 							<div class="form-group">
 								<label class="form-label">Date</label>
-								<input type="text" name="trans_date" class="form-control datetimepicker" value="" placeholder="Select Transaction Date" required />
+								<input type="text" name="trans_date" class="form-control datetimepicker" value="" placeholder="Select Transaction Date" />
+								
+								@if ($errors->has('trans_date'))
+									<span class="help-block text-danger">
+										<strong>Transaction date is required</strong>
+									</span>
+								@endif
 							</div>
 							<div class="form-row receiptForm">
 								<div class="col-12 col-sm-6">

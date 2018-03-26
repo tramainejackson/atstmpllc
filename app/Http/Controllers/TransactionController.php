@@ -57,6 +57,7 @@ class TransactionController extends Controller
 		// Validate incoming data
 		$this->validate($request, [
 			'trans_amount' => 'required|min:0.01|numeric',
+			'trans_date' => 'required',
 		]);
 		
 		// Get user account selected and bank account
@@ -130,8 +131,10 @@ class TransactionController extends Controller
 				$error .= "<li class='errorItem'>The uploaded file may be corrupt and could not be uploaded</li>";
 			}
 			
-			if($trans->type == 'Deposit' || $trans->type == 'Withdrawl') {
+			if($trans->type == 'Deposit') {
 				$trans->account_type = $request->account_type;
+			} elseif($trans->type == 'Withdrawl') {
+				$trans->withdrawl_type = $request->withdrawl_type;
 			}
 		}
 		
@@ -147,7 +150,7 @@ class TransactionController extends Controller
 				$bank_account->make_refund($trans->amount);
 			} elseif($trans->type == "Withdrawl") {
 				$message .= "<li class='okItem'>Withdrawl of $".$trans->amount." was saved successfully.</li>";
-				$bank_account->make_withdrawl($trans->amount);
+				$bank_account->make_withdrawl($trans->amount, $trans->withdrawl_type);
 			} elseif($trans->type == "Deposit") {
 				$message .= "<li class='okItem'>Deposit of $".$trans->amount." was saved successfully.</li>";
 				$bank_account->make_deposit($trans->amount, $trans->account_type);
@@ -173,10 +176,9 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction)
     {
-        $user = Auth::user();
-		$user_id = UserAccount::where('user_id', Auth::id())->first();
-		$user_name = $user->firstname . " " . $user->lastname;
-		$user_transactions = Transaction::where('user_account_id', $user_id->id)->get();
+		$user_account = $transaction->user_account;
+		$user_name = $user_account->user->full_name();
+		$user_transactions = $user_account->transactions->sortBy('transaction_date');
 		
 		return view('transactions.show', compact('user_name', 'user_transactions'));
     }

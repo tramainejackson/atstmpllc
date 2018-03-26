@@ -157,4 +157,17 @@ class UserAccountController extends Controller
 		return view('accounts.bank.remove_user', compact('userAccount'));
     }
 
+	/**
+     * Get the specified resource from storage.
+     *
+     * @param  \App\Transaction  $transaction
+     * @return \Illuminate\Http\Response
+     */
+    public function user_transactions(UserAccount $userAccount)
+    {
+        $user_transactions = $userAccount->transactions->sortByDesc('transaction_date');
+		$user_name = $userAccount->user->full_name();
+
+		return view('transactions.show', compact('user_transactions', 'user_name'));
+    }
 }
