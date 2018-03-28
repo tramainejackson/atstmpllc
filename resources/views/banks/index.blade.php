@@ -87,9 +87,9 @@
 								</div>
 								<div class="d-flex align-items-center justify-content-around flex-column">
 									@if($userAccount->edit_bank == "Y")
-										<a class="btn btn-block btn-lg text-truncate blue" href="/account/create/{{ $bankAccount->id }}">Add Bank User</a>
-										<a class="btn btn-block btn-lg text-truncate blue" href="/bank/{{ $bankAccount->id }}/users">Edit Bank Users</a>
 										<a class="btn btn-block btn-lg text-truncate blue" href="/bank/{!! $bankAccount->id !!}/edit">Edit Bank</a>
+										<a class="btn btn-block btn-lg text-truncate blue lighten-1" href="/account/create/{{ $bankAccount->id }}">Add Bank User</a>
+										<a class="btn btn-block btn-lg text-truncate blue accent-1" href="/bank/{{ $bankAccount->id }}/users">Edit Bank Users</a>
 										<a class="btn btn-block btn-lg btn-danger text-truncate removeBank" href="#{{ $bankAccount->id }}">Remove Bank</a>
 									@endif
 								</div>

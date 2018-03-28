@@ -165,9 +165,10 @@ class UserAccountController extends Controller
      */
     public function user_transactions(UserAccount $userAccount)
     {
-        $user_transactions = $userAccount->transactions->sortByDesc('transaction_date');
+        $user_transactions = $userAccount->user->transactions->sortByDesc('transaction_date');
+		$totalUserTransactions = $userAccount->user->transactions->count();
 		$user_name = $userAccount->user->full_name();
 
-		return view('transactions.show', compact('user_transactions', 'user_name'));
+		return view('transactions.show', compact('user_transactions', 'user_name', 'totalUserTransactions'));
     }
 }

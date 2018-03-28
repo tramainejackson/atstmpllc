@@ -23,19 +23,26 @@
 		<div class="col-8 mx-auto">
 			@if($user_transactions->count() > 0)
 				<div class="userTransactionHeader">
-					<h2 class="">{{ "All transactions for: " . $user_name }}</h2>
+					<h2 class="coolText2">All transactions for<br/><span class="">{{ $user_name }}</span></h2>
+					<h5 class="mt-0 mb-4 text-muted"><u>Total Transactions:</u>&nbsp;<span><em>{{ $totalUserTransactions }}</em></span></h5>
 				</div>
 				<div class="row">
 					@foreach($user_transactions as $transaction)
+						@php $date = explode('-', $transaction->transaction_date); @endphp
+						@php $tranactionDate = \Carbon\Carbon::createFromDate($date[0], $date[1], $date[2]); @endphp
 						<div class="col-md-4 col-sm-6 col-xs-6">
-							<div class="indTransaction addBoxShadow{{ ' ' . $transaction->type }}">
-								<div class="myTransactionHeader">
-									<h2><span class="itemContent">{{ $transaction->type }}</span><span class="transactionDate">{{ $transaction->date }}</span></h2>
+							<div class="indTrans addBoxShadow{{ ' ' .strtolower($transaction->type) }}">
+								<div class="indTransHeader">
+									<h2><span class="itemContent">{{ $transaction->type }}</span><span class="indTransactionDate text-muted text-center d-block">{{ $tranactionDate->toFormattedDateString() }}</span></h2>
 								</div>
 								<div class="myTransactionInfo">
 									<div class="">
 										<span class="spanLabel">Amount:</span>
 										<span class="itemContent">{{ "$" . $transaction->amount }}</span>
+									</div>
+									<div class="">
+										<span class="spanLabel">Bank:</span>
+										<span>{{ $transaction->bank_account->bank_name }}</span>
 									</div>
 									
 									@if($transaction->type != "Transfer")

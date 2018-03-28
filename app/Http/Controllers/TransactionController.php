@@ -22,11 +22,11 @@ class TransactionController extends Controller
     public function index()
     {
 		$user = Auth::user();
-		$user_id = Auth::id();
-		$user_name = $user->firstname . " " . $user->lastname;
+		$user_name = $user->full_name();
         $companyTransactions = Transaction::where('company_id', $user->company_id)->orderBy('created_at', 'desc')->paginate('15');
+        $totalCompanyTransactions = Transaction::where('company_id', $user->company_id)->count();
 		
-		return view('transactions.index', compact('user', 'companyTransactions'));
+		return view('transactions.index', compact('user', 'companyTransactions', 'totalCompanyTransactions'));
     }
 
     /**

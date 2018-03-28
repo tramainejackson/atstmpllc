@@ -8,12 +8,17 @@ $(document).ready(function() {
 	// Make the body min height the same size as the window height 	
 	$("body#admin_page_login").css({minHeight:windowHeight});
 	
-	// 
+	// Make the logout link and icon look as one
 	$('li.logOutLink a').hover(function() {
 		console.log('here');
 		$('li.logOutLink a').css({color : '#c1cad2'});
 	}, function() {
 		$('li.logOutLink a').css({color : '#525252'});
+	});
+	
+	// Tooltips Initialization
+	$(function () {
+	  $('[data-toggle="tooltip"]').tooltip();
 	});
 	
 	// Animations initialization

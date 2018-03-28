@@ -194,7 +194,7 @@
 			<div class="row">
 				@if($transactions->count() > 0)
 					@foreach($transactions as $transaction)
-					@php $transDate = new Carbon\Carbon($transaction->transaction_date); @endphp
+						@php $transDate = new Carbon\Carbon($transaction->transaction_date); @endphp
 						<div class="col-12 col-xl-4 my-2">
 							<div class="card card-cascade narrower">
 								<div class="indTransaction view gradient-card-header blue-gradient {{ strtolower($transaction->type) }}">

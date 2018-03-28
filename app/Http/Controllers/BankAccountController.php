@@ -98,8 +98,11 @@ class BankAccountController extends Controller
     public function edit($id)
     {
 		$bankAccount = BankAccount::find($id);
-		$editBankUsers = UserAccount::where("bank_account_id", $bankAccount->id)->get(); 
-        return view('banks.edit', compact('bankAccount', 'editBankUsers'));
+		$editBankUsers = UserAccount::where("bank_account_id", $bankAccount->id)->get();
+		$bankTransactions = $bankAccount->transactions;
+		$bankUsers = $bankAccount->user_accounts;
+        
+		return view('banks.edit', compact('bankAccount', 'editBankUsers', 'bankTransactions', 'bankUsers'));
     }
 
     /**

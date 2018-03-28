@@ -21,32 +21,40 @@
 		</div>
 		<div class="col-12 col-xl-8 mx-auto">
 			<div class="row">
-				<div class="card-deck">
-					@foreach($users as $user)
-						@if($user->editable == "Y")
-							<div class="card mb-4">
-								@if($user->picture != null)
-									<img src="{{ asset('/storage/images/' . $user->picture) }}" class="img-card-top" />
-								@else
-									<img src="../images/emptyface.jpg" class="img-card-top" />
-								@endif
-								<div class="card-body d-flex flex-column justify-content-center">
-									<div class="d-flex">
-										<span class="oi oi-person" style="line-height: 1.5;"></span>
-										<span class="text-truncate">&nbsp;{{ $user_name }}</span>
-									</div>
-									<div class="d-flex">
-										<span class="oi oi-envelope-closed" style="line-height: 1.5;"></span>
-										<span class="text-truncate">&nbsp;{{ $user->email }}</span>
-									</div>
+				@foreach($users as $user)
+					@php
+						$last_login = new Carbon\Carbon($user->last_login != null ? $user->last_login : $user->created_at);
+					@endphp
+					<div class="col-12 col-xl-4 my-2">
+						<!-- Card Wider -->
+						<div class="card card-cascade wider">
+							<!-- Card image -->
+							<div class="view overlay">
+								<img src="{{ $user->picture != null ? asset('/storage/images/' . $user->picture) : '/images/emptyface.jpg' }}" class="img-fluid imgPreview mx-auto" alt="Profile Photo" />
+							</div>
+							<!-- /Card image -->
+						
+							<!-- Card content -->
+							<div class="card-body">
+								<div class="nameHeader text-center">
+									<h2 class="coolText1 mb-4">{{ $user->full_name() }}</h2>
 								</div>
-								<div class="card-footer">
-									<a href='/users/{{ $user->id }}/edit' class="btn btn-warning d-block" {{ $user->editable == 'Y' ? '' : 'disabled' }}>Edit</a>
+								<div class="userAccountInfo">
+									<p class="" data-toggle="tooltip" data-placement="top" title="Last Log In"><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;{{ $last_login->toFormattedDateString() }}</p>
+									<p class="" data-toggle="tooltip" data-placement="top" title="Username"><i class="fa fa-user-circle" aria-hidden="true"></i>&nbsp;{{ $user->username }}</p>
+									<p class="text-truncate" data-toggle="tooltip" data-placement="top" title="Email Address"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;{{ $user->email }}</p>
 								</div>
 							</div>
-						@endif
-					@endforeach
-				</div>
+							
+							<div class="grey lighten-5 text-center" style="margin-left: 4%; margin-right: 4%;">
+								<a href='/users/{{ $user->id }}/edit' class="btn btn-warning d-block" {{ $user->editable == 'Y' ? '' : 'disabled' }}>Edit</a>
+							</div>
+							
+							<!-- Card content -->
+						</div>
+						<!-- Card Wider -->
+					</div>
+				@endforeach
 			</div>
 		</div>
 	</div>

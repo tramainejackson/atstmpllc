@@ -20,7 +20,8 @@
 				</div>
 			</div>
 			<div class="col-12">
-				<h2 class="mb-4 text-muted">{{ $user->company->company_name }} Transactions</h2>
+				<h2 class="mb-2 text-muted">{{ $user->company->company_name }} Transactions</h2>
+				<h5 class="mt-0 mb-4 text-muted"><u>Total Transactions:</u>&nbsp;<span><em>{{ $totalCompanyTransactions }}</em></span></h5>
 			</div>
 		</div>
 		@if($companyTransactions->isNotEmpty())
