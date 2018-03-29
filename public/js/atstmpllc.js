@@ -4,6 +4,7 @@ $(document).ready(function() {
 	var windowHeight = window.innerHeight;
 	var windowWidth = document.body.clientWidth;
 	var documentHeight = document.body.clientHeight;
+	var navHeight = $('.navbar.navbar-expand-lg.navbar-fixed-top').height();
 	
 	// Make the body min height the same size as the window height 	
 	$("body#admin_page_login").css({minHeight:windowHeight});
@@ -31,6 +32,29 @@ $(document).ready(function() {
 		formatSubmit: 'yyyy/mm/dd',
 	});
 
+	// Bring up remove transactions button when
+	// a transaction is selected
+	$('body').on('change', 'input[name^="removeTransaction"]', function(e) {
+		// Make sure that the remove button starts under
+		// the navigation
+		$('.removeTransBtn').css({top: (navHeight + 50) + 'px'});
+		if($('input[name^="removeTransaction"]:checked').length > 0) {
+			$('.removeTransBtn').addClass('animated slideInDown').removeClass('invisible slideOutUp');
+		} else {
+			$('.removeTransBtn').removeClass('slideInDown').addClass('slideOutUp');
+		}
+	});
+	
+	// Copy all of the selected transactions to be removed,
+	// to the delete transactions modal
+	$('body').on('click', '.removeTransBtn', function(e) {
+		$('input[name^="removeTransaction"]:checked').each(function() {
+			var parentView = $(this).parent().parent().parent().parent().clone();
+			$(parentView).removeClass('col-md-4 col-sm-6 col-xs-6').addClass('col-6');
+			$(parentView).prependTo('form#removeTransForm');
+		});
+	});
+	
 	// Bring up delete bank modal when button is clicked
 	$('body').on('click', '.removeBank', function(e) {
 		e.preventDefault();

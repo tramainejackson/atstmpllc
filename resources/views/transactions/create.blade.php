@@ -124,6 +124,10 @@
 								@endif
 							</div>
 							<div class="form-group">
+								<label for="description" class="form-label">Description</label>
+								<textarea name="description" class="form-control" placeholder="Enter A Description of The Transaction">{{ old('description') }}</textarea>
+							</div>
+							<div class="form-group">
 								<label class="form-label">Date</label>
 								<input type="text" name="trans_date" class="form-control datetimepicker" value="" placeholder="Select Transaction Date" />
 								

@@ -2,10 +2,12 @@
 			ATSTMPLLC
 ---------------------------------------
 
+Fix issue when removing a transfer transaction
+Fix the redirect status message
 Create a footer
-Add deletion of transactions
 Maybe add refund as a transaction option
 Done: Fix bank_users blade for mobile css
+Done: Add deletion of transactions
 Done: Add a count for how many transactions are showing
 Done: Add bank to transactions card
 Done: Figure out how transfers and personal withdrawls affect account amounts.

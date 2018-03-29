@@ -358,6 +358,18 @@ a.navbar-brand {
     margin: 1% 2%;
 }
 
+.myTransactionInfo .form-check [type=checkbox][class*=filled-in]:checked+label:after {
+    border-color: darkred !important;
+    background-color: darkred !important;
+}
+
+.myTransactionInfo .form-check {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 3px;
+}
+
 span.transactionDate {}
 
 .indTransaction.withdrawl {}
@@ -517,6 +529,12 @@ form div input, form div select, input[type=file] {
 }
 
 /*Transactions Page*/
+.removeTransBtn {
+    position: fixed;
+    left: 0px;
+    margin-left: 0.5%;
+}
+
 .transNav {
     margin: 75px 0% 2%;
 }

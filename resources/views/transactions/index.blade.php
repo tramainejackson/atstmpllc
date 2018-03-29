@@ -17,6 +17,7 @@
 			<div class="col-8 my-4 mx-auto">
 				<div class="userNavLinks d-flex justify-content-around">
 					<a href="/transactions/create" class="btn col-12 col-sm-3">Create A New Transaction</a>
+					<a href="/user/{{ $user->id }}/transactions" class="btn col-12 col-sm-3">My Transactions</a>
 				</div>
 			</div>
 			<div class="col-12">
@@ -74,6 +75,10 @@
 										@endif
 									</div>
 								@endif
+								<div class="mt-4">
+									<span class="spanLabel">Description:</span>
+									<span class="itemContent">{{ $transaction->description != null ? $transaction->description : 'No Description of This Transaction' }}</span>
+								</div>
 							</div>
 						</div>
 					</div>

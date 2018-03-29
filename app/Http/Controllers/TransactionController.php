@@ -73,6 +73,7 @@ class TransactionController extends Controller
 		$trans->bank_account_id = $bank_account->id;
 		$trans->user_id = $user_account->user_id;
 		$trans->amount = $request->trans_amount;
+		$trans->description = $request->description;
 		$trans->transaction_date = $request->trans_date_submit;
 		$trans->company_id = $user_account->user->company_id;
 		$trans->type = $request->type;
@@ -179,8 +180,9 @@ class TransactionController extends Controller
 		$user_account = $transaction->user_account;
 		$user_name = $user_account->user->full_name();
 		$user_transactions = $user_account->transactions->sortBy('transaction_date');
+		$totalUserTransactions = $user_account->user->transactions->count();
 		
-		return view('transactions.show', compact('user_name', 'user_transactions'));
+		return view('transactions.show', compact('user_name', 'user_transactions', 'totalUserTransactions'));
     }
 
     /**
@@ -217,8 +219,57 @@ class TransactionController extends Controller
      * @param  \App\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Transaction $transaction)
+    public function destroy(Request $request)
     {
-        //
+		$removed_transactions = $request->removeTransaction;
+		$counter = 0;
+		
+		// Remove each transaction. Add the amount of the transaction back to
+		// the bank or remove the amount if transaction is deposit. Then 
+		// recreate the bank shares
+		foreach($removed_transactions as $trans) {
+			// Get the transaction
+			$trans = Transaction::find($trans);
+			
+			// Delete the transaction
+			if($trans->delete()) {
+				$counter++;
+				$bank = $trans->bank_account;
+				$type = $trans->type;
+				
+				if($type == 'Deposit') {
+					$bank->checking_balance -= $trans->amount;
+				} elseif($type == 'Transfer') {
+					
+					if($trans->transfer_type == 'user') {
+						// Get the user that the money was transfered to
+						$transferedTo = $bank->user_accounts()->find($trans->transfer_to);
+						$transferedTo->checking_share -= $trans->amount;
+						$trans->user_account->checking_share += $trans->amount;
+						
+						if($transferedTo->save()) {
+							if($trans->user_account->save()) {}
+						}
+					} else {
+						if($trans->transfer_to == 'checking' && $trans->transfer_from == 'savings') {
+							$bank->checking_balance -= $trans->amount;
+							$bank->savings_balance += $trans->amount;
+						} elseif($trans->transfer_from == 'checking' && $trans->transfer_to == 'savings') {
+							$bank->checking_balance += $trans->amount;
+							$bank->savings_balance -= $trans->amount;
+						}
+					}
+				} else {
+					$bank->checking_balance += $trans->amount;
+				}
+				
+				// Save bank after balance adjested
+				if($bank->save()) {
+					$bank->recreate_shares();
+				}
+			}
+		}
+		
+		return redirect()->back()->with('status', $counter . ' transaction(s) removed successfully');
     }
 }

@@ -13,7 +13,7 @@
 
 // Route::get('/test', function () {
     // return view('test');
-// });
+// })->middleware('web');
 
 Route::get('/', function () {
     return view('welcome');
@@ -46,6 +46,6 @@ Route::put('/home/{user}', 'HomeController@update_image');
 
 Route::resource('transactions', 'TransactionController');
 
-Route::get('user/{userAccount}/transactions', 'UserAccountController@user_transactions');
+Route::get('user/{user}/transactions', 'UserAccountController@user_transactions');
 
 Route::get('/home', 'HomeController@home')->name('home');

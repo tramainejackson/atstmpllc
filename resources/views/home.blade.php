@@ -227,6 +227,10 @@
 											@endif
 										</div>
 									@endif
+									<div class="mt-4">
+										<span class="spanLabel">Description:</span>
+										<span class="itemContent">{{ $transaction->description != null ? $transaction->description : 'No Description of This Transaction' }}</span>
+									</div>
 								</div>
 							</div>
 						</div>

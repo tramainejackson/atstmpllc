@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\UserAccount;
 use App\BankAccount;
 use Illuminate\Http\Request;
@@ -163,11 +164,11 @@ class UserAccountController extends Controller
      * @param  \App\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function user_transactions(UserAccount $userAccount)
+    public function user_transactions(User $user)
     {
-        $user_transactions = $userAccount->user->transactions->sortByDesc('transaction_date');
-		$totalUserTransactions = $userAccount->user->transactions->count();
-		$user_name = $userAccount->user->full_name();
+        $user_transactions = $user->transactions->sortByDesc('transaction_date')->groupBy('bank_account_id');
+		$totalUserTransactions = $user->transactions->count();
+		$user_name = $user->full_name();
 
 		return view('transactions.show', compact('user_transactions', 'user_name', 'totalUserTransactions'));
     }
