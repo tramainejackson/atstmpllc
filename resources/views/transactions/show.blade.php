@@ -56,7 +56,7 @@
 											<div class="">
 												<span class="spanLabel">Receipt:</span>
 												@if($transaction->receipt == "Y")
-													<a class="transImg" href="{{ $transaction->receipt_photo }}">Receipt Photo</a>
+													<a class="transImg" href="{{ asset('storage/images/' . $transaction->receipt_photo) }}">Receipt Photo</a>
 												@else
 													<span class="itemContent">{{ $transaction->receipt }}</span>
 												@endif
@@ -105,7 +105,7 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					{!! Form::open(['action' => ['TransactionController@destroy', $transaction], 'method' => 'Delete', 'id' => 'removeTransForm', 'class' => 'row']) !!}
+					{!! Form::open(['action' => ['TransactionController@destroy'], 'method' => 'Delete', 'id' => 'removeTransForm', 'class' => 'row']) !!}
 					
 						<div class="">
 							<button type="submit" class="btn btn-lg indigo">Remove Transactions</button>

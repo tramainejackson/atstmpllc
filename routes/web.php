@@ -46,6 +46,8 @@ Route::put('/home/{user}', 'HomeController@update_image');
 
 Route::resource('transactions', 'TransactionController');
 
+Route::delete('transactions', 'TransactionController@destroy');
+
 Route::get('user/{user}/transactions', 'UserAccountController@user_transactions');
 
 Route::get('/home', 'HomeController@home')->name('home');

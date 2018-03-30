@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-fixed-top adminNavColor">
 	<div class="container-fluid">
-		<div class="navbar-header">
+		<div class="navbar-header d-flex align-items-center">
 			<button type="button" class="btn navbar-toggle d-inline-block d-lg-none unique-color-dark" data-toggle="collapse" data-target="#myNavbar">
 				<i class="fa fa-bars" aria-hidden="true"></i>
 			</button>
@@ -12,7 +12,7 @@
 				<li class="navLinks"><a href="/transactions">Transactions</a></li>
 				<li class="navLinks"><a href="/users">Users</a></li>
 			</ul>
-			<ul class="navbar-nav flex-row align-content-stretch justify-content-center d-inline-flex pl-2">
+			<ul class="navbar-nav flex-row align-items-stretch justify-content-center d-inline-flex pl-2">
 				<li class="navLinks logOutLink p-1">
 					<a href="{{ route('logout') }}" class="navi_option" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><span>Logout</span></a>
 			

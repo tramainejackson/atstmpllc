@@ -623,6 +623,12 @@ span.indTransactionDate {
 }
 
 @media only screen and (max-width:575px) {
+	.navbar-header button {
+		padding: 0.8rem 1.25rem;
+	}
+}
+
+@media only screen and (max-width:575px) {
 	.myheader {
 		margin: 20px auto;
 		width: 100%;
