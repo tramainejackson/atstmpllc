@@ -14,15 +14,15 @@
 		<div class="col-12">
 			@include('layouts.nav')
 		</div>
-		<div class="col-12 col-sm-10 my-4 mx-auto">
+		<div class="col-12 col-sm-10 col-lg-12 my-4 mx-auto">
 			<div class="userNavLinks row d-flex justify-content-around">
-				<a href="/bank" class="btn col-5 col-sm-2 my-1">All Banks</a>
-				<a href="/bank/create" class="btn col-5 col-sm-2 my-1">Add A New Bank</a>
-				<a class="btn col-5 col-sm-2 my-1" href="/bank/{{ $bankAccount->id }}/users" class="">Edit Bank Users</a>
-				<a class="btn btn-danger col-5 col-sm-2 my-1 removeBank" href="#{{ $bankAccount->id }}" class="">Remove Bank</a>
+				<a href="/bank" class="btn col-5 col-lg-3 my-1">All Banks</a>
+				<a href="/bank/create" class="btn col-5 col-lg-3 my-1">Add A New Bank</a>
+				<a class="btn col-5 col-lg-3 my-1" href="/bank/{{ $bankAccount->id }}/users" class="">Edit Bank Users</a>
+				<a class="btn btn-danger col-5 col-lg-3 my-1 removeBank" href="#{{ $bankAccount->id }}" class="">Remove Bank</a>
 			</div>
 		</div>
-		<div class="col-12 col-sm-8 mx-auto">
+		<div class="col-12 col-sm-10 col-md-10 col-lg-8 mx-auto">
 			<div class="editBank">
 				<div class="formDiv">
 					{!! Form::open(['action' => ['BankAccountController@update', $bankAccount->id], 'method' => 'PUT']) !!}
@@ -68,10 +68,10 @@
 	</div>
 	<div class="row my-5">
 		<div class="col-12 mx-auto">
-			<h2 class="">Bank User</h2>
+			<h2 class="">Bank Users</h2>
 		</div>
 		@foreach($bankUsers as $bankUser)
-			<div class="col-12 col-xl-3 my-2">
+			<div class="col-12 col-md-6 col-lg-4 my-2">
 				<!-- Card Wider -->
 				<div class="card card-cascade wider">
 					<!-- Card image -->
@@ -105,7 +105,7 @@
 		
 		@foreach($bankTransactions as $transaction)
 			@php $transDate = new Carbon\Carbon($transaction->transaction_date); @endphp
-			<div class="col-12 col-xl-4 my-2">
+			<div class="col-12 col-md-4 col-xl-4 my-2">
 				<div class="card card-cascade narrower">
 					<div class="indTransaction view gradient-card-header blue-gradient {{ strtolower($transaction->type) }}">
 						<h2 class="">{{ $transaction->type }}</h2>

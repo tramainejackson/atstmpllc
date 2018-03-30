@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-<div class="container-fluid">
+<div class="container-fluid bankIndex">
 	<div class="row">
 		<div class="col-12">
 			@include('layouts.nav')
@@ -20,7 +20,7 @@
 					<div class="col">
 						<h2 class="text-muted">My Available Banks</h2>
 						<div class="userNavLinks d-flex justify-content-around">
-							<a href="/bank/create" class="btn col-sm-2 col-12">Add A New Bank</a>
+							<a href="/bank/create" class="btn col-12 col-md-8 col-lg-6 mx-auto">Add A New Bank</a>
 						</div>
 					</div>
 				</div>
@@ -30,13 +30,13 @@
 	<div class="row align-items-stretch">
 		@if($userAccounts->count() > 0)
 			@foreach($userAccounts as $userAccount)
-				<div class="col-sm-6 col-12 my-3">	
+				<div class="col-12 col-lg-6 my-3">	
 					@php $bankAccount = \App\BankAccount::find($userAccount->bank_account_id); @endphp
 					@if($userAccount->edit_bank == "Y")
 						<div class="view">
 							<img src="{{ asset('/images/bank_image_3.jpg') }}" class="img-fluid" alt="" />
-							<div class="mask d-flex align-items-stretch justify-content-around py-2 rgba-grey-strong white-text">
-								<div class="d-flex flex-column justify-content-center">
+							<div class="mask d-flex flex-column align-items-stretch justify-content-around py-2 rgba-grey-strong white-text">
+								<div class="d-flex flex-column justify-content-center px-2">
 									<div class="bankAccountHeader">
 										<h1 class="coolText5">{{ $bankAccount->bank_name}}</h1>
 									</div>
@@ -85,12 +85,12 @@
 										</div>
 									</div>
 								</div>
-								<div class="d-flex align-items-center justify-content-around flex-column">
+								<div class="d-flex align-items-center justify-content-around flex-column px-3">
 									@if($userAccount->edit_bank == "Y")
 										<a class="btn btn-block btn-lg text-truncate blue" href="/bank/{!! $bankAccount->id !!}/edit">Edit Bank</a>
-										<a class="btn btn-block btn-lg text-truncate blue lighten-1" href="/account/create/{{ $bankAccount->id }}">Add Bank User</a>
+										<a class="btn btn-block btn-lg text-truncate blue lighten-1 my-1" href="/account/create/{{ $bankAccount->id }}">Add Bank User</a>
 										<a class="btn btn-block btn-lg text-truncate blue accent-1" href="/bank/{{ $bankAccount->id }}/users">Edit Bank Users</a>
-										<a class="btn btn-block btn-lg btn-danger text-truncate removeBank" href="#{{ $bankAccount->id }}">Remove Bank</a>
+										<a class="btn btn-block btn-lg btn-danger text-truncate removeBank my-1" href="#{{ $bankAccount->id }}">Remove Bank</a>
 									@endif
 								</div>
 							</div>

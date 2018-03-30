@@ -16,16 +16,16 @@
 		</div>
 		<div class="col-8 my-4 mx-auto">
 			<div class="userNavLinks d-flex justify-content-around">
-				<a href="/users/create" class="btn col-12 col-sm-3">Add New User</a>
+				<a href="/users/create" class="btn col-12">Add New User</a>
 			</div>
 		</div>
-		<div class="col-12 col-xl-8 mx-auto">
+		<div class="col-12 col-xl-10 mx-auto">
 			<div class="row">
 				@foreach($users as $user)
 					@php
 						$last_login = new Carbon\Carbon($user->last_login != null ? $user->last_login : $user->created_at);
 					@endphp
-					<div class="col-12 col-xl-4 my-2">
+					<div class="col-12 col-sm-6 col-md-4 col-xl-4 my-2">
 						<!-- Card Wider -->
 						<div class="card card-cascade wider">
 							<!-- Card image -->

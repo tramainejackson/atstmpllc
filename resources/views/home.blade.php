@@ -39,7 +39,7 @@
 		</div>
 	</div>
     <div class="row">
-		<div class="col-12 col-md-12 col-lg-12 col-xl-4 text-center mx-auto my-5">
+		<div class="col-12 col-md-6 col-lg-6 col-xl-5 text-center mx-auto my-5">
 			<!-- Card Wider -->
 			<div class="card card-cascade wider">
 				<!-- Card image -->
@@ -107,9 +107,9 @@
 											<div class="bankCount rgba-black-strong p-2 m-2 rounded-circle">
 												<span>{{ $loop->iteration }}/{{ $loop->count }}</span>
 											</div>
-											<div class="col-5 text-center">
+											<div class="col-10 col-md-8 col-lg-8 text-center">
 												<!-- Bank Accounts -->
-												<div class="align-items-center bankAccountHeader d-flex justify-content-between w-100">
+												<div class="align-items-center bankAccountHeader d-flex justify-content-between flex-column flex-md-row w-100">
 													<h2 class="coolText5" style="width: max-content">{{ $user_account->bank_account->bank_name }}</h2>
 													@if($user_account->edit_bank == "Y")
 														<a href="/bank/{{ $user_account->bank_account->id }}/edit" class="btn btn-secondary">Edit Bank Account</a>
@@ -184,10 +184,10 @@
 				<div class="col-12 col-xl-8">
 					<h1 class="">My Recent Transactions</h1>
 				</div>
-				<div class="col-12 col-xl-2">
+				<div class="col-12 col-md-8 col-lg-6 col-xl-2 mx-auto">
 					<a class="btn btn-info d-block text-truncate" href="/transactions/create">Create</a></button>
 				</div>
-				<div class="col-12 col-xl-2">
+				<div class="col-12 col-md-8 col-lg-6 col-xl-2 mx-auto">
 					<a class="btn btn-info d-block text-truncate" href="/transactions/">View All</a></button>
 				</div>
 			</div>

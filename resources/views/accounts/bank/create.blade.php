@@ -19,10 +19,10 @@
 		</div>
 		<div class="col-8 mx-auto">
 			<div class="userNavLinks d-flex justify-content-around">
-				<a class="btn col-12 col-sm-2 editBankLink text-truncate" href="/bank/{{ $bankAccount->id }}/users" class="">Edit Bank Users</a>
+				<a class="btn col-12 editBankLink text-truncate" href="/bank/{{ $bankAccount->id }}/users" class="">Edit Bank Users</a>
 			</div>
 		</div>
-		<div class="col-12 col-sm-8 mx-auto my-4">
+		<div class="col-12 col-md-10 col-lg-8 mx-auto my-4">
 			<div class="formDiv">
 				{!! Form::open(['action' => ['UserAccountController@store', $bankAccount->id], 'method' => 'POST']) !!}
 					<div class="formDivTitle">
@@ -31,7 +31,7 @@
 					<div class="form-group">
 						@if($company_users->count() > 1)
 							<label class="form-label">Select User To Add</label>
-							<select class="custom-select form-control" name="user_id">
+							<select class="custom-select form-control browser-default" name="user_id">
 								@foreach($company_users as $company_user)
 									<option value="{{ $company_user->id }}" {{ $company_user->id == Auth::id() || $company_user->user_accounts()->where('bank_account_id', $bankAccount->id)->first() ? ' disabled' : '' }} selected>{{ $company_user->firstname . ' ' . $company_user->lastname}}{{ $company_user->id == Auth::id() || $company_user->user_accounts()->where('bank_account_id', $bankAccount->id)->first() ? ' - has an active account' : '' }}</option>
 								@endforeach
@@ -42,7 +42,7 @@
 					</div>
 					<div class="form-group">
 						<label class="form-label">Can edit bank</label>
-						<select class="custom-select form-control" name="edit_bank">
+						<select class="custom-select form-control browser-default" name="edit_bank">
 								<option value="Y">Yes</option>
 								<option value="N">No</option>
 						</select>

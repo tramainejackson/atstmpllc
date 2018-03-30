@@ -2,10 +2,13 @@
 			ATSTMPLLC
 ---------------------------------------
 
-Fix issue when removing a transfer transaction
-Fix the redirect status message
-Create a footer
+Check the image thats uploaded with the transaction
+When the remove selected transactions goes away, remove all of the cloned transactions from delete modal
 Maybe add refund as a transaction option
+Done: Fix responsiveness
+Done: Create a footer
+Done: Fix issue when removing a transfer transaction
+Done: Fix the redirect status messageat
 Done: Fix bank_users blade for mobile css
 Done: Add deletion of transactions
 Done: Add a count for how many transactions are showing

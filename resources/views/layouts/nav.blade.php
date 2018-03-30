@@ -12,17 +12,16 @@
 				<li class="navLinks"><a href="/transactions">Transactions</a></li>
 				<li class="navLinks"><a href="/users">Users</a></li>
 			</ul>
-			<ul class="navbar-nav flex-row">
-				<li class="navLinks logOutLink">
+			<ul class="navbar-nav flex-row align-content-stretch justify-content-center d-inline-flex pl-2">
+				<li class="navLinks logOutLink p-1">
 					<a href="{{ route('logout') }}" class="navi_option" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><span>Logout</span></a>
 			
 					<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 						{{ csrf_field() }}
 					</form>
 				</li>
-				<li class="d-none">&nbsp;</li>
-				<li class="logOutLink d-flex align-self-center">
-					<a href="{{ route('logout') }}" class="navi_option" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><span class="oi oi-account-logout"></span></a>
+				<li class="logOutLink p-1">
+					<a href="{{ route('logout') }}" class="navi_option" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
 				</li>
 			</ul>
 		</div>

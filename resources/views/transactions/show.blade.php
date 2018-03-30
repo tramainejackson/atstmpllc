@@ -15,12 +15,12 @@
 			@include('layouts.nav')
 		</div>
 		<div class="col-8 my-4 mx-auto">
-			<div class="userNavLinks d-flex justify-content-around">
-				<a href="/transactions" class="btn col-3">All Transactions</a>
-				<a href="/transactions/create" class="btn col-3">Create A New Transaction</a>
+			<div class="userNavLinks d-flex flex-column flex-lg-row justify-content-around">
+				<a href="/transactions" class="btn col-12 col-lg-6">All Transactions</a>
+				<a href="/transactions/create" class="btn col-12 col-lg-6">New Transaction</a>
 			</div>
 		</div>
-		<div class="col-8 mx-auto">
+		<div class="col-12 col-lg-10 mx-auto">
 			@if($totalUserTransactions > 0)
 				<div class="userTransactionHeader">
 					<h2 class="coolText2">All transactions for<br/><span class="">{{ $user_name }}</span></h2>

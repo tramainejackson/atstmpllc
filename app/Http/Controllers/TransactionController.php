@@ -113,7 +113,7 @@ class TransactionController extends Controller
 								$trans->receipt = 'Y';
 								$trans->receipt_photo = str_ireplace('public/images/', '', $path);
 							} else {
-								$error .= "<li class='errorItem'>The file " . $fileName . " could not be added bcause it is the wrong image type</li>";
+								$error .= "<li class='errorItem red progress-bar-striped'>The file " . $fileName . " could not be added bcause it is the wrong image type</li>";
 							}
 						} else {
 							// Resize the image before storing. Will need to hash the filename first
@@ -125,11 +125,11 @@ class TransactionController extends Controller
 							$image->save(storage_path('app/'. $path));
 						}
 					} else {
-						$error .= "<li class='errorItem'>The file " . $fileName . " may be corrupt and could not be uploaded</li>";
+						$error .= "<li class='errorItem red progress-bar-striped'>The file " . $fileName . " may be corrupt and could not be uploaded</li>";
 					}
 				}
 			} else {
-				$error .= "<li class='errorItem'>The uploaded file may be corrupt and could not be uploaded</li>";
+				$error .= "<li class='errorItem red progress-bar-striped'>The uploaded file may be corrupt and could not be uploaded</li>";
 			}
 			
 			if($trans->type == 'Deposit') {
@@ -140,31 +140,31 @@ class TransactionController extends Controller
 		}
 		
 		if($trans->save()) {
-			$message .= "<li class='okItem'>Transaction Added Successfully</li>";
+			$message .= "<li class='okItem green progress-bar-striped'>Transaction Added Successfully</li>";
 			
 			// Successful
 			if($trans->type == "Purchase") {
-				$message .= "<li class='okItem'>Purchase of $".$trans->amount." was saved successfully.</li>";
+				$message .= "<li class='okItem green progress-bar-striped'>Purchase of $".$trans->amount." was saved successfully.</li>";
 				$bank_account->make_purchase($trans->amount);
 			} elseif($trans->type == "Refund") {
-				$message .= "<li class='okItem'>Refund of $".$trans->amount." was saved successfully.</li>";
+				$message .= "<li class='okItem green progress-bar-striped'>Refund of $".$trans->amount." was saved successfully.</li>";
 				$bank_account->make_refund($trans->amount);
 			} elseif($trans->type == "Withdrawl") {
-				$message .= "<li class='okItem'>Withdrawl of $".$trans->amount." was saved successfully.</li>";
+				$message .= "<li class='okItem green progress-bar-striped'>Withdrawl of $".$trans->amount." was saved successfully.</li>";
 				$bank_account->make_withdrawl($trans->amount, $trans->withdrawl_type);
 			} elseif($trans->type == "Deposit") {
-				$message .= "<li class='okItem'>Deposit of $".$trans->amount." was saved successfully.</li>";
+				$message .= "<li class='okItem green progress-bar-striped'>Deposit of $".$trans->amount." was saved successfully.</li>";
 				$bank_account->make_deposit($trans->amount, $trans->account_type);
 			} elseif($trans->type == "Transfer") {
-				$message .= "<li class='okItem'>Transfer of $".$trans->amount." was saved successfully.</li>";
+				$message .= "<li class='okItem green progress-bar-striped'>Transfer of $".$trans->amount." was saved successfully.</li>";
 				$bank_account->make_transfer($trans->amount, $trans->transfer_type, $trans->transfer_to, $trans->transfer_from, $trans->user_account_id);
 			} else {
-				$message .= "<li class='errorItem'>Transaction type unrecognized.</li>";
+				$message .= "<li class='errorItem red progress-bar-striped'>Transaction type unrecognized.</li>";
 			}
 			return redirect()->action('TransactionController@show', $trans)->with('status', $message);
 		} else {
 			// Failure
-			$message = "<li class='errorItem'>Transaction unsuccessful.</li>";
+			$message = "<li class='errorItem red progress-bar-striped'>Transaction unsuccessful.</li>";
 			redirect()->back()->with('status', $message);
 		}
     }
@@ -179,7 +179,7 @@ class TransactionController extends Controller
     {
 		$user_account = $transaction->user_account;
 		$user_name = $user_account->user->full_name();
-		$user_transactions = $user_account->transactions->sortBy('transaction_date');
+		$user_transactions = $user_account->user->transactions->sortBy('transaction_date')->groupBy('bank_account_id');
 		$totalUserTransactions = $user_account->user->transactions->count();
 		
 		return view('transactions.show', compact('user_name', 'user_transactions', 'totalUserTransactions'));
@@ -240,12 +240,12 @@ class TransactionController extends Controller
 				if($type == 'Deposit') {
 					$bank->checking_balance -= $trans->amount;
 				} elseif($type == 'Transfer') {
-					
 					if($trans->transfer_type == 'user') {
 						// Get the user that the money was transfered to
 						$transferedTo = $bank->user_accounts()->find($trans->transfer_to);
 						$transferedTo->checking_share -= $trans->amount;
 						$trans->user_account->checking_share += $trans->amount;
+					// dd($trans->user_account->checking_share);
 						
 						if($transferedTo->save()) {
 							if($trans->user_account->save()) {}
@@ -270,6 +270,6 @@ class TransactionController extends Controller
 			}
 		}
 		
-		return redirect()->back()->with('status', $counter . ' transaction(s) removed successfully');
+		return redirect()->back()->with('status', "<li class='okItem green progress-bar-striped'>" . $counter . " transaction(s) removed successfully</li>");
     }
 }

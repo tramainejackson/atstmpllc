@@ -17,6 +17,9 @@ $(document).ready(function() {
 		$('li.logOutLink a').css({color : '#525252'});
 	});
 	
+	// $('.carousel').carousel('pause');
+	
+	
 	// Tooltips Initialization
 	$(function () {
 	  $('[data-toggle="tooltip"]').tooltip();
@@ -38,6 +41,10 @@ $(document).ready(function() {
 		// Make sure that the remove button starts under
 		// the navigation
 		$('.removeTransBtn').css({top: (navHeight + 50) + 'px'});
+		
+		// Remove any cloned transactions already in delete modal
+		$('#transaction_delete_modal .modal-body form div.col-6').remove();
+		
 		if($('input[name^="removeTransaction"]:checked').length > 0) {
 			$('.removeTransBtn').addClass('animated slideInDown').removeClass('invisible slideOutUp');
 		} else {

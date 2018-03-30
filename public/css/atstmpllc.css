@@ -123,10 +123,7 @@ a.feedbackLink {
     right: 2%;
 }
 
-footer {
-    margin: 2% 0%;
-    position: relative;
-}
+footer {}
 
 /*Session Messages*/
 div#return_messages {
@@ -152,12 +149,7 @@ div#return_messages ul li {
     border: solid 1.5px;
 }
 
-div#return_messages ul li.okItem {
-    background: darkgreen;
-    color: snow;
-}
-div#return_messages ul li.errorItem {
-    background: darkred;
+div#return_messages ul li.okItem, div#return_messages ul li.errorItem {
     color: snow;
 }
 
@@ -414,6 +406,10 @@ span.transactionDate {}
     margin-top: 90px;
 }
 
+.bankIndex .view img, .bankIndex .view video {
+	height: fit-content;
+}
+
 form div input, form div select, input[type=file] {
     display: -webkit-inline-box;
     display: inline-block;
@@ -633,15 +629,9 @@ span.indTransactionDate {
 		border: none;
 	}
 	
-	.bankAccounts, .myAccounts {
-		padding: 5% 0%;
-	}
+	.bankAccounts, .myAccounts {}
 	
-	.bankAccountHeader a {
-		position: absolute;
-		bottom: 5px;
-		left: 35%;
-	}
+	.bankAccountHeader a {}
 	
 	.indBankAccount {
 		/* height: 100%; */
@@ -667,14 +657,47 @@ span.indTransactionDate {
 		width: fit-content;
 		padding: 0% 2% 0%;
 	}
+	
+	.userNavLinks a {
+		font-size: 125%;
+	}
+	
+	.bankCount {
+		left: 10px;
+	}
+	
+	.userTransactionHeader h2 {
+		width: initial;
+		margin: 4% auto;
+	}
+	
+	button.removeTransBtn {
+		left: 2%;
+		width: 95%;
+	}
+	
+	form#removeTransForm .col-6 {
+		width: 100% !important;
+		max-width: 100% !important;
+		flex: initial;
+	}
 }
+
 @media only screen and (min-width:576px) {
 	.myheader {
 		width: 70%;
 	}
+	
+	.userNavLinks a {
+		font-size: 125%;
+	}
 }
 @media only screen and (min-width:768px) {}
-@media only screen and (min-width:992px) {}
+@media only screen and (min-width:992px) {
+	.userNavLinks a {
+		font-size: 125%;
+	}
+}
 @media only screen and (max-width:1199px) {}
 @media only screen and (min-width:1200px) {}
 @media only screen and (min-width:1400px) {}

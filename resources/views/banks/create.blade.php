@@ -16,10 +16,10 @@
 		</div>
 		<div class="col-10 mt-4 mx-auto">
 			<div class="userNavLinks d-flex justify-content-around">
-				<a href="/bank" class="btn col-12 col-sm-2">All Banks</a>
+				<a href="/bank" class="btn col-12 col-md-8 col-lg-6 mx-auto">All Banks</a>
 			</div>
 		</div>
-		<div class="col-12 col-sm-8 mx-auto">
+		<div class="col-12 col-sm-10 col-md-8 mx-auto">
 			<div class="createNewBank">
 				<div class="formDiv">
 					<div class="formDivTitle row">

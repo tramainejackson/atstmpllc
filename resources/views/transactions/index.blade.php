@@ -15,9 +15,9 @@
 				@include('layouts.nav')
 			</div>
 			<div class="col-8 my-4 mx-auto">
-				<div class="userNavLinks d-flex justify-content-around">
-					<a href="/transactions/create" class="btn col-12 col-sm-3">Create A New Transaction</a>
-					<a href="/user/{{ $user->id }}/transactions" class="btn col-12 col-sm-3">My Transactions</a>
+				<div class="userNavLinks d-flex flex-column flex-lg-row justify-content-around align-items-stretch">
+					<a href="/transactions/create" class="btn col-12 col-lg-6">New Transaction</a>
+					<a href="/user/{{ $user->id }}/transactions" class="btn col-12 col-lg-6">My Transactions</a>
 				</div>
 			</div>
 			<div class="col-12">
@@ -35,7 +35,7 @@
 				@foreach($companyTransactions as $transaction)
 					@php $date = explode('-', $transaction->transaction_date); @endphp
 					@php $tranactionDate = \Carbon\Carbon::createFromDate($date[0], $date[1], $date[2]); @endphp
-					<div class="col-12 col-sm-4">
+					<div class="col-12 col-sm-6 col-xl-4 mb-2">
 						<div class="indTrans addBoxShadow{{ ' ' .strtolower($transaction->type) }}">
 							<div class="indTransHeader">
 								<h2 class=""><span class="itemContent">{{ $transaction->type }}</span><span class="indTransactionDate text-muted text-center d-block">{{ $tranactionDate->toFormattedDateString() }}</span></h2>
@@ -43,7 +43,7 @@
 							<div class="indTransInfo">
 								<div class="">
 									<span class="spanLabel">User Completed:</span>
-									<span class="itemContent"><a href="/user/{{ $transaction->user_account_id }}/transactions">{{ $transaction->user->firstname }}</a></span>
+									<span class="itemContent"><a href="/user/{{ $transaction->user_account->user->id }}/transactions">{{ $transaction->user->firstname }}</a></span>
 								</div>
 								<div class="">
 									<span class="spanLabel">Bank:</span>

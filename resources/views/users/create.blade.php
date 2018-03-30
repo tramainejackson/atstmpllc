@@ -16,10 +16,10 @@
 		</div>
 		<div class="col-8 my-4 mx-auto">
 			<div class="userNavLinks d-flex justify-content-around">
-				<a href="/users" class="btn col-12 col-sm-3">All Users</a>
+				<a href="/users" class="btn col-12">All Users</a>
 			</div>
 		</div>
-		<div class="col-12 col-sm-8 mx-auto">
+		<div class="col-12 col-lg-8 mx-auto">
 			<div class="formDiv">
 				{!! Form::open(['action' => ['HomeController@store'], 'files' => true, 'method' => 'POST']) !!}
 					<div class="formDivTitle row">
@@ -79,17 +79,25 @@
 					</div>
 					<div class="form-group">
 						<label class="form-label">Is Account Editable</label>
-						<select class="custom-select form-control" name="editable">
+						<select class="custom-select form-control browser-default" name="editable">
 							<option value="Y" selected>Yes</option>
 							<option value="N">No</option>
 						</select>
 					</div>
-					<div class="form-group">
+					<div class="">
 						<label class="form-label">Picture</label>
-						{{ Form::file('picture', ['class' => 'form-control', 'id' => 'customFile']) }}
+					</div>
+					<div class="input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text">Upload</span>
+						</div>
+						<div class="custom-file">
+							<input type="file" class="btn col-4 custom-file-input" name="picture" id="customFile" />
+							<label for="customFile" class="custom-file-label text-left">Change Photo</label>
+						</div>
 					</div>
 					<div class="form-group">
-						{{ Form::submit('Create New User', ['class' => 'btn btn-lg btn-primary']) }}
+						{{ Form::submit('Create New User', ['class' => 'btn btn-lg btn-primary mx-0 mt-3']) }}
 					</div>
 				{!! Form::close() !!}
 			</div>

@@ -21,7 +21,7 @@
 <body>
 	<div id="app">
 		@if(session('status'))
-			<div id="return_messages">
+			<div id="return_messages" class="wow rotateInDownLeft" data-wow-delay="0.7s">
 				<ul class="flashMessage text-center">{!! session('status') !!}</ul>
 			</div>
 		@endif
@@ -34,7 +34,7 @@
 
 		@yield('content')
 		
-		@yield('footer')
+		@include('footer')
     </div>
 	
 	<!-- Scripts -->

@@ -18,6 +18,15 @@ class UserAccount extends Model
     protected $dates = ['deleted_at'];
 	
 	/**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'user_id', 'bank_account_id', 'edit_bank'
+    ];
+	
+	/**
 	* Get the user associated with the user account
 	*/
 	public function user() {
@@ -37,15 +46,6 @@ class UserAccount extends Model
 	public function transactions() {
 		return $this->hasMany('App\Transaction');
 	}
-	
-	/**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'user_id', 'bank_account_id', 'edit_bank'
-    ];
 
 	public function find_user_deposit_withdrawl_diff($bankAccountID) {
 		$userTrans = Transaction::where('user_account_id', $this->id)->get();

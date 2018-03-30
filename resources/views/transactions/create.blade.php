@@ -16,10 +16,10 @@
 		</div>
 		<div class="col-8 my-4 mx-auto">
 			<div class="userNavLinks d-flex justify-content-around">
-				<a href="/transactions" class="btn col-12 col-sm-3">All Transactions</a>
+				<a href="/transactions" class="btn col-12">All Transactions</a>
 			</div>
 		</div>
-		<div class="col-12 col-sm-8 mx-auto">
+		<div class="col-12 col-md-10 mx-auto">
 			<div class="formDiv">
 				@if($userAccounts->isNotEmpty())
 					<div class="formDivTitle row">

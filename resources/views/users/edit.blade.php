@@ -15,12 +15,12 @@
 			@include('layouts.nav')
 		</div>
 		<div class="col-8 my-4 mx-auto">
-			<div class="userNavLinks d-flex flex-column flex-sm-row justify-content-around">
-				<a href="/users" class="btn my-1 col-12 col-sm-3">All Users</a>
-				<a href="/users/create" class="btn my-1 col-12 col-sm-3">Add New User</a>
+			<div class="userNavLinks d-flex flex-column flex-lg-row justify-content-around">
+				<a href="/users" class="btn my-1 col-12 col-lg-6">All Users</a>
+				<a href="/users/create" class="btn my-1 col-12 col-lg-6">Add New User</a>
 			</div>
 		</div>
-		<div class="col-12 col-sm-8 mx-auto">
+		<div class="col-12 col-lg-10 mx-auto">
 			@if($user->editable == "Y")
 				<div class="formDiv">
 					{!! Form::open(['action' => ['HomeController@update', $user->id], 'files' => 'true', 'method' => 'PUT']) !!}
@@ -30,8 +30,8 @@
 						</div>
 						<div class="container-fluid">
 							<div class="row">
-								<div class="userImgDiv col-12 col-md-3 col-sm-4">
-									<img src="{{ $user->picture != null ? asset('/storage/images/' . $user->picture) : '/images/emptyface.jpg' }}" class="center-block" />
+								<div class="userImgDiv col-12 col-md-3">
+									<img src="{{ $user->picture != null ? asset('/storage/images/' . $user->picture) : '/images/emptyface.jpg' }}" class="d-block mx-auto" />
 								</div>
 								<div class="col-12 col-sm-9">
 									<div class="form-group">
@@ -86,17 +86,25 @@
 									</div>
 									<div class="form-group">
 										<label class="form-label">Editable</label>
-										<select class="custom-select form-control" name="editable">
+										<select class="custom-select form-control browser-default" name="editable">
 											<option value="Y" selected>Yes</option>
 											<option value="N">No</option>
 										</select>
 									</div>
-									<div class="form-group">
-										<label class="form-label">Picture</label>
-										<input type="file" name="picture" class="form-control" value="" placeholder="" />
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text">Upload</span>
+										</div>
+										<div class="custom-file">
+											<input type="file" class="btn col-4 custom-file-input" name="picture" id="customFile" />
+											<label for="customFile" class="custom-file-label text-left">Change Photo</label>
+										</div>
+									</div>
+									<div class="form-group my-2">
+										<input type="submit" class="btn hidden blue-gradient profile_img_submit" name="submit" value="Save New Picture" />
 									</div>
 									<div class="form-group">
-										{{ Form::submit('Update User', ['class' => 'form-control btn btn-outline-success']) }}
+										{{ Form::submit('Update User', ['class' => 'btn btn-outline-success']) }}
 									</div>
 								</div>
 							</div>
@@ -105,8 +113,8 @@
 					{!! Form::open(['action' => ['HomeController@destroy', 'user' => $user->id], 'files' => 'true', 'method' => 'DELETE']) !!}
 						<div class="container-fluid">
 							<div class="row">
-								<div class="form-group col-12 col-sm-9 ml-auto">
-									{{ Form::submit('Delete User', ['class' => 'form-control btn btn-outline-danger']) }}
+								<div class="form-group col-12 col-md-9 offset-md-3">
+									{{ Form::submit('Delete User', ['class' => 'btn btn-outline-danger']) }}
 								</div>
 							</div>
 						</div>
