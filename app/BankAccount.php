@@ -94,10 +94,10 @@ class BankAccount extends Model
 				$sendFrom->checking_share -= $amount;
 
 				if($sendFrom->save()) {
-					// $session->message("<li class='okItem'>Transfer from ".$sendFrom->user." of $" .$amount. " was successful.</li>");
+					// $session->message("<li class='okItem green progress-bar-striped'>Transfer from ".$sendFrom->user." of $" .$amount. " was successful.</li>");
 					$sendTo->checking_share += $amount; 
 					if($sendTo->save()) {
-						// $session->message("<li class='okItem'>Transfer to ".$sendTo->user." of $" .$amount. " was successful.</li>"); 
+						// $session->message("<li class='okItem green progress-bar-striped'>Transfer to ".$sendTo->user." of $" .$amount. " was successful.</li>"); 
 					}
 				}
 			}
@@ -108,7 +108,7 @@ class BankAccount extends Model
 				$bank->checking_balance -= $amount;
 				$bank->savings_balance += $amount;
 				if($sendFrom->save()) {
-					// $session->message("<li class='okItem'>Transfer to Savings Account from Checking Account was successful.</li>");
+					// $session->message("<li class='okItem green progress-bar-striped'>Transfer to Savings Account from Checking Account was successful.</li>");
 					if($bank->save()) {
 						
 					}
@@ -119,7 +119,7 @@ class BankAccount extends Model
 				$bank->checking_balance += $amount;
 				$bank->savings_balance -= $amount;
 				if($sendFrom->save()) {
-					// $session->message("<li class='okItem'>Transfer to Checking Account from Savings Account was successful.</li>");
+					// $session->message("<li class='okItem green progress-bar-striped'>Transfer to Checking Account from Savings Account was successful.</li>");
 					if($bank->save()) {
 						
 					}
@@ -172,7 +172,7 @@ class BankAccount extends Model
 			}
 
 			if($bank_user->save()) {
-				// $session->message("<li class='okItem'>Changes made to user " . $indUser->user . "</li>");
+				// $session->message("<li class='okItem green progress-bar-striped'>Changes made to user " . $indUser->user . "</li>");
 			} else {
 				// $session->message("<li class='errorItem'>No changes made to user " . $indUser->user . "</li>");
 			}

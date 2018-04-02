@@ -67,7 +67,7 @@ h6 {
 
 <body>
 
-    <!-- Start your project here-->
+<!-- Start your project here-->
 
 <!-- Main navigation -->
 <header>

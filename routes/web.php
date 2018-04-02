@@ -11,9 +11,9 @@
 |
 */
 
-// Route::get('/test', function () {
-    // return view('test');
-// })->middleware('web');
+Route::get('/test', function () {
+    return view('test');
+})->middleware('web');
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,6 +22,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::resource('bank', 'BankAccountController');
+
+Route::resource('documents', 'DocumentController');
 
 Route::get('bank/{bankAccount}/users', 'BankAccountController@bank_accounts');
 

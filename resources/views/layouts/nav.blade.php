@@ -10,6 +10,7 @@
 			<ul class="navbar-nav mr-auto">
 				<li class="navLinks"><a href="/bank">Banks</a></li>
 				<li class="navLinks"><a href="/transactions">Transactions</a></li>
+				<li class="navLinks"><a href="/documents">Documents</a></li>
 				<li class="navLinks"><a href="/users">Users</a></li>
 			</ul>
 			<ul class="navbar-nav flex-row align-items-stretch justify-content-center d-inline-flex pl-2">

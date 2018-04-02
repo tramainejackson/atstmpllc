@@ -103,7 +103,7 @@ class UserAccountController extends Controller
 				$userAccount->savings_share = $userAccount->share_pct * $bankAccount->savings_balance;
 
 				if($userAccount->save()) {
-					$message .= "<li class='okItem'>Updates made to user " . $userAccount->user->firstname . "</li>";
+					$message .= "<li class='okItem green progress-bar-striped'>Updates made to user " . $userAccount->user->firstname . "</li>";
 				} else {
 					$message .= "<li class='errorItem'>No changes made to user " . $userAccount->user->firstname . "</li>";
 				}
@@ -125,7 +125,7 @@ class UserAccountController extends Controller
     public function destroy(UserAccount $userAccount)
     {
         if($userAccount->delete()) {
-			$message = "<li class='okItem'>".$userAccount->user->firstname." Remove From Bank Successfully</li>";
+			$message = "<li class='okItem green progress-bar-striped'>".$userAccount->user->firstname." Remove From Bank Successfully</li>";
 		} else {
 			$message = "<li class='errorItem'>".$userAccount->user->firstname." Unable To Be Removed From Bank. Please Try Again</li>";
 			return redirect()->action('UserAccountController@bank_accounts')->with('status', $message);

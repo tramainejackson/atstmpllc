@@ -124,7 +124,7 @@ class BankAccountController extends Controller
 		// $bankAccount->recreate_shares();
 
 		if($bankAccount->save()) {
-			$message .= "<li class='okItem'>Bank information saved</li>";
+			$message .= "<li class='okItem green progress-bar-striped'>Bank information saved</li>";
 		} else {
 			$message .= "<li class='errorItem'>Bank information not updated. Please try saving again</li>";
 		}
@@ -144,10 +144,10 @@ class BankAccountController extends Controller
 		$message = "";
 
 		if($bankAccount->delete()) {
-			$message = "<li class='okItem'>".$bankAccount->bank_name." Deleted Successfully</li>";
+			$message = "<li class='okItem green progress-bar-striped'>".$bankAccount->bank_name." Deleted Successfully</li>";
 			
 			if($bankAccount->user_accounts()->delete()) {
-				$message = "<li class='okItem'>Individual Accounts Deleted Successfully</li>";
+				$message = "<li class='okItem green progress-bar-striped'>Individual Accounts Deleted Successfully</li>";
 			}
 		} else {
 			

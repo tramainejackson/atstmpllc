@@ -1,8 +1,11 @@
 ---------------------------------------
 			ATSTMPLLC
 ---------------------------------------
-
+When deleting a document with multiple files, its deleting one at a time instead of the whole document
+Fix last login
 Maybe add refund as a transaction option
+Done: Add a documents option
+Done: Fix redirect message css across the board
 Done: When the remove selected transactions goes away, remove all of the cloned transactions from delete modal
 Done: Fix responsiveness
 Done: Check the image thats uploaded with the transaction
