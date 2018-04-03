@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Http\File;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 
 class UserAccountController extends Controller
 {
@@ -29,9 +32,15 @@ class UserAccountController extends Controller
      */
     public function create(BankAccount $bankAccount)
     {
-		$company_users = $bankAccount->company->users;
+		$company_banks = Auth::user()->company->bank_accounts;
+		$bankAccount = $company_banks->where('id', $bankAccount->id)->first();
 
-        return view('accounts.bank.create', compact('bankAccount', 'company_users'));
+		if($bankAccount == null || $bankAccount == '') {
+			return redirect()->back()->with('status', "<li class='errorItem red progress-bar-striped'>Whooops, doesn't look like that bank exist</li>");
+		} else {
+			$company_users = $bankAccount->company->users;
+			return view('accounts.bank.create', compact('bankAccount', 'company_users'));
+		}
     }
 
     /**
@@ -90,7 +99,7 @@ class UserAccountController extends Controller
 		}
 		
 		if($totalCurrentShare > 100) {
-			$message .= "<li class='errorItem'>Total percent share cannot total more than 100%</li>";
+			$message .= "<li class='errorItem red progress-bar-striped'>Total percent share cannot total more than 100%</li>";
 			
 			return redirect()->back()->with(['status' => $message]);
 		} else {
@@ -105,7 +114,7 @@ class UserAccountController extends Controller
 				if($userAccount->save()) {
 					$message .= "<li class='okItem green progress-bar-striped'>Updates made to user " . $userAccount->user->firstname . "</li>";
 				} else {
-					$message .= "<li class='errorItem'>No changes made to user " . $userAccount->user->firstname . "</li>";
+					$message .= "<li class='errorItem red progress-bar-striped'>No changes made to user " . $userAccount->user->firstname . "</li>";
 				}
 			}
 			
@@ -127,7 +136,7 @@ class UserAccountController extends Controller
         if($userAccount->delete()) {
 			$message = "<li class='okItem green progress-bar-striped'>".$userAccount->user->firstname." Remove From Bank Successfully</li>";
 		} else {
-			$message = "<li class='errorItem'>".$userAccount->user->firstname." Unable To Be Removed From Bank. Please Try Again</li>";
+			$message = "<li class='errorItem red progress-bar-striped'>".$userAccount->user->firstname." Unable To Be Removed From Bank. Please Try Again</li>";
 			return redirect()->action('UserAccountController@bank_accounts')->with('status', $message);
 		}
 		
@@ -166,10 +175,17 @@ class UserAccountController extends Controller
      */
     public function user_transactions(User $user)
     {
-        $user_transactions = $user->transactions->sortByDesc('transaction_date')->groupBy('bank_account_id');
-		$totalUserTransactions = $user->transactions->count();
-		$user_name = $user->full_name();
+		// dd($user);
+		$company_users = Auth::user()->company->users;
+		$user = $company_users->where('id', $user->id)->first();
+		if($user == null || $user == '') {
+			return redirect()->back()->with('status', "<li class='errorItem red progress-bar-striped'>Whooops, doesn't look like that user exist</li>");
+		} else {
+			$user_transactions = $user->transactions->sortByDesc('transaction_date')->groupBy('bank_account_id');
+			$totalUserTransactions = $user->transactions->count();
+			$user_name = $user->full_name();
 
-		return view('transactions.show', compact('user_transactions', 'user_name', 'totalUserTransactions'));
+			return view('transactions.show', compact('user_transactions', 'user_name', 'totalUserTransactions'));
+		}
     }
 }

@@ -40,7 +40,7 @@
 		  <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
 			  <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
 			  <p><i class="fa fa-home mr-3"></i> Philadelphia, PA 19140, US</p>
-			  <p><i class="fa fa-envelope mr-3"></i> info@gmail.com</p>
+			  <p><i class="fa fa-envelope mr-3"></i> atstmpllc@gmail.com</p>
 			  <p><i class="fa fa-phone mr-3"></i> + 1 267 879 4089</p>
 		  </div>
 		  <!--/.Fourth column-->

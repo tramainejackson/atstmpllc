@@ -97,12 +97,19 @@ class BankAccountController extends Controller
      */
     public function edit($id)
     {
-		$bankAccount = BankAccount::find($id);
-		$editBankUsers = UserAccount::where("bank_account_id", $bankAccount->id)->get();
-		$bankTransactions = $bankAccount->transactions;
-		$bankUsers = $bankAccount->user_accounts;
-        
-		return view('banks.edit', compact('bankAccount', 'editBankUsers', 'bankTransactions', 'bankUsers'));
+		$company_banks = Auth::user()->company->bank_accounts;
+		$bankAccount = $company_banks->where('id', $id)->first();
+		
+		if($bankAccount == null || $bankAccount == '') {
+			return redirect()->back()->with('status', "<li class='errorItem red progress-bar-striped'>Whooops, doesn't look like that bank exist</li>");
+		} else {
+			// $bankAccount = BankAccount::find($id);
+			$editBankUsers = UserAccount::where("bank_account_id", $bankAccount->id)->get();
+			$bankTransactions = $bankAccount->transactions;
+			$bankUsers = $bankAccount->user_accounts;
+			
+			return view('banks.edit', compact('bankAccount', 'editBankUsers', 'bankTransactions', 'bankUsers'));
+		}
     }
 
     /**
@@ -126,7 +133,7 @@ class BankAccountController extends Controller
 		if($bankAccount->save()) {
 			$message .= "<li class='okItem green progress-bar-striped'>Bank information saved</li>";
 		} else {
-			$message .= "<li class='errorItem'>Bank information not updated. Please try saving again</li>";
+			$message .= "<li class='errorItem red progress-bar-striped'>Bank information not updated. Please try saving again</li>";
 		}
 
 		return redirect()->action('BankAccountController@edit', $bankAccount)->with('status', $message);
@@ -164,9 +171,16 @@ class BankAccountController extends Controller
      */
     public function bank_accounts(BankAccount $bankAccount)
     {
-		$bank_accounts = $bankAccount->user_accounts;
+		$company_banks = Auth::user()->company->bank_accounts;
+		$bankAccount = $company_banks->where('id', $bankAccount->id)->first();
 		
-		return view('banks.bank_users', compact('bank_accounts', 'bankAccount'));
+		if($bankAccount == null || $bankAccount == '') {
+			return redirect()->back()->with('status', "<li class='errorItem red progress-bar-striped'>Whooops, doesn't look like that bank exist</li>");
+		} else {
+			$bank_accounts = $bankAccount->user_accounts;
+			
+			return view('banks.bank_users', compact('bank_accounts', 'bankAccount'));
+		}
     }
 	
 	/**

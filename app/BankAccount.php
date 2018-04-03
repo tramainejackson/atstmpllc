@@ -78,7 +78,7 @@ class BankAccount extends Model
 		if($bank->save()) {
 			$bank->recreate_shares();
 		} else {
-			// $session->message("<li class='errorItem'>User accounts were not deducted any money.");
+			// $session->message("<li class='errorItem red progress-bar-striped'>User accounts were not deducted any money.");
 		}
 	}
 
@@ -174,7 +174,7 @@ class BankAccount extends Model
 			if($bank_user->save()) {
 				// $session->message("<li class='okItem green progress-bar-striped'>Changes made to user " . $indUser->user . "</li>");
 			} else {
-				// $session->message("<li class='errorItem'>No changes made to user " . $indUser->user . "</li>");
+				// $session->message("<li class='errorItem red progress-bar-striped'>No changes made to user " . $indUser->user . "</li>");
 			}
 		}
 	}

@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/test', function () {
-    return view('test');
-})->middleware('web');
+// Route::get('/test', function () {
+	// $token =1;
+    // return view('auth.passwords.reset', compact('token'));
+// })->middleware('web');
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,14 +28,14 @@ Route::resource('documents', 'DocumentController');
 
 Route::get('bank/{bankAccount}/users', 'BankAccountController@bank_accounts');
 
+Route::put('bank/{bankAccount}/users', 'UserAccountController@update');
+
 Route::get('bank/{bankAccount}/remove', 'BankAccountController@bank_remove');
 
 // Route::resource('account', 'UserAccountController');
 Route::get('account/{userAccount}/remove', 'UserAccountController@user_account_remove');
 
 Route::get('account/create/{bankAccount}', 'UserAccountController@create');
-
-Route::put('bank/{bankAccount}/users', 'UserAccountController@update');
 
 Route::post('account/{bankAccount}', 'UserAccountController@store');
 

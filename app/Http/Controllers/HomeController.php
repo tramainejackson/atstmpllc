@@ -13,7 +13,7 @@ use Carbon\Carbon;
 use App\User;
 
 class HomeController extends Controller
-{
+{	
     /**
      * Create a new controller instance.
      *
@@ -49,7 +49,7 @@ class HomeController extends Controller
 		$user = Auth::user();
 		$user_accounts = $user->user_accounts;
 		$transactions = $user->transactions()->orderBy('created_at', 'desc')->take(10)->get();
-		$last_login = gettype(session('last_login')) == 'string' ? session('last_login') : new Carbon(session('last_login'));
+		$last_login = session('last_login') == 'First Time Loggin In' ? session('last_login') : new Carbon(session('last_login'));
 		
         return view('home', compact('user_accounts', 'transactions', 'user', 'last_login'));
     }
@@ -78,10 +78,15 @@ class HomeController extends Controller
      * Show the edit page for selected user
     */
     public function edit($id)
-    {		
-		$user = User::find($id);
-		
-        return view('users.edit', compact('user'));
+    {
+		$company_users = Auth::user()->company->users;
+		$user = $company_users->where('id', $id)->first();
+
+		if($user == null || $user == '') {
+			return redirect()->back()->with('status', "<li class='errorItem red progress-bar-striped'>Whooops, doesn't look like that user exist</li>");
+		} else {
+			return view('users.edit', compact('user'));
+		}
     }
 	
 	/**
@@ -111,9 +116,9 @@ class HomeController extends Controller
 		}
 
 		if($user->save()) {
-			$message .= "<li class='okItem'>User Saved Successfully</li>";
+			$message .= "<li class='okItem green progress-bar-striped'>User Saved Successfully</li>";
 		} else {
-			$message .= "<li class='okItem'>User Account Not Updated. Please Try Updating Again</li>";
+			$message .= "<li class='okItem green progress-bar-striped'>User Account Not Updated. Please Try Updating Again</li>";
 		}
 
 		return redirect()->action('HomeController@edit', $user)->with('status', $message);			
@@ -145,7 +150,7 @@ class HomeController extends Controller
 
 						$user->picture = str_ireplace('public/images/', '', $path);
 					} else {
-						$message .= "<li class='errorItem'>The file " . $fileName . " could not be added bcause it is the wrong image type</li>";
+						$message .= "<li class='errorItem red progress-bar-striped'>The file " . $fileName . " could not be added bcause it is the wrong image type</li>";
 					}
 				} else {
 					// Resize the image before storing. Will need to hash the filename first
@@ -160,13 +165,13 @@ class HomeController extends Controller
 				}
 				
 				if($user->save()) {
-					$message .= "<li class='okItem'>Images changed successfully</li>";
+					$message .= "<li class='okItem green progress-bar-striped'>Images changed successfully</li>";
 				}
 			} else {
-				$message .= "<li class='errorItem'>The file " . $fileName . " may be corrupt and could not be uploaded</li>";
+				$message .= "<li class='errorItem red progress-bar-striped'>The file " . $fileName . " may be corrupt and could not be uploaded</li>";
 			}
 		} else {
-			$message .= "<li class='errorItem'>The file " . $fileName . " may be corrupt and could not be uploaded</li>";
+			$message .= "<li class='errorItem red progress-bar-striped'>The file " . $fileName . " may be corrupt and could not be uploaded</li>";
 		}
 
 		return redirect()->action('HomeController@home')->with('status', $message);			
@@ -202,9 +207,9 @@ class HomeController extends Controller
 		$newUser->company_id = $current_user->company_id;
 
 		if($newUser->save()) {
-			$message .= "<li class='okItem'>User Saved Successfully</li>";
+			$message .= "<li class='okItem green progress-bar-striped'>User Saved Successfully</li>";
 		} else {
-			$message .= "<li class='errorItem'>Unable to add user</li>";
+			$message .= "<li class='errorItem red progress-bar-striped'>Unable to add user</li>";
 		}
 		
 		return redirect()->action('HomeController@edit', $newUser)->with('status', $message);
@@ -220,27 +225,27 @@ class HomeController extends Controller
 		$message = "";
 		
 		if($user->delete()) {
-			$message .= "<li class='okItem'>User Deleted Successfully.</li>";
+			$message .= "<li class='okItem green progress-bar-striped'>User Deleted Successfully.</li>";
 			
 			if($user->user_accounts()->delete()) {
-				$message .= "<li class='okItem'>User Bank Accounts Deleted Successfully.</li>";
+				$message .= "<li class='okItem green progress-bar-striped'>User Bank Accounts Deleted Successfully.</li>";
 				
 				if($user->transactions()->delete()) {
-					$message .= "<li class='okItem'>User Transactions Deleted Successfully.</li>";
+					$message .= "<li class='okItem green progress-bar-striped'>User Transactions Deleted Successfully.</li>";
 
 					return redirect()->action('HomeController@index')->with('status', $message);
 				} else {
-					$message .= "<li class='errorItem'>Unable to Delete User Transactions.</li>";
+					$message .= "<li class='errorItem red progress-bar-striped'>Unable to Delete User Transactions.</li>";
 
 					return redirect()->action('HomeController@index')->with('status', $message);
 				}
 			} else {
-				$message .= "<li class='errorItem'>Unable to Delete User Bank Accounts.</li>";
+				$message .= "<li class='errorItem red progress-bar-striped'>Unable to Delete User Bank Accounts.</li>";
 
 				return redirect()->action('HomeController@index')->with('status', $message);
 			}
 		} else {
-			$message .= "<li class='errorItem'>Unable to Delete User .</li>";
+			$message .= "<li class='errorItem red progress-bar-striped'>Unable to Delete User .</li>";
 
 			return redirect()->action('HomeController@edit', $user)->with('status', $message);
 		}

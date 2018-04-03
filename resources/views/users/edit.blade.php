@@ -21,7 +21,7 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-10 mx-auto">
-			@if($user->editable == "Y")
+			@if($user->editable == "Y" || $user->id == Auth::id())
 				<div class="formDiv">
 					{!! Form::open(['action' => ['HomeController@update', $user->id], 'files' => 'true', 'method' => 'PUT']) !!}
 						<input hidden type="number" name="id" class="" value="{{ $user->id }}" />

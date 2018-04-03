@@ -23,7 +23,7 @@
 			<div class="row">
 				@foreach($users as $user)
 					@php
-						$last_login = new Carbon\Carbon($user->last_login != null ? $user->last_login : $user->created_at);
+						$last_login = $user->last_login != null ? new Carbon\Carbon($user->last_login) : 'Not yet logged in';
 					@endphp
 					<div class="col-12 col-sm-6 col-md-4 col-xl-4 my-2">
 						<!-- Card Wider -->
@@ -40,14 +40,14 @@
 									<h2 class="coolText1 mb-4">{{ $user->full_name() }}</h2>
 								</div>
 								<div class="userAccountInfo">
-									<p class="" data-toggle="tooltip" data-placement="top" title="Last Log In"><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;{{ $last_login->toFormattedDateString() }}</p>
+									<p class="" data-toggle="tooltip" data-placement="top" title="Last Log In"><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;{{ gettype($last_login) == 'string' ? $last_login : $last_login->toFormattedDateString() }}</p>
 									<p class="" data-toggle="tooltip" data-placement="top" title="Username"><i class="fa fa-user-circle" aria-hidden="true"></i>&nbsp;{{ $user->username }}</p>
 									<p class="text-truncate" data-toggle="tooltip" data-placement="top" title="Email Address"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;{{ $user->email }}</p>
 								</div>
 							</div>
 							
 							<div class="grey lighten-5 text-center" style="margin-left: 4%; margin-right: 4%;">
-								<a href='/users/{{ $user->id }}/edit' class="btn btn-warning d-block" {{ $user->editable == 'Y' ? '' : 'disabled' }}>Edit</a>
+								<a href='/users/{{ $user->id }}/edit' class="btn btn-warning d-block @if($user->editable == 'N' && $user->id != Auth::id()) disabled @endif">Edit</a>
 							</div>
 							
 							<!-- Card content -->
