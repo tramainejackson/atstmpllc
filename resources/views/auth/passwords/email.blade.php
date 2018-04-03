@@ -6,56 +6,62 @@
 
 @section('scripts')
 	@include('layouts.functions.bootstrap_js')
+	<script>
+		$('.flashMessage, footer').css({display: 'none'});
+	</script>
 @endsection
 
 @section('content')
-<div class="" id="admin_page_login">
-	<div class="container">
-		<div class="row">
-			<div class="col-12">
-				<div class="adminLoginHeader row">
-					<h2 class="col-6 text-light">Reset Password</h2>
-					
-					<div class="col-6 text-right">
-						<a href="/login" class="btn btn-lg btn-dark">Login</a>
-						<a href="/register" class="btn btn-lg btn-dark">Register</a>
+<div class="view" id="admin_page_login">
+	<!-- Mask & flexbox options-->
+    <div class="mask d-flex justify-content-center align-items-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="adminLoginHeader row">
+						<h2 class="text-white col-6 wow fadeInDown" data-wow-delay="0.5s">Reset Password</h2>
+						
+						<div class="col-6 text-right">
+							<a href="/login" class="btn btn-lg btn-dark wow fadeInDown" data-wow-delay="0.5s">Login</a>
+							<a href="/register"  class="btn btn-lg btn-dark wow fadeInRight" data-wow-delay="0.7s">Register</a>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-12">
-				<div class="panel-body p-4 rounded text-light">
-					<div class="panel panel-default">
-						@if (session('status'))
-							<div class="alert alert-success">
-								{{ session('status') }}
-							</div>
-						@endif
-
-						<form class="form-horizontal" method="POST" action="{{ route('password.email') }}">
-							{{ csrf_field() }}
-
-							<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-								<label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-								<div class="col-md-6">
-									<input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-									@if ($errors->has('email'))
-										<span class="help-block text-warning">
-											<strong>{{ $errors->first('email') }}</strong>
-										</span>
-									@endif
+				<div class="col-12 wow fadeInRight" data-wow-delay="0.5s">
+					<div class="panel-body p-4 rounded text-light">
+						<div class="panel panel-default">
+							@if (session('status'))
+								<div class="alert alert-success">
+									{{ session('status') }}
 								</div>
-							</div>
+							@endif
 
-							<div class="form-group">
-								<div class="col-md-6 col-md-offset-4">
-									<button type="submit" class="btn btn-primary">
-										Send Password Reset Link
-									</button>
+							<form class="form-horizontal" method="POST" action="{{ route('password.email') }}">
+								{{ csrf_field() }}
+
+								<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+									<label for="email" class="col-md-4 control-label">E-Mail Address</label>
+
+									<div class="col-md-6">
+										<input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+
+										@if ($errors->has('email'))
+											<span class="help-block text-warning">
+												<strong>{{ $errors->first('email') }}</strong>
+											</span>
+										@endif
+									</div>
 								</div>
-							</div>
-						</form>
+
+								<div class="form-group">
+									<div class="col-md-6 col-md-offset-4">
+										<button type="submit" class="btn btn-primary">
+											Send Password Reset Link
+										</button>
+									</div>
+								</div>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>

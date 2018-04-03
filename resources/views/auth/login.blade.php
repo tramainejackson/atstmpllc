@@ -2,6 +2,11 @@
 
 @section('styles')
 	@include('layouts.styles.bootstrap_css')
+	<style>
+		footer {
+			display: none;
+		}
+	</style>
 @endsection
 
 @section('scripts')
