@@ -54,7 +54,7 @@
 						<h2 class="coolText1">{{ $user->full_name() }}</h2>
 					</div>
 					<div class="lastLogin mb-3">
-						<span class="blue-text">Last Login: {{ $last_login->toFormattedDateString() }}</span>
+						<span class="blue-text">Last Login: {{ gettype($last_login) == "string" ? $last_login : $last_login->toFormattedDateString() }}</span>
 					</div>
 					
 					{!! Form::open(['action' => ['HomeController@update_image', 'user' => $user->id], 'files' => true, 'method' => 'PUT']) !!}

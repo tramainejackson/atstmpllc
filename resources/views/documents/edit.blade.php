@@ -78,7 +78,7 @@
 							<p class="ml-2 text-muted"><u>File Name</u></p>
 							<p class="ml-4">{{ $document->title }}</p>
 						</div>
-						{!! Form::model($document, ['action' => ['DocumentController@destroy', $document->id], 'method' => 'DELETE']) !!}
+						{!! Form::model($document, ['action' => ['DocumentController@destroy', 'document' => $document->id], 'method' => 'DELETE']) !!}
 							<div class="form-group">
 								{{ Form::submit('Delete', ['class' => 'form-control btn btn-danger']) }}
 								<button class="btn btn-warning form-control cancelBtn" type="button">Cancel</button>

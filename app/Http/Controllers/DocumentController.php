@@ -142,11 +142,13 @@ class DocumentController extends Controller
      * @param  \App\Document  $Document
      * @return \Illuminate\Http\Response
      */
-    public function destroy($file)
+    public function destroy(Request $request, Document $document)
     {
-		$file = Document::find($file);
-        $file->delete();
-		
-		return redirect()->action('DocumentController@index', $file)->with('status', "<li class='okItem green progress-bar-striped'>Document Deleted Successfully</li>");
+		// dd($document->group_files);
+		foreach($document->group_files as $groupFile) {
+			if($groupFile->delete()) {}
+		}
+
+		return redirect()->action('DocumentController@index', $document)->with('status', "<li class='okItem green progress-bar-striped'>Document Deleted Successfully</li>");
     }
 }

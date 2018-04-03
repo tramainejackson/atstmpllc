@@ -35,7 +35,7 @@ class HomeController extends Controller
 		$users = \App\User::where('company_id', $active_user->company_id)->get();
 		$user_photo = $active_user->picture;
 		$user_name = $active_user->firstname . " " . $active_user->lastname;
-		
+
         return view('users.index', compact('active_user', 'user_name', 'user_photo', 'users'));
     }
 	
@@ -49,7 +49,7 @@ class HomeController extends Controller
 		$user = Auth::user();
 		$user_accounts = $user->user_accounts;
 		$transactions = $user->transactions()->orderBy('created_at', 'desc')->take(10)->get();
-		$last_login = new Carbon($user->last_login != null ? $user->last_login : $user->created_at);
+		$last_login = gettype(session('last_login')) == 'string' ? session('last_login') : new Carbon(session('last_login'));
 		
         return view('home', compact('user_accounts', 'transactions', 'user', 'last_login'));
     }
