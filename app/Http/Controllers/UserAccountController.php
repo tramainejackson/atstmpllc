@@ -93,7 +93,7 @@ class UserAccountController extends Controller
 		$bank_accounts = $bankAccount->user_accounts;
 		$totalCurrentShare = 0;
 		$message = "";
-		
+
 		foreach($request->ownership as $share_pct) {
 			$totalCurrentShare += $share_pct;
 		}

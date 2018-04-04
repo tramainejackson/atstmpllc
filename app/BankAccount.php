@@ -130,7 +130,19 @@ class BankAccount extends Model
 	
 	public function recreate_shares() {
 		$bank_users = $this->user_accounts;
-		$bank_withdrawls_personal = $this->transactions()->where('withdrawl_type', 'personal')->sum('amount');
+		
+		// If the bank users is equal to 2 then get the withdrawls after
+		// the most recent addition to the bank
+		if($bank_users->count() <= 2) {
+			$startDate = $bank_users->max('created_at');
+			$bank_withdrawls_personal = $this->transactions()->where([
+				['withdrawl_type', 'personal'],
+				['transaction_date', '>=', $startDate]
+			])->sum('amount');
+		} elseif($bank_users->count() > 2) {
+			
+		}
+		
 		$this->checking_balance += $bank_withdrawls_personal;
 		foreach($bank_users as $bank_user) {
 			$transfers_out = $bank_user->transactions()->where([
@@ -143,11 +155,18 @@ class BankAccount extends Model
 				['transfer_to', $bank_user->id]
 			])->get();
 			
-			$personal_withdrawls = $bank_user->transactions()->where([
-				['type', 'Withdrawl'],
-				['withdrawl_type', 'personal']
-			])->get();
-			
+			// If the bank users is equal to 2 then get the withdrawls after
+			// the most recent addition to the bank
+			if($bank_users->count() <= 2) {
+				$personal_withdrawls = $bank_user->transactions()->where([
+					['type', 'Withdrawl'],
+					['withdrawl_type', 'personal'],
+					['transaction_date', '>=', $startDate]
+				])->get();
+			} elseif($bank_users->count() > 2) {
+				
+			}
+				
 			// Get the balances that each user account should have
 			// in reference to the share percentage
 			$bank_user->checking_share = $this->checking_balance * $bank_user->share_pct;

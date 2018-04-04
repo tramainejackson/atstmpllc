@@ -128,7 +128,7 @@ class BankAccountController extends Controller
 		$bankAccount->account_num = $request->account_num;
 		$bankAccount->checking_balance = $request->checking_balance;
 		$bankAccount->savings_balance = $request->savings_balance;
-		// $bankAccount->recreate_shares();
+		$bankAccount->recreate_shares();
 
 		if($bankAccount->save()) {
 			$message .= "<li class='okItem green progress-bar-striped'>Bank information saved</li>";
@@ -178,7 +178,7 @@ class BankAccountController extends Controller
 			return redirect()->back()->with('status', "<li class='errorItem red progress-bar-striped'>Whooops, doesn't look like that bank exist</li>");
 		} else {
 			$bank_accounts = $bankAccount->user_accounts;
-			
+
 			return view('banks.bank_users', compact('bank_accounts', 'bankAccount'));
 		}
     }

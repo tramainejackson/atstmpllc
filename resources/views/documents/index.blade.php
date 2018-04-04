@@ -36,7 +36,7 @@
 						</div>
 					</div>
 				</div> -->
-				<div class="col-md-12 col-lg-12 col-xl-8 col-12">
+				<div class="col">
 					<div class="container-fluid">
 					
 						<!-- Display for mobile screen -->
@@ -54,27 +54,25 @@
 						</div>
 						
 						<!-- Display for non-mobile screen -->
-						<div class="row d-none d-sm-flex">
+						<div class="row d-none d-sm-block">
 							@foreach($documents->toArray() as $document)
-								<div class="col-12 fileList">
-									<div class="container-fluid">
-										<div class="row">
-											<div class="col">
-												<div class="d-flex align-items-center justify-content-between">
-													<h1 class="text-center"><strong><em>{{ $document[0]['title'] }}</em></strong></h1>
+								<div class="col-12 col-md-12 col-lg-8 col-xl-6 mx-auto fileList">
+									<div class="card">
+										<div class="card-body">
+											<div class="d-flex justify-content-center align-items-center">
+												<h1 class="text-center ml-auto"><strong><em>{{ $document[0]['title'] }}</em></strong></h1>
 
-													<a class="btn btn-warning" href="/documents/{{ $document[0]['id'] }}/edit" class="">Edit</a>
-												</div>
+												<a class="btn btn-warning ml-auto" href="/documents/{{ $document[0]['id'] }}/edit" class="">Edit</a>
+											</div>
+										
+											<div class="d-flex justify-content-around align-items-center">
+												@foreach($document as $file)
+													<div class="">
+														<a href="{{ asset('storage/' . str_ireplace('public/', '', $file['name'])) }}" class="btn cyan darken-4 ml-3" download="{{ str_ireplace(' ', '_', $file['title']) }}">View Document {{ $loop->count > 1 ? $loop->iteration : ""}}</a>
+													</div>
+												@endforeach
 											</div>
 										</div>
-										
-										@foreach($document as $file)
-											<div class="row">
-												<div class="col ml-4 mb-3">
-													<a href="{{ asset('storage/' . str_ireplace('public/', '', $file['name'])) }}" class="btn cyan darken-4 ml-3" download="{{ str_ireplace(' ', '_', $file['title']) }}">View Document {{ $loop->count > 1 ? $loop->iteration : ""}}</a>
-												</div>
-											</div>
-										@endforeach
 									</div>
 								</div>
 								@if(!$loop->last)

@@ -1,9 +1,12 @@
 ---------------------------------------
 			ATSTMPLLC
 ---------------------------------------
+
 Style emails
 Create an about page
+Check and see how the numbers calculate after transactions ect have been made and then a user is added to a bank (For 3 or more users)
 Maybe add refund as a transaction option
+Done: Edit document pages
 Done: Fix redirect message css across the board
 Done: Change style of registration and password reset pages
 Done: Remove the margin top on home page and reset password pages
