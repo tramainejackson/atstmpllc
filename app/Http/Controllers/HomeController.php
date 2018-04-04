@@ -21,7 +21,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('about_us');
     }
 
     /**
@@ -250,4 +250,14 @@ class HomeController extends Controller
 			return redirect()->action('HomeController@edit', $user)->with('status', $message);
 		}
     }
+	
+	/**
+     * Show the create page.
+     *
+     * @return \Illuminate\Http\Response
+    */
+    public function about_us()
+    {
+		return view('about_us');
+	}
 }

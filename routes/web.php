@@ -54,3 +54,5 @@ Route::delete('transactions', 'TransactionController@destroy');
 Route::get('user/{user}/transactions', 'UserAccountController@user_transactions');
 
 Route::get('/home', 'HomeController@home')->name('home');
+
+Route::get('/about_us', 'HomeController@about_us')->name('about_us');
