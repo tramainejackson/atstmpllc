@@ -72,10 +72,10 @@
 			  <div class="mask rgba-white-light">
 				<div class="container flex-center text-center">
 				  <div class="row mt-5">
-					<div class="col-md-12 wow fadeIn mb-3">
+					<div class="col-md-12 wow fadeIn mb-3 smooth-scroll">
 					  <h1 class="display-1 mb-2 wow fadeInDown" data-wow-delay="0.3s">ATSTPM<a class="indigo-text font-weight-bold">LLC</a></h1>
 					  <h5 class="text-uppercase mb-3 mt-1 font-weight-bold wow fadeIn" data-wow-delay="0.4s">Anthony and Tramaine Several Trendy Metropolitan Places</h5>
-					  <a class="btn btn-light-blue btn-lg wow fadeIn" data-wow-delay="0.4s">About Us</a>
+					  <a href="#about_us" class="btn btn-light-blue btn-lg wow fadeIn" data-wow-delay="0.4s" data-offset="50">About Us</a>
 					</div>
 				  </div>
 				</div>
@@ -83,7 +83,7 @@
 			</div>
 		</div>
 
-		<div class="container" id="about_us">
+		<div class="container my-4" id="about_us">
 
 		  <!--Grid row-->
 		  <div class="row">
@@ -102,52 +102,53 @@
 
 		</div>
 
-		<div class="view jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url(https://mdbootstrap.com/img/Photos/Others/food2.jpg);">
+		<div class="view jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url({{ asset('/images/anthony_motocycle.jpg') }});">
 		  <div class="full-bg-img">
-			<div class="mask rgba-pink-slight"></div>
+			<div class="mask rgba-grey-slight"></div>
 		  </div>
 		</div>
 
 		<div class="view jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url(https://mdbootstrap.com/img/Photos/Others/background.jpg);">
-		  <div class="full-bg-img">
-			<div class="mask rgba-purple-slight">
-			  <div class="container">
-				  <div class="d-flex align-items-center d-flex justify-content-center" style="height: 700px">
-					  <div class="row mt-5">
-						  <div class="col-md-12 wow fadeIn mb-3">
-							  <div class="intro-info-content text-center">
-								  <h1 class="display-1 white-text mb-2 wow fadeInDown" data-wow-delay="0.3s">Welcome on my page!</h1>
-								  <h4 class="mb-3 mt-1 white-text font-weight-bold wow fadeIn" data-wow-delay="0.4s">Lorem ipsum dolor sit amet</h4>
-								  <a class="btn btn-pink wow fadeIn" data-wow-delay="0.4s">Read more</a>
-							  </div>
-						  </div>
-					  </div>
-				  </div>
-			  </div>
+			<div class="full-bg-img">
+				<div class="mask rgba-purple-slight">
+					<div class="container">
+						<div class="d-flex align-items-center d-flex justify-content-center" style="height: 700px">
+							<div class="row mt-5">
+								<div class="col-md-12 wow fadeIn mb-3">
+									<div class="intro-info-content text-center smooth-scroll">
+										<h1 class="display-1 white-text mb-2 wow fadeInDown" data-wow-delay="0.3s">Welcome on our page!</h1>
+										<h4 class="mb-3 mt-1 white-text font-weight-bold wow fadeIn" data-wow-delay="0.4s">We trust the process</h4>
+										<a href="#atstmpllc_desc" class="btn btn-pink wow fadeIn" data-wow-delay="0.4s">Read more</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-		  </div>
 		</div>
 
-		<div class="container">
+		<div class="container p-5" id="atstmpllc_desc">
 
-		  <!--Grid row-->
-		  <div class="row">
+			<!--Grid row-->
+			<div class="row">
 
-			  <!--Grid column-->
-			  <div class="col-md-12 text-center my-3">
+				<!--Grid column-->
+				<div class="col-md-12 text-center my-3">
 
-				  <h1 class="font-weight-bold pink-text mb-3">Lorem ipsum dolor sit amet, consectetur quis elit.</h1>
-				  <p align="justify">Lorem ipsum dolor sit amet, consectetur quis elit. Perspiciatis commodi porro, cumque provident rem corporis odit, ut quas dolores maxime nesciunt possimus quis, soluta velit debitis amet, veritatis cupiditate reprehenderit.Lorem ipsum dolor sit amet, consectetur quis elit. Perspiciatis commodi porro, cumque provident rem corporis odit, ut quas dolores maxime nesciunt possimus quis, soluta velit debitis amet, veritatis cupiditate reprehenderit.Lorem ipsum dolor sit amet, consectetur quis elit. Perspiciatis commodi porro, cumque provident rem corporis odit, ut quas dolores maxime nesciunt possimus quis, soluta velit debitis amet, veritatis cupiditate reprehenderit.Lorem ipsum dolor sit amet, consectetur quis elit. Perspiciatis commodi porro, cumque provident rem corporis odit, ut quas dolores maxime nesciunt possimus quis, soluta velit debitis amet, veritatis cupiditate reprehenderit.Lorem ipsum dolor sit amet, consectetur quis elit. Perspiciatis commodi porro, cumque provident rem corporis odit, ut quas dolores maxime nesciunt possimus quis, soluta velit debitis amet, veritatis cupiditate reprehenderit.Lorem ipsum dolor sit amet, consectetur quis elit. Perspiciatis commodi porro, cumque provident rem corporis odit, ut quas dolores maxime nesciunt possimus quis, soluta velit debitis amet, veritatis cupiditate reprehenderit.Lorem ipsum dolor sit amet, consectetur quis elit. Perspiciatis commodi porro, cumque provident rem corporis odit, ut quas dolores maxime nesciunt possimus quis, soluta velit debitis amet, veritatis cupiditate reprehenderit.Lorem ipsum dolor sit amet, consectetur quis elit. Perspiciatis commodi porro, cumque provident rem corporis odit, ut quas dolores maxime nesciunt possimus quis, soluta velit debitis amet, veritatis cupiditate reprehenderit.</p>
+					<h1 class="font-weight-bold pink-text mb-3">Everybody could use a little help managing their business.</h1>
+					<p align="justify">As we started to grow our endevors, I decided that we needed a way to manage our transactions, and receipts and account and all that other good stuff that comes along with management. We could have easily purchased some software that everything we needed it to do and tons of stuff we didn't need it to do. So we decided to come up with something simple and quick and our own since we both are in the IT field and love the challenge of a new project. Now we can manage the small business that we have that's tailored to our basic needs. That's what this site is all about. Register an account <i class="fa fa-long-arrow-right orange-text" aria-hidden="true"></i> add your users <i class="fa fa-long-arrow-right yellow-text" aria-hidden="true"></i> add your accounts <i class="fa fa-long-arrow-right green-text" aria-hidden="true"></i> and manage the small transactions that you encounter. Easy peasy lemon squeezy. Make a simple life simpler. If you want to give it a go, click <a href="http://atstmpllc.com/register" class="">here</a> and register an account. And like I mentioned, we're always up for a challenge so if you think of something we could add to make it better, let us know.</p>
 
-			  </div>
-			  <!--Grid column-->
-
-		  </div>
-		  <!--Grid row-->
-
+				</div>
+				<!--Grid column-->
+			</div>
+			<!--Grid row-->
+		
+			<hr class="my-5">
+		
 		</div>
 
-    </header>
+	</header>
 	<!--/Main Navigation-->
 	
 	<!--Main Content-->
@@ -177,14 +178,14 @@
 						<div class="col-md-6 float-right">
 							<h4><strong>Tramaine Jackson</strong></h4>
 							<h6 class="font-weight-bold grey-text mb-4">Web Designer</h6>
-							<p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur.</p>
+							<p class="grey-text">I woke up one day and said I want to change my profession. And that's what I did! I taught myself how to design websites. Now I design and host websites on my own private server. How bout them apples</p>
 
 							<!-- Facebook -->
-							<a class="p-2 m-2 fa-lg fb-ic"><i class="fa fa-facebook"> </i></a>
+							<a class="p-2 m-2 fa-lg li-ic"><i class="fa fa-linkedin"> </i></a>
 							<!-- Twitter -->
-							<a class="p-2 m-2 fa-lg tw-ic"><i class="fa fa-twitter"> </i></a>
+							<a class="p-2 m-2 fa-lg git-ic"><i class="fa fa-github"> </i></a>
 							<!-- Dribbble -->
-							<a class="p-2 m-2 fa-lg dribbble-ic"><i class="fa fa-dribbble"> </i></a>
+							<a class="p-2 m-2 fa-lg blue-text"><i class="fa fa-paypal"> </i></a>
 						</div>
 
 					</div>
@@ -202,7 +203,7 @@
 						<div class="col-md-6 float-right">
 							<h4><strong>Anthony Ohghogho</strong></h4>
 						   <h6 class="font-weight-bold grey-text mb-4">Database Administrator</h6>
-							<p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur.</p>
+							<p class="grey-text">I'm just dope!</p>
 
 							<!-- Facebook -->
 							<a class="p-2 m-2 fa-lg fb-ic"><i class="fa fa-facebook"> </i></a>
@@ -247,7 +248,8 @@
 					<div class="col-md-4 mb-4">
 						<i class="fa fa-4x fa-pencil cyan-text"></i>
 						<h4 class="font-weight-bold my-4">Design</h4>
-						<p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam, aperiam minima assumenda deleniti hic.</p>
+						<p class="grey-text">This one belongs to yours truly. I'm a web developer with about 4+ years of experience. You need something built with your personal touch on it? Let me know and I'll get it going for you.</p>
+						<a href="#" class="btn btn-lg cyan">Protfolio</a>
 					</div>
 					<!-- Grid column -->
 
@@ -407,7 +409,7 @@
 
 					<!-- Grid column -->
 					<div class="col-md-8 col-xl-9">
-						{!! Form::open(['action' => ['TransactionController@store'], 'files' => true, 'method' => 'POST']) !!}
+						{!! Form::open(['action' => ['HomeController@message'], 'method' => 'POST']) !!}
 
 							<!-- Grid row -->
 							<div class="row">
@@ -416,10 +418,16 @@
 								<div class="col-md-6">
 									<div class="md-form">
 										<div class="md-form">
-											<input type="text" id="contact-name" class="form-control">
+											<input type="text" id="contact-name" class="form-control" name="message_name" value="{{ old('message_name') }}" {{ $errors->any() ? 'autofocus' : '' }}>
 											<label for="contact-name" class="">Your name</label>
 										</div>
 									</div>
+									
+									@if($errors->has('message_name'))
+										<div class="red-text">
+											<span class="">{{ $errors->first('message_name') }}</span>
+										</div>
+									@endif
 								</div>
 								<!-- Grid column -->
 
@@ -427,10 +435,16 @@
 								<div class="col-md-6">
 									<div class="md-form">
 										<div class="md-form">
-											<input type="text" id="contact-email" class="form-control">
+											<input type="text" id="contact-email" class="form-control" name="message_email" value="{{ old('message_email') }}">
 											<label for="contact-email" class="">Your email</label>
 										</div>
 									</div>
+									
+									@if($errors->has('message_email'))
+										<div class="red-text">
+											<span class="">{{ $errors->first('message_email') }}</span>
+										</div>
+									@endif
 								</div>
 								<!-- Grid column -->
 
@@ -441,9 +455,15 @@
 							<div class="row">
 								<div class="col-md-12">
 									<div class="md-form">
-										<input type="text" id="contact-Subject" class="form-control">
+										<input type="text" id="contact-Subject" class="form-control" name="message_subject" value="{{ old('message_subject') }}">
 										<label for="contact-Subject" class="">Subject</label>
 									</div>
+									
+									@if($errors->has('message_subject'))
+										<div class="red-text">
+											<span class="">{{ $errors->first('message_subject') }}</span>
+										</div>
+									@endif
 								</div>
 							</div>
 							<!-- Grid row -->
@@ -453,21 +473,26 @@
 
 								<!-- Grid column -->
 								<div class="col-md-12">
-
 									<div class="md-form">
-										<textarea type="text" id="contact-message" class="md-textarea form-control" rows="3"></textarea>
+										<textarea type="text" name="message_body" id="contact-message" class="md-textarea form-control" rows="3">{{ old('message_body') }}</textarea>
 										<label for="contact-message">Your message</label>
 									</div>
-
+									
+									@if($errors->has('message_body'))
+										<div class="red-text">
+											<span class="">{{ $errors->first('message_body') }}</span>
+										</div>
+									@endif
 								</div>
 							</div>
 							<!-- Grid row -->
 
+							<div class="text-center text-md-left mb-4">
+								<button type="submit" class="btn btn-light-blue waves-effect waves-light">Send</button>
+							</div>
+							
 						{!! Form::close() !!}
 
-						<div class="text-center text-md-left mb-4">
-							<a class="btn btn-light-blue waves-effect waves-light">Send</a>
-						</div>
 					</div>
 					<!-- Grid column -->
 

@@ -130,8 +130,7 @@ div#return_messages {
     position: fixed;
     top: 50px;
     right: 1%;    
-	z-index: 2;
-    /* transition: .5s; */
+	z-index: 1100;
 }
 
 div#return_messages ul {

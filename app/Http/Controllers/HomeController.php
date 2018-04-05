@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Http\File;
 use Carbon\Carbon;
@@ -21,7 +22,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except('about_us');
+        $this->middleware('auth')->except('about_us', 'message');
     }
 
     /**
@@ -252,12 +253,43 @@ class HomeController extends Controller
     }
 	
 	/**
-     * Show the create page.
+     * Show the about us page.
      *
      * @return \Illuminate\Http\Response
     */
     public function about_us()
     {
 		return view('about_us');
+	}
+	
+	/**
+     * Send email from message left on about us page.
+     *
+     * @return \Illuminate\Http\Response
+    */
+    public function message(Request $request)
+    {
+		// Validate incoming data
+		$this->validate($request, [
+			'message_email' => 'required|max:50',
+			'message_name' => 'required|max:50',
+			'message_subject' => 'required|max:100',
+			'message_body' => 'required|max:500',
+		]);
+		
+		if(DB::table('messages')->insert([
+			[
+				'email' => $request->message_email,
+				'name' => $request->message_name,
+				'subject' => $request->message_subject,
+				'message' => $request->message_body,
+			]
+		])) {
+			// Send Email to Admin and Recipient
+			// \Mail::to($request->message_email)->send(new Update($contact));
+			// \Mail::to('atstmpllc@gmail.com')->send(new NewContact($contact));
+				
+			return redirect()->back()->with('status', "<li class='okItem green progress-bar-striped'>Message Sent Successfully</li>");
+		}
 	}
 }
