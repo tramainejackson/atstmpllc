@@ -201,7 +201,7 @@
 						</div>
 
 						<div class="col-md-6 float-right">
-							<h4><strong>Anthony Ohghogho</strong></h4>
+							<h4><strong>Anthony Oghogho</strong></h4>
 						   <h6 class="font-weight-bold grey-text mb-4">Database Administrator</h6>
 							<p class="grey-text">I'm just dope!</p>
 
