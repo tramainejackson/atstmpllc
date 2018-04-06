@@ -67,19 +67,19 @@
         </nav>
 		
 		<!-- Intro Section -->    
-		<div class="view jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url(https://mdbootstrap.com/img/Photos/Others/img%20%2844%29.jpg); height: 1109px;">
+		<div class="view jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url({{ asset('/images/mdb_template_image.jpg') }}); height: 1109px;">
 			<div class="full-bg-img">
-			  <div class="mask rgba-white-light">
-				<div class="container flex-center text-center">
-				  <div class="row mt-5">
-					<div class="col-md-12 wow fadeIn mb-3 smooth-scroll">
-					  <h1 class="display-1 mb-2 wow fadeInDown" data-wow-delay="0.3s">ATSTPM<a class="indigo-text font-weight-bold">LLC</a></h1>
-					  <h5 class="text-uppercase mb-3 mt-1 font-weight-bold wow fadeIn" data-wow-delay="0.4s">Anthony and Tramaine Several Trendy Metropolitan Places</h5>
-					  <a href="#about_us" class="btn btn-light-blue btn-lg wow fadeIn" data-wow-delay="0.4s" data-offset="50">About Us</a>
+				<div class="mask rgba-white-light">
+					<div class="container flex-center text-center">
+						<div class="row mt-md-5">
+							<div class="col-md-12 wow fadeIn mb-3 smooth-scroll">
+								<h1 class="display-1 mb-2 wow fadeInDown" data-wow-delay="0.3s">ATSTPM<a class="indigo-text font-weight-bold">LLC</a></h1>
+								<h5 class="text-uppercase mb-3 mt-1 font-weight-bold wow fadeIn" data-wow-delay="0.4s">Anthony and Tramaine Several Trendy Metropolitan Places</h5>
+								<a href="#about_us" class="btn btn-light-blue btn-lg wow fadeIn" data-wow-delay="0.4s" data-offset="50">About Us</a>
+							</div>
+						</div>
 					</div>
-				  </div>
 				</div>
-			  </div>
 			</div>
 		</div>
 
@@ -108,9 +108,9 @@
 		  </div>
 		</div>
 
-		<div class="view jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url(https://mdbootstrap.com/img/Photos/Others/background.jpg);">
+		<div class="view jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url({{ asset('/images/elegant_bgrd.jpg') }});">
 			<div class="full-bg-img">
-				<div class="mask rgba-purple-slight">
+				<div class="mask rgba-green-light">
 					<div class="container">
 						<div class="d-flex align-items-center d-flex justify-content-center" style="height: 700px">
 							<div class="row mt-5">
@@ -118,7 +118,7 @@
 									<div class="intro-info-content text-center smooth-scroll">
 										<h1 class="display-1 white-text mb-2 wow fadeInDown" data-wow-delay="0.3s">Welcome on our page!</h1>
 										<h4 class="mb-3 mt-1 white-text font-weight-bold wow fadeIn" data-wow-delay="0.4s">We trust the process</h4>
-										<a href="#atstmpllc_desc" class="btn btn-pink wow fadeIn" data-wow-delay="0.4s">Read more</a>
+										<a href="#atstmpllc_desc" class="btn btn-orange wow fadeIn" data-wow-delay="0.4s">Read more</a>
 									</div>
 								</div>
 							</div>
@@ -136,7 +136,7 @@
 				<!--Grid column-->
 				<div class="col-md-12 text-center my-3">
 
-					<h1 class="font-weight-bold pink-text mb-3">Everybody could use a little help managing their business.</h1>
+					<h1 class="font-weight-bold deep-orange-text mb-3">Everybody could use a little help managing their business.</h1>
 					<p align="justify">As we started to grow our endevors, I decided that we needed a way to manage our transactions, and receipts and account and all that other good stuff that comes along with management. We could have easily purchased some software that everything we needed it to do and tons of stuff we didn't need it to do. So we decided to come up with something simple and quick and our own since we both are in the IT field and love the challenge of a new project. Now we can manage the small business that we have that's tailored to our basic needs. That's what this site is all about. Register an account <i class="fa fa-long-arrow-right orange-text" aria-hidden="true"></i> add your users <i class="fa fa-long-arrow-right yellow-text" aria-hidden="true"></i> add your accounts <i class="fa fa-long-arrow-right green-text" aria-hidden="true"></i> and manage the small transactions that you encounter. Easy peasy lemon squeezy. Make a simple life simpler. If you want to give it a go, click <a href="http://atstmpllc.com/register" class="">here</a> and register an account. And like I mentioned, we're always up for a challenge so if you think of something we could add to make it better, let us know.</p>
 
 				</div>
@@ -237,28 +237,58 @@
 
 					<!-- Grid column -->
 					<div class="col-md-4 mb-4">
-						<i class="fa fa-home fa-4x pink-text" aria-hidden="true"></i>
-						<h4 class="font-weight-bold my-4">Houses</h4>
-						<p class="grey-text">One of our favorite go to people for anything house related is Lorenzo Jackson. He does it all and knows it all when it comes to this real estate game. Don't believe me? Check him out!</p>
-						<a href="http://jacksonrentalhomesllc.com" class="btn btn-lg pink">Website</a>
+						<div class="row">
+							<div class="col-12">
+								<i class="fa fa-home fa-4x pink-text" aria-hidden="true"></i>
+							</div>
+							<div class="col-12">
+								<h4 class="font-weight-bold my-4">Houses</h4>
+							</div>
+							<div class="col-12 order-4 order-md-3">
+								<p class="grey-text">One of our favorite go to people for anything house related is Lorenzo Jackson. He does it all and knows it all when it comes to this real estate game. Don't believe me? Check him out!</p>
+							</div>
+							<div class="col-12 order-3 order-md-4">
+								<a href="http://jacksonrentalhomesllc.com" class="btn btn-lg pink">Website</a>
+							</div>
+						</div>
 					</div>
 					<!-- Grid column -->
 
 					<!-- Grid column -->
 					<div class="col-md-4 mb-4">
-						<i class="fa fa-4x fa-pencil cyan-text"></i>
-						<h4 class="font-weight-bold my-4">Design</h4>
-						<p class="grey-text">This one belongs to yours truly. I'm a web developer with about 4+ years of experience. You need something built with your personal touch on it? Let me know and I'll get it going for you.</p>
-						<a href="#" class="btn btn-lg cyan">Protfolio</a>
+						<div class="row">
+							<div class="col-12">
+								<i class="fa fa-4x fa-pencil cyan-text"></i>
+							</div>
+							<div class="col-12">
+								<h4 class="font-weight-bold my-4">Design</h4>
+							</div>
+							<div class="col-12 order-4 order-md-3">
+								<p class="grey-text">This one belongs to yours truly. I'm a web developer with about 4+ years of experience. You need something built with your personal touch on it? Let me know and I'll get it going for you.</p>
+							</div>
+							<div class="col-12 order-3 order-md-4">
+								<a href="#" class="btn btn-lg cyan">Protfolio</a>
+							</div>
+						</div>
 					</div>
 					<!-- Grid column -->
 
 					<!-- Grid column -->
 					<div class="col-md-4 mb-4">
-						<i class="fa fa-4x fa-plane indigo-text"></i>
-						<h4 class="font-weight-bold my-4">Travel</h4>
-						<p class="grey-text">Got places you need to get to, check with Debbie and Rhonda. They'll get you where you need to go for the best price. They also have group trips if your looking to meet new people and have a good time</p>
-						<a href="http://eastcoast2westcoast.com" class="btn btn-lg indigo">Website</a>
+						<div class="row">
+							<div class="col-12">
+								<i class="fa fa-4x fa-plane indigo-text"></i>
+							</div>
+							<div class="col-12">
+								<h4 class="font-weight-bold my-4">Travel</h4>
+							</div>
+							<div class="col-12 order-4 order-md-3">
+								<p class="grey-text">Got places you need to get to, check with Debbie and Rhonda. They'll get you where you need to go for the best price. They also have group trips if your looking to meet new people and have a good time</p>
+							</div>
+							<div class="col-12 order-3 order-md-4">
+								<a href="http://eastcoast2westcoast.com" class="btn btn-lg indigo">Website</a>
+							</div>
+						</div>
 					</div>
 					<!-- Grid column -->
 

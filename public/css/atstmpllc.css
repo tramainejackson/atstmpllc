@@ -622,12 +622,19 @@ span.indTransactionDate {
 }
 
 @media only screen and (max-width:575px) {
+	.wow h1.display-1 {
+		font-size: 425%;
+		margin-top: -50%;
+	}
+	
+	.wow h5 {
+		font-size: 100%;
+	}
+	
 	.navbar-header button {
 		padding: 0.8rem 1.25rem;
 	}
-}
-
-@media only screen and (max-width:575px) {
+	
 	.myheader {
 		margin: 20px auto;
 		width: 100%;
