@@ -12,8 +12,12 @@
 */
 
 // Route::get('/test', function () {
-	// $token =1;
-    // return view('auth.passwords.reset', compact('token'));
+	// $subject = 'Test Subject';
+	// $name = 'Test Name';
+	// $email = 'test Email';
+	// $body = 'test Body';
+	
+    // return view('emails.new_message', compact('subject', 'name', 'email', 'body'));
 // })->middleware('web');
 
 Route::get('/', function () {
