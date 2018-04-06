@@ -12,6 +12,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Http\File;
 use Carbon\Carbon;
 use App\User;
+use App\Mail\NewMessage;
 
 class HomeController extends Controller
 {	
@@ -286,7 +287,7 @@ class HomeController extends Controller
 			]
 		])) {
 			// Send Email to Admin and Recipient
-			// \Mail::to($request->message_email)->send(new Update($contact));
+			\Mail::to($request->message_email)->send(new NewMessage($request->message_subject, $request->message_name, $request->message_email, $request->message_body));
 			// \Mail::to('atstmpllc@gmail.com')->send(new NewContact($contact));
 				
 			return redirect()->back()->with('status', "<li class='okItem green progress-bar-striped'>Message Sent Successfully</li>");
