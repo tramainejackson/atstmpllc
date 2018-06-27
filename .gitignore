@@ -3,6 +3,10 @@
 /public/images/*
 /public/storage/*
 /public/music/*
+/public/addons
+/public/css/mdb*
+/public/js/mdb*
+/public/js/modules
 /storage
 /vendor
 /.idea

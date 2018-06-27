@@ -16,24 +16,6 @@ $(document).ready(function() {
 	}, function() {
 		$('li.logOutLink a').css({color : '#525252'});
 	});
-	
-	// $('.carousel').carousel('pause');
-	
-	
-	// Tooltips Initialization
-	$(function () {
-	  $('[data-toggle="tooltip"]').tooltip();
-	});
-	
-	// Animations initialization
-	new WOW().init();
-	
-	// Initialize datetimepicker
-	$('.datetimepicker').pickadate({
-		// Escape any “rule” characters with an exclamation mark (!).
-		format: 'mm/dd/yyyy',
-		formatSubmit: 'yyyy/mm/dd',
-	});
 
 	// Bring up remove transactions button when
 	// a transaction is selected
