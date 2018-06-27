@@ -50,6 +50,10 @@ button:hover {
     top: 0px !important;
 }
 
+form.registerForm * {
+    color: white !important;
+}
+
 .panel-body {
     background: #9f3f37b5;
 }

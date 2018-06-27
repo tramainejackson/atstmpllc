@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
-@section('styles')
-	@include('layouts.styles.bootstrap_css')
+@section('addt_styles')
 	<style>
 		/* Carousel*/
 		.carousel,
@@ -27,8 +26,7 @@
 	</style>
 @endsection
 
-@section('scripts')
-	@include('layouts.functions.bootstrap_js')
+@section('addt_scripts')
 	<script>
 		$('footer').removeClass('mt-4');
 	</script>
@@ -60,15 +58,15 @@
 						<span class="blue-text">Last Login: {{ gettype($last_login) == "string" ? $last_login : $last_login->toFormattedDateString() }}</span>
 					</div>
 					
-					{!! Form::open(['action' => ['HomeController@update_image', 'user' => $user->id], 'files' => true, 'method' => 'PUT']) !!}
-						<div class="row m-0 d-flex justify-content-center">
-							<div class="input-group">
-								<div class="input-group-prepend">
-									<span class="input-group-text">Upload</span>
+					{!! Form::open(['action' => ['HomeController@update_image', 'user' => $user->id], 'files' => true, 'method' => 'PUT', 'class' => 'md-form']) !!}
+						<div class="">
+							<div class="file-field">
+								<div class="btn btn-primary btn-sm float-left">
+									<span>Choose files<i class="fa fa-cloud-upload ml-3" aria-hidden="true"></i></span>
+									<input type="file" name="profile_img">
 								</div>
-								<div class="custom-file">
-									<input type="file" class="btn col-4 custom-file-input" name="profile_img" id="customFile" />
-									<label for="customFile" class="custom-file-label text-left">Change Photo</label>
+								<div class="file-path-wrapper">
+									<input type="text" class="file-path validate" id="customFile" placeholder="Change Picture" />
 								</div>
 							</div>
 							<div class="form-group my-2">
@@ -101,79 +99,73 @@
 				<!-- Carousel Wrapper -->
 				<div id="bank_carousel" class="carousel slide carousel-fade" data-ride="carousel">
 					<div class="carousel-inner" role="listbox">
-						@if($user_accounts)
-							@foreach($user_accounts as $user_account)
-								<!--Slides-->
-									<div class="carousel-item{{ $loop->first ? ' active' : '' }}">
-										<div class="view">
-											<div class="full-bg-img flex-center mask white-text{{ fmod($loop->iteration, 2) != 0 ? ' rgba-blue-light' : ' rgba-brown-light' }}">
-												<div class="bankCount rgba-black-strong p-2 m-2 rounded-circle">
-													<span>{{ $loop->iteration }}/{{ $loop->count }}</span>
+						@foreach($user_accounts as $user_account)
+							<!--Slides-->
+								<div class="carousel-item{{ $loop->first ? ' active' : '' }}">
+									<div class="view">
+										<div class="full-bg-img flex-center mask white-text{{ fmod($loop->iteration, 2) != 0 ? ' rgba-blue-light' : ' rgba-brown-light' }}">
+											<div class="bankCount rgba-black-strong p-2 m-2 rounded-circle">
+												<span>{{ $loop->iteration }}/{{ $loop->count }}</span>
+											</div>
+											<div class="col-10 col-md-8 col-lg-8 text-center">
+												<!-- Bank Accounts -->
+												<div class="align-items-center bankAccountHeader d-flex justify-content-between flex-column flex-md-row w-100">
+													<h2 class="coolText5" style="width: max-content">{{ $user_account->bank_account->bank_name }}</h2>
+													@if($user_account->edit_bank == "Y")
+														<a href="/bank/{{ $user_account->bank_account->id }}/edit" class="btn btn-secondary">Edit Bank Account</a>
+													@else
+														<div class="">
+															<p class="">You have not been granted permissions to view this banks information</p>
+														</div>
+													@endif
 												</div>
-												<div class="col-10 col-md-8 col-lg-8 text-center">
-													<!-- Bank Accounts -->
-													<div class="align-items-center bankAccountHeader d-flex justify-content-between flex-column flex-md-row w-100">
-														<h2 class="coolText5" style="width: max-content">{{ $user_account->bank_account->bank_name }}</h2>
-														@if($user_account->edit_bank == "Y")
-															<a href="/bank/{{ $user_account->bank_account->id }}/edit" class="btn btn-secondary">Edit Bank Account</a>
-														@else
-															<div class="">
-																<p class="">You have not been granted permissions to view this banks information</p>
-															</div>
-														@endif
+												<div class="bankAccountInfo border rounded mb-3">
+													<h4 class="text-left coolText5 p-3"><u>Bank Balances:</u></h4>
+													<div class="">
+														<span class="spanLabel">Checking Balance:</span>
+														<span class="itemContent">{{ $user_account->bank_account->checking_balance != null ? '$' . number_format($user_account->bank_account->checking_balance, 2) : '$0.00' }}</span>
 													</div>
-													<div class="bankAccountInfo border rounded mb-3">
-														<h4 class="text-left coolText5 p-3"><u>Bank Balances:</u></h4>
-														<div class="">
-															<span class="spanLabel">Checking Balance:</span>
-															<span class="itemContent">{{ $user_account->bank_account->checking_balance != null ? '$' . number_format($user_account->bank_account->checking_balance, 2) : '$0.00' }}</span>
-														</div>
-														<div class="">
-															<span class="spanLabel">Savings Balance:</span>
-															<span class="itemContent">{{ $user_account->bank_account->savings_balance != null ? '$' . number_format($user_account->bank_account->savings_balance, 2) : '$0.00' }}</span>
-														</div>
+													<div class="">
+														<span class="spanLabel">Savings Balance:</span>
+														<span class="itemContent">{{ $user_account->bank_account->savings_balance != null ? '$' . number_format($user_account->bank_account->savings_balance, 2) : '$0.00' }}</span>
 													</div>
-													<!-- /Bank Accounts -->
+												</div>
+												<!-- /Bank Accounts -->
 
-													<!-- User Accounts -->
-													<div class="myAccountInfo border rounded">
-														<h4 class="text-left coolText5 p-3"><u>My Balances:</u></h4>
-														<div class="">
-															<span class="spanLabel">My balance within checking account:</span>
-															<span class="itemContent">{{ $user_account->checking_share != null ? '$' . number_format($user_account->checking_share, 2) : '$0.00' }}</span>
-														</div>
-														<div class="">
-															<span class="spanLabel">My balance within savings account:</span>
-															<span class="itemContent">{{ $user_account->savings_share != null ? '$' . number_format($user_account->savings_share, 2) : '$0.00' }}</span>
-														</div>
-														<div class="">
-															<span class="spanLabel">Ownership of Account:</span>
-															<span class="itemContent">{{ ($user_account->share_pct * 100) . "%" }}</span>
-														</div>
+												<!-- User Accounts -->
+												<div class="myAccountInfo border rounded">
+													<h4 class="text-left coolText5 p-3"><u>My Balances:</u></h4>
+													<div class="">
+														<span class="spanLabel">My balance within checking account:</span>
+														<span class="itemContent">{{ $user_account->checking_share != null ? '$' . number_format($user_account->checking_share, 2) : '$0.00' }}</span>
 													</div>
-													<!-- /User Accounts -->
+													<div class="">
+														<span class="spanLabel">My balance within savings account:</span>
+														<span class="itemContent">{{ $user_account->savings_share != null ? '$' . number_format($user_account->savings_share, 2) : '$0.00' }}</span>
+													</div>
+													<div class="">
+														<span class="spanLabel">Ownership of Account:</span>
+														<span class="itemContent">{{ ($user_account->share_pct * 100) . "%" }}</span>
+													</div>
 												</div>
+												<!-- /User Accounts -->
 											</div>
 										</div>
 									</div>
-							@endforeach
-							
-							@if($user_accounts->count() > 1)
-								<!--Controls-->
-								<a class="carousel-control-prev" href="#bank_carousel" role="button" data-slide="prev">
-									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-									<span class="sr-only">Previous</span>
-								</a>
-								<a class="carousel-control-next" href="#bank_carousel" role="button" data-slide="next">
-									<span class="carousel-control-next-icon" aria-hidden="true"></span>
-									<span class="sr-only">Next</span>
-								</a>
-								<!--/.Controls-->
-							@endif
-						@else
-							<div class="emptyAccountHeader">
-								<h2 class="">You do not currently have any accounts added.</h2>
-							</div>
+								</div>
+						@endforeach
+						
+						@if($user_accounts->count() > 1)
+							<!--Controls-->
+							<a class="carousel-control-prev" href="#bank_carousel" role="button" data-slide="prev">
+								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+								<span class="sr-only">Previous</span>
+							</a>
+							<a class="carousel-control-next" href="#bank_carousel" role="button" data-slide="next">
+								<span class="carousel-control-next-icon" aria-hidden="true"></span>
+								<span class="sr-only">Next</span>
+							</a>
+							<!--/.Controls-->
 						@endif
 					</div>
 				</div>

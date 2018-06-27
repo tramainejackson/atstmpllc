@@ -33,7 +33,7 @@
 				</div>
 				<div class="col-12 wow fadeInRight" data-wow-delay="0.5s">
 					<div class="panel-body p-4 mb-5 rounded text-light">
-						<form class="form-horizontal" method="POST" action="{{ route('register') }}">
+						<form class="form-horizontal registerForm" method="POST" action="{{ route('register') }}">
 							{{ csrf_field() }}
 
 							<div class="md-form{{ $errors->has('company') ? ' has-error' : '' }}">

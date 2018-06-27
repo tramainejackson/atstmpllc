@@ -8,14 +8,22 @@
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="navbar-nav mr-auto">
-				<li class="navLinks"><a href="/bank">Banks</a></li>
-				<li class="navLinks"><a href="/transactions">Transactions</a></li>
-				<li class="navLinks"><a href="/documents">Documents</a></li>
-				<li class="navLinks"><a href="/users">Users</a></li>
+				<li class="nav-item">
+					<a href="/bank" class="nav-link">Banks</a>
+				</li>
+				<li class="nav-item">
+					<a href="/transactions" class="nav-link">Transactions</a>
+				</li>
+				<li class="nav-item">
+					<a href="/documents" class="nav-link">Documents</a>
+				</li>
+				<li class="nav-item">
+					<a href="/users" class="nav-link">Users</a>
+				</li>
 			</ul>
-			<ul class="navbar-nav flex-row align-items-stretch justify-content-center d-inline-flex pl-2">
-				<li class="navLinks logOutLink p-1">
-					<a href="{{ route('logout') }}" class="navi_option" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><span>Logout</span></a>
+			<ul class="navbar-nav flex-row align-items-stretch justify-content-center d-inline-flex">
+				<li class="nav-item logOutLink">
+					<a href="{{ route('logout') }}" class="nav-link navi_option" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><span>Logout</span></a>
 			
 					<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 						{{ csrf_field() }}

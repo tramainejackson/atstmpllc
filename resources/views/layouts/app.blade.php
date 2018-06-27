@@ -12,11 +12,23 @@
 
     <!-- Styles -->
 	<link href="https://fonts.googleapis.com/css?family=Felipa" rel="stylesheet">
-    @yield('styles')
+    <!-- Open Iconic icons -->
+	<link href="/css/open-iconic/font/css/open-iconic-bootstrap.css" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- Bootstrap core CSS -->
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Material Design Bootstrap -->
+	<link href="/css/mdb.min.css" rel="stylesheet">
+
+	<!-- Custom CSS -->
+	<link href="/css/atstmpllc.css" rel="stylesheet">
 	
 	@if(substr_count(request()->server('HTTP_USER_AGENT'), 'rv:') > 0)
 		<link href="/css/myIEcss.css" rel="stylesheet">
 	@endif
+	
+	@yield('addt_styles')
 </head>
 <body>
 	<div id="app">
@@ -37,7 +49,19 @@
 		@include('footer')
     </div>
 	
-	<!-- Scripts -->
-	@yield('scripts')
+	<!-- SCRIPTS -->
+	<!-- JQuery -->
+	<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+	<!-- Bootstrap tooltips -->
+	<script type="text/javascript" src="/js/popper.min.js"></script>
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript" src="/js/mdb.min.js"></script>
+
+	<!-- Custom JS -->
+	<script src="/js/atstmpllc.js"></script>
+	
+	@yield('addt_scripts')
 </body>
 </html>

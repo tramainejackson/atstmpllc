@@ -1,13 +1,5 @@
 @extends('layouts.app')
 
-@section('styles')
-	@include('layouts.styles.bootstrap_css')
-@endsection
-
-@section('scripts')
-	@include('layouts.functions.bootstrap_js')
-@endsection
-
 @section('content')
 	<div class="container-fluid">
 		<div class="row">
@@ -26,14 +18,14 @@
 					</div>
 					{!! Form::open(['action' => ['DocumentController@store'], 'method' => 'POST', 'files' => true, ]) !!}
 						<div class="formDiv">
-							<div class="form-group">
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<span class="input-group-text">Upload</span>
+							<div class="md-form">
+								<div class="file-field">
+									<div class="btn btn-primary btn-sm float-left">
+										<span>Choose files</span>
+										<input type="file" name="name[]" multiple>
 									</div>
-									<div class="custom-file">
-										{{ Form::file('name[]', ['class' => 'custom-file-input', 'multiple' => 'true']) }}
-										{{ Form::label('name', 'Add Files', ['class' => 'custom-file-label']) }}
+									<div class="file-path-wrapper">
+										<input class="file-path validate" type="text" placeholder="Upload your documents">
 									</div>
 								</div>
 								

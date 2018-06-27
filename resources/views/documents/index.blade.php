@@ -1,13 +1,5 @@
 @extends('layouts.app')
 
-@section('styles')
-	@include('layouts.styles.bootstrap_css')
-@endsection
-
-@section('scripts')
-	@include('layouts.functions.bootstrap_js')
-@endsection
-
 @section('content')
 	<div class="container-fluid">
 		<div class="row">
@@ -59,10 +51,10 @@
 								<div class="col-12 col-md-12 col-lg-8 col-xl-6 mx-auto fileList">
 									<div class="card">
 										<div class="card-body">
-											<div class="d-flex justify-content-center align-items-center">
-												<h1 class="text-center ml-auto"><strong><em>{{ $document[0]['title'] }}</em></strong></h1>
+											<div class="d-flex justify-content-center align-items-center flex-column">
+												<h1 class="text-center"><strong><em>{{ $document[0]['title'] }}</em></strong></h1>
 
-												<a class="btn btn-warning ml-auto" href="/documents/{{ $document[0]['id'] }}/edit" class="">Edit</a>
+												<a class="btn btn-warning" href="/documents/{{ $document[0]['id'] }}/edit">Edit</a>
 											</div>
 										
 											<div class="d-flex justify-content-around align-items-center">
