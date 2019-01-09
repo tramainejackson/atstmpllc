@@ -23,7 +23,7 @@
   "dependencies": {
     "jquery-datetimepicker": "^2.5.18",
     "lightgallery.js": "^1.0.2",
-	"mdbootstrap": "^4.5.0",
+    "mdbootstrap": "^4.5.0",
     "magnific-popup": "^1.1.0",
     "popper.js": "^1.13.0"
   }

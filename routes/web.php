@@ -61,4 +61,6 @@ Route::get('/home', 'HomeController@home')->name('home');
 
 Route::get('/about_us', 'HomeController@about_us')->name('about_us');
 
+Route::get('/tramaine/portfolio', 'HomeController@portfolio')->name('portfolio');
+
 Route::post('/send_message', 'HomeController@message')->name('send_message');

@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
 
 class Transaction extends Model
 {
@@ -15,7 +16,29 @@ class Transaction extends Model
      * @var array
      */
     protected $dates = ['deleted_at'];
-	
+
+	/**
+	 * Get the transaction date.
+	 *
+	 * @param  string  $value
+	 * @return Carbon/Carbon Object
+	 */
+	public function getTransactionDateAttribute($value)
+	{
+		return $value == null ? $value : new Carbon($value);
+	}
+
+	/**
+	 * Set the first name for the participant.
+	 *
+	 * @param  string  $value
+	 * @return string
+	 */
+	public function setTypeAttribute($value)
+	{
+		$this->attributes['type'] = ucfirst($value);
+	}
+
 	/**
 	* Get the user account associated with the transaction
 	*/

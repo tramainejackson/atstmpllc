@@ -1,4 +1,4 @@
-<footer class="page-footer font-small stylish-color-dark pt-4 mt-4">
+<footer class="page-footer font-small stylish-color-dark pt-4">
 	<!--Footer Links-->
 	<div class="container text-center text-md-left">
 
@@ -19,7 +19,7 @@
 			  <h6 class="text-uppercase mb-4 font-weight-bold">Affiliation</h6>
 			  <p><a href="#!" target="_blank">Business Management</a></p>
 			  <p><a href="http://jacksonrentalhomesllc.com" target="_blank">Property Management</a></p>
-			  <p><a href="#!" target="_blank">Web Design</a></p>
+			  <p><a href="{{ route('portfolio') }}" target="_blank">Web Design</a></p>
 		  </div>
 		  <!--/.Second column-->
 
@@ -63,10 +63,10 @@
 			  <!--Social buttons-->
 			  <div class="text-center text-md-right">
 				  <ul class="list-unstyled list-inline">
-					  <li class="list-inline-item"><a class="btn-floating btn-sm rgba-white-slight mx-1" target="_blank"><i class="fa fa-facebook"></i></a></li>
-					  <li class="list-inline-item"><a class="btn-floating btn-sm rgba-white-slight mx-1" target="_blank"><i class="fa fa-twitter"></i></a></li>
-					  <li class="list-inline-item"><a class="btn-floating btn-sm rgba-white-slight mx-1" target="_blank"><i class="fa fa-google-plus"></i></a></li>
-					  <li class="list-inline-item"><a class="btn-floating btn-sm rgba-white-slight mx-1" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+					  <li class="list-inline-item"><a class="btn-floating btn-sm rgba-white-slight mx-1" target="_blank"><i class="fab fa-facebook"></i></a></li>
+					  <li class="list-inline-item"><a class="btn-floating btn-sm rgba-white-slight mx-1" target="_blank"><i class="fab fa-twitter"></i></a></li>
+					  <li class="list-inline-item"><a class="btn-floating btn-sm rgba-white-slight mx-1" target="_blank"><i class="fab fa-google-plus"></i></a></li>
+					  <li class="list-inline-item"><a class="btn-floating btn-sm rgba-white-slight mx-1" target="_blank"><i class="fab fa-linkedin"></i></a></li>
 				  </ul>
 			  </div>
 			  <!--/.Social buttons-->

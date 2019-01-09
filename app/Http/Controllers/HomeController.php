@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except('about_us', 'message');
+        $this->middleware('auth')->except('about_us', 'portfolio', 'message');
     }
 
     /**
@@ -261,6 +261,16 @@ class HomeController extends Controller
     public function about_us()
     {
 		return view('about_us');
+	}
+
+	/**
+     * Show Tramaine's portfolio page.
+     *
+     * @return \Illuminate\Http\Response
+    */
+    public function portfolio()
+    {
+		return view('portfolio');
 	}
 	
 	/**

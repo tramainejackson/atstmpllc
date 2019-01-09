@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('styles')
-	@include('layouts.styles.bootstrap_css')
 	<style>
         .top-nav-collapse {
             background-color: #3f51b5!important;
@@ -26,10 +25,6 @@
             }
         }
     </style>
-@endsection
-
-@section('scripts')
-	@include('layouts.functions.bootstrap_js')
 @endsection
 
 @section('content')
@@ -180,12 +175,12 @@
 							<h6 class="font-weight-bold grey-text mb-4">Web Designer</h6>
 							<p class="grey-text">I woke up one day and said I want to change my profession. And that's what I did! I taught myself how to design websites. Now I design and host websites on my own private server. How bout them apples</p>
 
-							<!-- Facebook -->
-							<a class="p-2 m-2 fa-lg li-ic"><i class="fa fa-linkedin"> </i></a>
-							<!-- Twitter -->
-							<a class="p-2 m-2 fa-lg git-ic"><i class="fa fa-github"> </i></a>
-							<!-- Dribbble -->
-							<a class="p-2 m-2 fa-lg blue-text"><i class="fa fa-paypal"> </i></a>
+							<!-- LinkedIn -->
+							<a class="p-2 m-2 fa-lg li-ic"><i class="fab fa-linkedin"></i></a>
+							<!-- Github -->
+							<a class="p-2 m-2 fa-lg git-ic"><i class="fab fa-github"></i></a>
+							<!-- PayPal -->
+							<a class="p-2 m-2 fa-lg orange-text"><i class="fas fa-basketball-ball"></i></a>
 						</div>
 
 					</div>
@@ -206,11 +201,11 @@
 							<p class="grey-text">I'm just dope!</p>
 
 							<!-- Facebook -->
-							<a class="p-2 m-2 fa-lg fb-ic"><i class="fa fa-facebook"> </i></a>
+							<a class="p-2 m-2 fa-lg fb-ic"><i class="fab fa-facebook"></i></a>
 							<!-- YouTube -->
-							<a class="p-2 m-2 fa-lg yt-ic"><i class="fa fa-youtube"> </i></a>
+							<a class="p-2 m-2 fa-lg yt-ic"><i class="fab fa-youtube"></i></a>
 							<!-- Instagram -->
-							<a class="p-2 m-2 fa-lg ins-ic"><i class="fa fa-instagram"> </i></a>
+							<a class="p-2 m-2 fa-lg ins-ic"><i class="fab fa-instagram"></i></a>
 						</div>
 
 					</div>
@@ -239,7 +234,7 @@
 					<div class="col-md-4 mb-4">
 						<div class="row">
 							<div class="col-12">
-								<i class="fa fa-home fa-4x pink-text" aria-hidden="true"></i>
+								<i class="fas fa-4x fa-home pink-text"></i>
 							</div>
 							<div class="col-12">
 								<h4 class="font-weight-bold my-4">Houses</h4>
@@ -258,7 +253,7 @@
 					<div class="col-md-4 mb-4">
 						<div class="row">
 							<div class="col-12">
-								<i class="fa fa-4x fa-pencil cyan-text"></i>
+								<i class="fab fa-4x fa-sketch cyan-text"></i>
 							</div>
 							<div class="col-12">
 								<h4 class="font-weight-bold my-4">Design</h4>
@@ -267,7 +262,7 @@
 								<p class="grey-text">This one belongs to yours truly. I'm a web developer with about 4+ years of experience. You need something built with your personal touch on it? Let me know and I'll get it going for you.</p>
 							</div>
 							<div class="col-12 order-3 order-md-4">
-								<a href="#" class="btn btn-lg cyan">Protfolio</a>
+								<a href="{{ route('portfolio') }}" class="btn btn-lg cyan">Potfolio</a>
 							</div>
 						</div>
 					</div>
@@ -277,7 +272,7 @@
 					<div class="col-md-4 mb-4">
 						<div class="row">
 							<div class="col-12">
-								<i class="fa fa-4x fa-plane indigo-text"></i>
+								<i class="fas fa-4x fa-plane indigo-text"></i>
 							</div>
 							<div class="col-12">
 								<h4 class="font-weight-bold my-4">Travel</h4>
@@ -297,133 +292,6 @@
 
 			</section>
 			<!-- Section: Features v.1 -->
-
-			<hr class="my-5">
-
-			<!-- Section: Gallery -->
-			<section id="gallery" class="section wow fadeIn" data-wow-delay="0.3s" style="visibility: visible; animation-name: fadeIn; animation-delay: 0.3s;">
-
-				<!-- Section heading -->
-				<h1 class="section-heading h1 pt-4">Our work</h1>
-				<!-- Section description -->
-				<p class="section-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-
-				<div class="row pb-4">
-					<div class="col-md-12">
-
-						<div id="mdb-lightbox-ui"><!-- Root element of PhotoSwipe. Must have class pswp. -->
-							<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-								<!-- Background of PhotoSwipe. 
-											 It's a separate element, as animating opacity is faster than rgba(). -->
-								<div class="pswp__bg"></div>
-
-								<!-- Slides wrapper with overflow:hidden. -->
-								<div class="pswp__scroll-wrap">
-
-									<!-- Container that holds slides. PhotoSwipe keeps only 3 slides in DOM to save memory. -->
-									<!-- don't modify these 3 pswp__item elements, data is added later on. -->
-									<div class="pswp__container">
-										<div class="pswp__item"></div>
-										<div class="pswp__item"></div>
-										<div class="pswp__item"></div>
-									</div>
-
-									<!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-									<div class="pswp__ui pswp__ui--hidden">
-
-										<div class="pswp__top-bar">
-
-											<!--  Controls are self-explanatory. Order can be changed. -->
-
-											<div class="pswp__counter"></div>
-
-											<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-
-											<!--<button class="pswp__button pswp__button--share" title="Share"></button>-->
-
-											<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-											<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-											<!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-											<!-- element will get class pswp__preloader--active when preloader is running -->
-											<div class="pswp__preloader">
-												<div class="pswp__preloader__icn">
-													<div class="pswp__preloader__cut">
-														<div class="pswp__preloader__donut"></div>
-													</div>
-												</div>
-											</div>
-										</div>
-
-										<!--
-												<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-													<div class="pswp__share-tooltip"></div> 
-												</div>
-												-->
-
-										<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-										</button>
-
-										<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-										</button>
-
-										<div class="pswp__caption">
-											<div class="pswp__caption__center"></div>
-										</div>
-
-									</div>
-
-								</div>
-
-							</div>
-						</div>
-
-						<div class="mdb-lightbox" data-pswp-uid="1">
-
-							<figure class="col-md-4">
-								<a href="https://mdbootstrap.com/img/Photos/Horizontal/Work/12-col/img%20(43).jpg" data-size="1600x1067">
-									<img src="https://mdbootstrap.com/img/Photos/Horizontal/Work/12-col/img%20(43).jpg" class="img-fluid z-depth-1">
-								</a>
-							</figure>
-
-							<figure class="col-md-4">
-								<a href="https://mdbootstrap.com/img/Photos/Horizontal/Work/12-col/img%20(41).jpg" data-size="1600x1067">
-									<img src="https://mdbootstrap.com/img/Photos/Horizontal/Work/6-col/img%20(41).jpg" class="img-fluid z-depth-1">
-								</a>
-							</figure>
-
-							<figure class="col-md-4">
-								<a href="https://mdbootstrap.com/img/Photos/Horizontal/Work/12-col/img%20(40).jpg" data-size="1600x1067">
-									<img src="https://mdbootstrap.com/img/Photos/Horizontal/Work/6-col/img%20(40).jpg" class="img-fluid z-depth-1">
-								</a>
-							</figure>
-
-							<figure class="col-md-4">
-								<a href="https://mdbootstrap.com/img/Photos/Horizontal/Work/12-col/img%20(14).jpg" data-size="1600x1067">
-									<img src="https://mdbootstrap.com/img/Photos/Horizontal/Work/12-col/img%20(14).jpg" class="img-fluid z-depth-1">
-								</a>
-							</figure>
-
-							<figure class="col-md-4">
-								<a href="https://mdbootstrap.com/img/Photos/Horizontal/Work/12-col/img%20(42).jpg" data-size="1600x1067">
-									<img src="https://mdbootstrap.com/img/Photos/Horizontal/Work/6-col/img%20(42).jpg" class="img-fluid z-depth-1">
-								</a>
-							</figure>
-
-							<figure class="col-md-4">
-								<a href="https://mdbootstrap.com/img/Photos/Horizontal/People/12-col/img%20(132).jpg" data-size="1600x1067">
-									<img src="https://mdbootstrap.com/img/Photos/Horizontal/People/12-col/img%20(132).jpg" class="img-fluid z-depth-1">
-								</a>
-							</figure>
-							
-						</div>
-					</div>
-				</div>
-
-			</section>
-			<!-- /Section: Gallery -->
 
 			<hr class="my-5">
 
