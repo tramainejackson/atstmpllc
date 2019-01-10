@@ -20,15 +20,15 @@
     // return view('emails.new_message', compact('subject', 'name', 'email', 'body'));
 // })->middleware('web');
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::resource('bank', 'BankAccountController');
+Route::get('/', 'HomeController@welcome')->name('welcome');
 
-Route::resource('documents', 'DocumentController');
+Route::get('/home', 'HomeController@home')->name('home');
+
+Route::get('/about_us', 'HomeController@about_us')->name('about_us');
+
+Route::get('/tramaine/portfolio', 'HomeController@portfolio')->name('portfolio');
 
 Route::get('bank/{bankAccount}/users', 'BankAccountController@bank_accounts');
 
@@ -47,20 +47,18 @@ Route::get('account/{bankAccount}/bank', 'UserAccountController@bank_accounts');
 
 Route::delete('account/{userAccount}', 'UserAccountController@destroy');
 
-Route::resource('users', 'HomeController');
-
 Route::put('/home/{user}', 'HomeController@update_image');
-
-Route::resource('transactions', 'TransactionController');
 
 Route::delete('transactions', 'TransactionController@destroy');
 
 Route::get('user/{user}/transactions', 'UserAccountController@user_transactions');
 
-Route::get('/home', 'HomeController@home')->name('home');
-
-Route::get('/about_us', 'HomeController@about_us')->name('about_us');
-
-Route::get('/tramaine/portfolio', 'HomeController@portfolio')->name('portfolio');
-
 Route::post('/send_message', 'HomeController@message')->name('send_message');
+
+Route::resource('users', 'HomeController');
+
+Route::resource('transactions', 'TransactionController');
+
+Route::resource('bank', 'BankAccountController');
+
+Route::resource('documents', 'DocumentController');

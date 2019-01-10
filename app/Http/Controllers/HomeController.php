@@ -23,7 +23,17 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except('about_us', 'portfolio', 'message');
+        $this->middleware('auth')->except('about_us', 'welcome', 'portfolio', 'message');
+    }
+
+    /**
+     * Show the users dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function welcome()
+    {
+	    return view('welcome');
     }
 
     /**
@@ -270,7 +280,16 @@ class HomeController extends Controller
     */
     public function portfolio()
     {
-		return view('portfolio');
+    	$now = Carbon::now();
+    	$dmbDevStart = Carbon::create(2018, 8,1);
+    	$freelanceDevStart = Carbon::create(2013, 1);
+
+    	$dmbDevTime = $dmbDevStart->diffInYears($now) > 0 ? $dmbDevStart->diffInYears($now) . ' Years' : '';
+    	$dmbDevTime .= $dmbDevTime != '' ? ' ' . ($dmbDevStart->diffInMonths($now) - ($dmbDevStart->diffInYears($now)*12)) . ' Months' : $dmbDevStart->diffInMonths($now) . ' Months' ;
+
+    	$freelanceDevTime = $freelanceDevStart->diffInYears($now) . ' Years';
+
+		return view('portfolio', compact('dmbDevTime', 'freelanceDevTime'));
 	}
 	
 	/**

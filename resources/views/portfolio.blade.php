@@ -1,5 +1,42 @@
 @extends('layouts.app')
 
+@section('addt_styles')
+	<style>
+		.top-nav-collapse {
+			background-color: #3f51b5!important;
+		}
+
+		.top-nav-collapse a {
+			color: #fff !important;
+		}
+
+		.navbar:not(.top-nav-collapse) {
+			background: transparent!important;
+		}
+
+		.navbar:not(.top-nav-collapse) a {
+			color: black !important;
+		}
+
+		@media (max-width: 768px) {
+			.navbar:not(.top-nav-collapse) {
+				background: #3f51b5!important;
+			}
+		}
+		h5 {
+			letter-spacing: 3px;
+		}
+		@media (max-width: 740px) {
+			.full-height,
+			.full-height body,
+			.full-height header,
+			.full-height header .view {
+				height: 700px;
+			}
+		}
+	</style>
+@endsection
+
 @section('content')
 	<!--Navigation & Intro-->
 	<header>
@@ -14,17 +51,14 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent-7">
 					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active">
-							<a class="nav-link waves-effect waves-light" href="#home">Home <span class="sr-only">(current)</span></a>
+						<li class="nav-item">
+							<a class="nav-link waves-effect waves-light" href="{{ route('about_us') }}#about_us" data-offset="60">About Us</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link waves-effect waves-light" href="#about_us" data-offset="60">About Us</a>
+							<a class="nav-link waves-effect waves-light" href="{{ route('about_us') }}#team" data-offset="60">Team</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link waves-effect waves-light" href="#team" data-offset="60">Team</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link waves-effect waves-light" href="#affiliations" data-offset="60">Affiliations</a>
+							<a class="nav-link waves-effect waves-light" href="{{ route('about_us') }}#affiliations" data-offset="60">Affiliations</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link waves-effect waves-light" href="#contact" data-offset="60">Contact</a>
@@ -35,20 +69,21 @@
 		</nav>
 
 		<!-- Intro Section -->
-		<div id="home" class="view jarallax" data-jarallax="{&quot;speed&quot;: 0.2}" style="background-image: none; background-repeat: no-repeat; background-size: cover; background-position: center center; z-index: 0;" data-jarallax-original-styles="background-image: url('https://mdbootstrap.com/img/Photos/Others/forest1.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
-			<div class="mask rgba-white-strong">
-				<div class="container h-100 d-flex justify-content-center align-items-center">
+		<div id="" class="view" style="min-height: 100vh; background-image: url('https://mdbootstrap.com/img/Photos/Others/architecture.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+			<div class="mask rgba-white-strong d-flex justify-content-center align-items-center">
+				<div class="container">
 					<div class="row smooth-scroll">
 						<div class="col-md-12 pt-3">
 							<div class="white-text text-center pt-5">
-								<h1 class="display-2 mb-4 dark-grey-text wow fadeIn" style="visibility: visible; animation-name: fadeIn;">Tramaine<strong>Jackson</strong></h1>
-								<h5 class="text-uppercase font-weight-bold wow fadeIn" data-wow-delay="0.4s" style="visibility: visible; animation-name: fadeIn; animation-delay: 0.4s;"><mark>Web developer</mark></h5>
-								<a href="#about" class="btn btn-floating btn-large wow fadeIn waves-effect waves-light" data-wow-delay="0.4s" data-offset="100" style="visibility: visible; animation-name: fadeIn; animation-delay: 0.4s;"><i class="fas fa-angle-down" aria-hidden="true"></i></a>
+								<h1 class="display-2 mb-4 dark-grey-text wow fadeInUpBig" data-wow-delay="0.6s">Tramaine<strong>Jackson</strong></h1>
+								<h5 class="text-uppercase font-weight-bold wow fadeInUp" data-wow-delay="0.s"><mark>Web developer</mark></h5>
+								<a href="#about" class="btn btn-floating btn-large blue wow fadeInDown waves-effect waves-light" data-wow-delay="0.6s" data-offset="100"><i class="fas fa-angle-down" aria-hidden="true"></i></a>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+		</div>
 
 	</header>
 	<!--/Navigation & Intro-->
@@ -144,14 +179,14 @@
 								<div class="row"> <i class="fas fa-briefcase fa-x mb-1 mr-3 ml-3 dark-grey-text" aria-hidden="true"></i>
 									<h5 class="font-weight-bold mb-3">DMB developer</h5>
 								</div>
-								<p class="font-weight-bold ml-1 dark-grey-text mb-2">August, 2018 - Present ()</p>
+								<p class="font-weight-bold ml-1 dark-grey-text mb-2">August 2018 - Present ({{ $dmbDevTime }})</p>
 								<p class="mb-0 ml-1 light-grey-text">Working with the great company called Xenial, Inc. We build Digital Menu Boards for restaurants. So when you get something to eat from fast food restaurants, and you see the animated menus, you'll know who made them.</p>
 							</blockquote>
 
 							<blockquote class="blockquote bq-warning mt-1 mb-4">
 								<div class="row"> <i class="fas fa-briefcase fa-x mb-1 mr-3 ml-3 dark-grey-text" aria-hidden="true"></i>
 									<h5 class="font-weight-bold mb-3">Freelance PHP developer</h5> </div>
-								<p class="font-weight-bold ml-1 dark-grey-text mb-2">November 2013 - Present ()</p>
+								<p class="font-weight-bold ml-1 dark-grey-text mb-2">November 2013 - Present ({{ $freelanceDevTime }})</p>
 								<p class="mb-0 ml-1 light-grey-text">I've been developing websites with PHP since 2013. All of my applications are built on top of the Laravel MVC with the Material Design Bootstrap framework. I also manage all of the application on my Virtual Private Servers running Linux.</p>
 							</blockquote>
 
@@ -210,85 +245,18 @@
 		</div>
 		<!--/Second container-->
 
-		<!-- Third container -->
-		<div class="container">
-
-			<!-- Section About -->
-			<section class="section feature-box my-5 pb-5">
-
-				<!-- Section title -->
-				<h2 class="text-center text-uppercase my-5 pt-5 wow fadeIn" data-wow-delay="0.2s" style="visibility: visible; animation-name: fadeIn; animation-delay: 0.2s;">Process of <strong>creating</strong></h2>
-				<p class="text-center w-responsive mx-auto wow fadeIn my-5" data-wow-delay="0.2s" style="visibility: visible; animation-name: fadeIn; animation-delay: 0.2s;"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum quas, eos officia maiores ipsam ipsum dolores reiciendis ad voluptas, animi obcaecati adipisci sapiente mollitia.</p>
-
-				<!-- Nav tabs -->
-				<ul class="nav md-tabs nav-justified blue" role="tablist">
-					<li class="nav-item">
-						<a class="nav-link active show" data-toggle="tab" href="#panel1" role="tab" aria-selected="true">01. Research</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" data-toggle="tab" href="#panel2" role="tab" aria-selected="false">02. Design</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" data-toggle="tab" href="#panel3" role="tab" aria-selected="false">03. Development</a>
-					</li>
-				</ul>
-				<!-- Tab panels -->
-				<div class="tab-content card">
-					<!--Panel 1-->
-					<div class="tab-pane fade in active show" id="panel1" role="tabpanel">
-						<br>
-						<div class="row mt-2">
-							<div class="col-2 text-center"> <i class="fas fa-search fa-3x mb-1 grey-text" aria-hidden="true"></i> </div>
-							<div class="col-9 mb-2">
-								<p class="dark-grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione porro voluptate odit minima.</p>
-							</div>
-						</div>
-					</div>
-					<!--/.Panel 1-->
-
-					<!--Panel 2-->
-					<div class="tab-pane fade" id="panel2" role="tabpanel">
-						<br>
-						<div class="row mt-2">
-							<div class="col-2 text-center"> <i class="fas fa-pencil-alt fa-3x mb-1 grey-text" aria-hidden="true"></i> </div>
-							<div class="col-9 mb-2">
-								<p class="dark-grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione porro voluptate odit minima. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-							</div>
-						</div>
-					</div>
-					<!--/.Panel 2-->
-
-					<!--Panel 3-->
-					<div class="tab-pane fade" id="panel3" role="tabpanel">
-						<br>
-						<div class="row mt-2">
-							<div class="col-2 text-center"> <i class="fas fa-codefa-3x mb-1 grey-text" aria-hidden="true"></i> </div>
-							<div class="col-9 mb-2">
-								<p class="dark-grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione porro voluptate odit minima. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-							</div>
-						</div>
-					</div>
-					<!--/.Panel 3-->
-				</div>
-				<!-- /.Tab panels -->
-			</section>
-			<!-- /.Section -->
-
-		</div>
-		<!-- /.Third container -->
-
 		<!-- Streak -->
 		<div class="streak streak-photo streak-md" style="background-image:url('https://mdbootstrap.com/img/Photos/Horizontal/Work/12-col/img%20%2811%29.jpg')">
 			<div class="mask flex-center rgba-indigo-strong">
 				<div class="white-text smooth-scroll mx-4">
-					<h2 class="h2-responsive wow fadeIn mb-5" style="visibility: visible; animation-name: fadeIn;"><i class="fas fa-quote-left" aria-hidden="true"></i> Design is not just what it looks like and feels like. Design is how it works. <i class="fas fa-quote-right" aria-hidden="true"></i></h2>
-					<h5 class="text-center font-italic wow fadeIn" data-wow-delay="0.2s" style="visibility: visible; animation-name: fadeIn; animation-delay: 0.2s;">~ Steve Jobs</h5>
+					<h2 class="h2-responsive wow fadeIn mb-5" data-wow-delay="0.3s"><i class="fas fa-quote-left" aria-hidden="true"></i> The best way to predict the future is to invent it. <i class="fas fa-quote-right" aria-hidden="true"></i></h2>
+					<h5 class="text-center font-italic wow fadeIn" data-wow-delay="0.4s">~ Alan Kay</h5>
 				</div>
 			</div>
 		</div>
 		<!-- /.Streak -->
 
-		<!-- Fourth container -->
+		<!-- Third container -->
 		<div class="container">
 
 			<!-- Fourth section -->
@@ -308,28 +276,119 @@
 
 						<div class="row" id="">
 
-							<div class="col-4" id="">
-								<h2>Eastcoast</h2>
+							<div class="col-12 col-lg-6 my-2" id="">
+								<!-- Card -->
+								<div class="card card-image" style="background-image: url({{ asset('storage/images/eastcoast2westcoast.jpeg') }});">
+
+									<!-- Content -->
+									<div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+										<div>
+											<h3 class="card-title pt-2"><strong>Travel</strong></h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
+												optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
+												Odit sed qui, dolorum!.</p>
+											<a href="http://eastcoast2westcoast.com/" target="_blank" class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a>
+										</div>
+									</div>
+
+								</div>
+								<!-- Card -->
 							</div>
 
-							<div class="col-4" id="">
-								<h2>ToTheRec</h2>
+							<div class="col-12 col-lg-6 my-2" id="">
+								<!-- Card -->
+								<div class="card card-image" style="background-image: url({{ asset('storage/images/ttr.png') }});">
+
+									<!-- Content -->
+									<div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+										<div>
+											<h3 class="card-title pt-2"><strong>Sports</strong></h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
+												optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
+												Odit sed qui, dolorum!.</p>
+											<a href="https://totherec.com/" target="_blank" class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a>
+										</div>
+									</div>
+
+								</div>
+								<!-- Card -->
 							</div>
 
-							<div class="col-4" id="">
-								<h2>RentalHomes</h2>
+							<div class="col-12 col-lg-6 my-2" id="">
+								<!-- Card -->
+								<div class="card card-image" style="background-image: url({{ asset('storage/images/rental_homes.jpeg') }});">
+
+									<!-- Content -->
+									<div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+										<div>
+											<h3 class="card-title pt-2"><strong>Rental Homes</strong></h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
+												optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
+												Odit sed qui, dolorum!.</p>
+											<a href="https://jacksonrentalhomesllc.com/" target="_blank" class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a>
+										</div>
+									</div>
+
+								</div>
+								<!-- Card -->
 							</div>
 
-							<div class="col-4" id="">
-								<h2>JGReunion</h2>
+							<div class="col-12 col-lg-6 my-2" id="">
+								<!-- Card -->
+								<div class="card card-image" style="background-image: url({{ asset('storage/images/jgreunion.jpeg') }});">
+
+									<!-- Content -->
+									<div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+										<div>
+											<h3 class="card-title pt-2"><strong>Reunions</strong></h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
+												optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
+												Odit sed qui, dolorum!.</p>
+											<a href="http://jgreunion.com/" target="_blank" class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a>
+										</div>
+									</div>
+
+								</div>
+								<!-- Card -->
 							</div>
 
-							<div class="col-4" id="">
-								<h2>Spades</h2>
+							<div class="col-12 col-lg-6 my-2" id="">
+								<!-- Card -->
+								<div class="card card-image" style="background-image: url({{ asset('storage/images/spades_flyer.jpg') }});">
+
+									<!-- Content -->
+									<div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+										<div>
+											<h3 class="card-title pt-2"><strong>Recreational</strong></h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
+												optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
+												Odit sed qui, dolorum!.</p>
+											<a href="https://tournament.atstmpllc.com/" target="_blank" class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a>
+										</div>
+									</div>
+
+								</div>
+								<!-- Card -->
 							</div>
 
-							<div class="col-4" id="">
-								<h2>Wedding</h2>
+							<div class="col-12 col-lg-6 my-2" id="">
+								<!-- Card -->
+								<div class="card card-image" style="background-image: url({{ asset('storage/images/engagement2.jpg') }});">
+
+									<!-- Content -->
+									<div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+										<div>
+											<h5 class="pink-text"><i class="fas fa-chart-pie"></i> Marketing</h5>
+											<h3 class="card-title pt-2"><strong>Holy Matrimony</strong></h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
+												optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
+												Odit sed qui, dolorum!.</p>
+											<a href="http://journey2jackson.com/" target="_blank" class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a>
+										</div>
+									</div>
+
+								</div>
+								<!-- Card -->
 							</div>
 
 						</div>
@@ -346,7 +405,7 @@
 			<hr>
 
 		</div>
-		<!-- /.Fourth container -->
+		<!-- /.Third container -->
 
 		<!-- Contact form -->
 		<div id="contact" class="container">

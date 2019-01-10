@@ -1,13 +1,23 @@
 @extends('layouts.app')
 
-@section('styles')
+@section('addt_styles')
 	<style>
-        .top-nav-collapse {
-            background-color: #3f51b5!important;
-        }
-        .navbar:not(.top-nav-collapse) {
-            background: transparent!important;
-        }
+		.top-nav-collapse {
+			background-color: #3f51b5!important;
+		}
+
+		.top-nav-collapse a {
+			color: #fff !important;
+		}
+
+		.navbar:not(.top-nav-collapse) {
+			background: transparent!important;
+		}
+
+		.navbar:not(.top-nav-collapse) a {
+			color: black !important;
+		}
+
         @media (max-width: 768px) {
             .navbar:not(.top-nav-collapse) {
                 background: #3f51b5!important;
@@ -41,9 +51,6 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link waves-effect waves-light" href="#home">Home <span class="sr-only">(current)</span></a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link waves-effect waves-light" href="#about_us" data-offset="60">About Us</a>
                         </li>
