@@ -75,7 +75,9 @@
 					<div class="row smooth-scroll">
 						<div class="col-md-12 pt-3">
 							<div class="white-text text-center pt-5">
-								<h1 class="display-2 mb-4 dark-grey-text wow fadeInUpBig" data-wow-delay="0.6s">Tramaine<strong>Jackson</strong></h1>
+								<h1 class="display-1 mb-4 dark-grey-text wow fadeInUpBig d-none d-md-block" data-wow-delay="0.6s">Tramaine<strong>Jackson</strong></h1>
+								<h1 class="display-1 dark-grey-text wow fadeInUpBig d-md-none mb-0" data-wow-delay="0.6s">Tramaine</h1>
+								<h1 class="display-1 mb-4 dark-grey-text wow fadeInUpBig d-md-none mt-0" data-wow-delay="0.6s"><strong>Jackson</strong></h1>
 								<h5 class="text-uppercase font-weight-bold wow fadeInUp" data-wow-delay="0.s"><mark>Web developer</mark></h5>
 								<a href="#about" class="btn btn-floating btn-large blue wow fadeInDown waves-effect waves-light" data-wow-delay="0.6s" data-offset="100"><i class="fas fa-angle-down" aria-hidden="true"></i></a>
 							</div>

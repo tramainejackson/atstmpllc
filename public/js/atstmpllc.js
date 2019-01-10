@@ -18,12 +18,12 @@ $(document).ready(function() {
 	$('.mdb-select').material_select();
 	
 	// Initialize datetimepicker
-	// $('.datetimepicker').pickadate({
-	// 	// Escape any “rule” characters with an exclamation mark (!).
-	// 	format: 'mm/dd/yyyy',
-	// 	formatSubmit: 'yyyy/mm/dd',
-	// 	min: new Date(1970,1,01),
-	// });
+	$('.datetimepicker').pickadate({
+		// Escape any “rule” characters with an exclamation mark (!).
+		format: 'mm/dd/yyyy',
+		formatSubmit: 'yyyy/mm/dd',
+		min: new Date(1970,1,01)
+	});
 	
 	// Initialize timepicker
 	$('.timepicker').pickatime({
