@@ -286,10 +286,29 @@
 									<div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
 										<div>
 											<h3 class="card-title pt-2"><strong>Travel</strong></h3>
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
-												optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
-												Odit sed qui, dolorum!.</p>
+											<p>From here, to there, and all around the world. We love to travel and have no limitations on where
+												we are willing to go. Starting in the US and finishing in the Caribbean, we love to explore the world
+												together.</p>
 											<a href="http://eastcoast2westcoast.com/" target="_blank" class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a>
+										</div>
+									</div>
+
+								</div>
+								<!-- Card -->
+							</div>
+
+							<div class="col-12 col-lg-6 my-2" id="">
+								<!-- Card -->
+								<div class="card card-image" style="background-image: url({{ asset('storage/images/jgreunion.jpeg') }});">
+
+									<!-- Content -->
+									<div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+										<div>
+											<h3 class="card-title pt-2"><strong>Reunions</strong></h3>
+											<p>Hey cousin! Its a family reunion! Who doesn't love a good family gathering with
+												games and bar-b-que. Keep up with the Jackson's and the Green's and their
+												semi-annual reunions.</p>
+											<a href="http://jgreunion.com/" target="_blank" class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a>
 										</div>
 									</div>
 
@@ -305,9 +324,9 @@
 									<div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
 										<div>
 											<h3 class="card-title pt-2"><strong>Sports</strong></h3>
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
-												optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
-												Odit sed qui, dolorum!.</p>
+											<p>Ball is life! Some people know what that means and some just think they know.
+												You can find out where all the courts are in Philly and even let everybody know
+												the best places to go to play. See you on the court.</p>
 											<a href="https://totherec.com/" target="_blank" class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a>
 										</div>
 									</div>
@@ -324,29 +343,10 @@
 									<div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
 										<div>
 											<h3 class="card-title pt-2"><strong>Rental Homes</strong></h3>
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
-												optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
-												Odit sed qui, dolorum!.</p>
+											<p>Jackson Rental Homes has some of the hottest and most affordable houses in the Philadelphia
+												area. Top to bottom renovations with the coolest new features and concepts on the housing scene.
+												Definently a must see!</p>
 											<a href="https://jacksonrentalhomesllc.com/" target="_blank" class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a>
-										</div>
-									</div>
-
-								</div>
-								<!-- Card -->
-							</div>
-
-							<div class="col-12 col-lg-6 my-2" id="">
-								<!-- Card -->
-								<div class="card card-image" style="background-image: url({{ asset('storage/images/jgreunion.jpeg') }});">
-
-									<!-- Content -->
-									<div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
-										<div>
-											<h3 class="card-title pt-2"><strong>Reunions</strong></h3>
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
-												optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
-												Odit sed qui, dolorum!.</p>
-											<a href="http://jgreunion.com/" target="_blank" class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a>
 										</div>
 									</div>
 
@@ -362,9 +362,9 @@
 									<div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
 										<div>
 											<h3 class="card-title pt-2"><strong>Recreational</strong></h3>
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
-												optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
-												Odit sed qui, dolorum!.</p>
+											<p>Spades? Did somebody say Spades? The March Madness style Spades Tournament being hosted
+												in the Philadelphia area with huge payouts. You've heard it before, you can't win
+												if you don't play.</p>
 											<a href="https://tournament.atstmpllc.com/" target="_blank" class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a>
 										</div>
 									</div>
@@ -380,11 +380,10 @@
 									<!-- Content -->
 									<div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
 										<div>
-											<h5 class="pink-text"><i class="fas fa-chart-pie"></i> Marketing</h5>
 											<h3 class="card-title pt-2"><strong>Holy Matrimony</strong></h3>
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
-												optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
-												Odit sed qui, dolorum!.</p>
+											<p>Love is in the air! My personal website for my wife and I. The journey started years ago
+												and we have the privilege of being able to share what we have with our friends and
+												family.</p>
 											<a href="http://journey2jackson.com/" target="_blank" class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a>
 										</div>
 									</div>
