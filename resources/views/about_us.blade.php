@@ -173,7 +173,7 @@
 
 						<div class="col-md-6 float-left">
 							<div class="avatar mx-auto">
-								<img src="{{ asset('/images/anthony_o.jpg') }}" class="z-depth-1" alt="Anthony avatar image">
+								<img src="{{ asset('/storage/images/tna.png') }}" class="z-depth-1" alt="Tramaine avatar image">
 							</div>
 						</div>
 
@@ -183,11 +183,11 @@
 							<p class="grey-text">I woke up one day and said I want to change my profession. And that's what I did! I taught myself how to design websites. Now I design and host websites on my own private server. How bout them apples</p>
 
 							<!-- LinkedIn -->
-							<a class="p-2 m-2 fa-lg li-ic"><i class="fab fa-linkedin"></i></a>
+							<a href="https://www.linkedin.com/in/tramaine-jackson" target="_blank" class="p-2 m-2 fa-lg li-ic"><i class="fab fa-linkedin"></i></a>
 							<!-- Github -->
-							<a class="p-2 m-2 fa-lg git-ic"><i class="fab fa-github"></i></a>
-							<!-- PayPal -->
-							<a class="p-2 m-2 fa-lg orange-text"><i class="fas fa-basketball-ball"></i></a>
+							<a href="https://github.com/tramainejackson" target="_blank" class="p-2 m-2 fa-lg git-ic"><i class="fab fa-github"></i></a>
+							<!-- Basketball -->
+							<a href="" target="_blank" class="p-2 m-2 fa-lg orange-text"><i class="fas fa-basketball-ball"></i></a>
 						</div>
 
 					</div>
@@ -208,11 +208,11 @@
 							<p class="grey-text">I'm just dope!</p>
 
 							<!-- Facebook -->
-							<a class="p-2 m-2 fa-lg fb-ic"><i class="fab fa-facebook"></i></a>
+							<a href="#" class="p-2 m-2 fa-lg fb-ic"><i class="fab fa-facebook"></i></a>
 							<!-- YouTube -->
-							<a class="p-2 m-2 fa-lg yt-ic"><i class="fab fa-youtube"></i></a>
+							<a href="#" class="p-2 m-2 fa-lg yt-ic"><i class="fab fa-youtube"></i></a>
 							<!-- Instagram -->
-							<a class="p-2 m-2 fa-lg ins-ic"><i class="fab fa-instagram"></i></a>
+							<a href="#" class="p-2 m-2 fa-lg ins-ic"><i class="fab fa-instagram"></i></a>
 						</div>
 
 					</div>
