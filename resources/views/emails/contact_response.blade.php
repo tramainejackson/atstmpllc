@@ -232,7 +232,7 @@
                                         </p>
 
                                         <p style="line-height: 24px">
-                                            Sincerely,</br>
+                                            Sincerely,</br></br>
                                             Tramaine Jackson
                                         </p>
 
@@ -313,7 +313,7 @@
                                         <!-- main section button -->
 
                                         <div style="border:2px solid #ffffff; margin: 0px 5px; padding: 10px; line-height: 22px;">
-                                            <a href="" style="color: #fff; text-decoration: none;">Tramaine Portfolio</a>
+                                            <a href="{{ route('portfolio') }}" style="color: #fff; text-decoration: none;">Tramaine Portfolio</a>
                                         </div>
                                     </td>
 
@@ -321,7 +321,7 @@
                                         <!-- main section button -->
 
                                         <div style="border:2px solid #ffffff; margin: 0px 5px; padding: 10px; line-height: 22px;">
-                                            <a href="" style="color: #fff; text-decoration: none;">ATSTMPLLC Affiliates</a>
+                                            <a href="{{ route('welcome') }}#affiliations" style="color: #fff; text-decoration: none;">ATSTMPLLC Affiliates</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -370,7 +370,7 @@
                                             <tr>
                                                 <!-- logo -->
                                                 <td align="left">
-                                                    <a href="" style="display: block; border-style: none !important; border: 0 !important;"><img width="80" border="0" style="display: block; width: 80px;" src="https://mdbootstrap.com/img/logo/mdb-email.png" alt="" /></a>
+                                                    <a href="" style="display: block; border-style: none !important; border: 0 !important;"><img width="80" border="0" style="display: block; width: 80px;" src="{{ asset('/images/Atstmpllc_Logo.png') }}" alt="" /></a>
                                                 </td>
                                             </tr>
 
@@ -383,7 +383,7 @@
                                                     class="text_color">
                                                     <div style="color: #333333; font-size: 14px; font-family: 'Work Sans', Calibri, sans-serif; font-weight: 600; mso-line-height-rule: exactly; line-height: 23px;">
 
-                                                        Email us: <br/> <a href="mailto:jackson.tramaine3@gmail.com&subject='Hello'" style="color: #888888; font-size: 14px; font-family: 'Hind Siliguri', Calibri, Sans-serif; font-weight: 400;">jackson.tramaine3@gmail.com</a>
+                                                        Email me: <br/> <a href="mailto:jackson.tramaine3@gmail.com&subject='Hello'" style="color: #888888; font-size: 14px; font-family: 'Hind Siliguri', Calibri, Sans-serif; font-weight: 400;">jackson.tramaine3@gmail.com</a>
 
                                                     </div>
                                                 </td>
@@ -411,34 +411,22 @@
                                                 <td height="15" style="font-size: 15px; line-height: 15px;">&nbsp;</td>
                                             </tr>
 
-                                            <tr>
-                                                <td>
-                                                    <table border="0" align="right" cellpadding="0" cellspacing="0">
-                                                        <tr>
-                                                            <td>
-                                                                <a href="https://www.facebook.com/mdbootstrap" style="display: block; border-style: none !important; border: 0 !important;"><img width="24" border="0" style="display: block;" src="http://i.imgur.com/Qc3zTxn.png" alt=""></a>
-                                                            </td>
-                                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                                            <td>
-                                                                <a href="https://twitter.com/MDBootstrap" style="display: block; border-style: none !important; border: 0 !important;"><img width="24" border="0" style="display: block;" src="http://i.imgur.com/RBRORq1.png" alt=""></a>
-                                                            </td>
-                                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                                            <td>
-                                                                <a href="https://plus.google.com/u/0/b/107863090883699620484/107863090883699620484/posts" style="display: block; border-style: none !important; border: 0 !important;"><img width="24" border="0" style="display: block;" src="http://i.imgur.com/Wji3af6.png" alt=""></a>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                            </tr>
-
                                         </table>
+
                                     </td>
+
                                 </tr>
+
                             </table>
+
                         </td>
+
                     </tr>
+
                 </table>
+
             </td>
+
         </tr>
 
         <tr>
