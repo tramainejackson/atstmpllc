@@ -11,14 +11,14 @@
 |
 */
 
- Route::get('/test', function () {
-	 $subject = 'Test Subject';
-	 $name = 'Test Name';
-	 $email = 'test Email';
-	 $body = 'test Body';
-	
-     return view('emails.contact_response', compact('subject', 'name', 'email', 'body'));
- })->middleware('web');
+//Route::get('/test', function () {
+//	 $subject = 'Test Subject';
+//	 $name = 'Test Name';
+//	 $email = 'test Email';
+//	 $body = 'test Body';
+//
+//     return view('emails.contact_response', compact('subject', 'name', 'email', 'body'));
+// })->middleware('web');
 
 Auth::routes();
 
