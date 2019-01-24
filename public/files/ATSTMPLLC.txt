@@ -1,11 +1,12 @@
 ---------------------------------------
 			ATSTMPLLC
 ---------------------------------------
-TODO: Add a section to my profile to keep up with the payments for websites
-TODO: Redirect when going to forbidden links
-TODO: Style emails
+TODO: Create a mailgun account
 TODO: Check and see how the numbers calculate after transactions ect have been made and then a user is added to a bank (For 3 or more users)
 TODO: Maybe add refund as a transaction option
+Done: Redirect when going to forbidden links
+Done: Style emails
+Done: Add a section to my profile to keep up with the payments for websites
 Done: Create an about page
 Done: Edit document pages
 Done: Fix redirect message css across the board
