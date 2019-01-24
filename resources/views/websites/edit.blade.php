@@ -11,21 +11,26 @@
 			
 			<div class="col-8 my-4 mx-auto">
 				<div class="userNavLinks d-flex flex-column flex-lg-row justify-content-around">
-					<a href="/websites" class="btn my-1 col-12 col-lg-6">All Websites</a>
-					<a href="/websites/create" class="btn my-1 col-12 col-lg-6">Add New Website</a>
+					<a href="{{ route('websites.index') }}" class="btn my-1 col-12 col-lg-6">All Websites</a>
+					<a href="{{ route('websites.create') }}" class="btn my-1 col-12 col-lg-6">Add New Website</a>
 				</div>
 			</div>
 			
 			<div class="col-12 col-lg-10 mx-auto">
 				
 				<div class="formDiv">
-					
+
+					<div class="">
+						<h2 class="mr-4 d-inline-block">Edit Website</h2>
+
+						{{--Send a notification to the user regarding their payment--}}
+						{!! Form::open(['action' => ['WebsiteController@payment_reminder', $website->id], 'files' => 'true', 'method' => 'POST', 'class' => 'd-inline']) !!}
+							<button type="submit" class="btn btn-mdb-color sendPaymentReminder">Send Payment Reminder</button>
+						{!! Form::close() !!}
+					</div>
+
+					{{--Update Form--}}
 					{!! Form::open(['action' => ['WebsiteController@update', $website->id], 'files' => 'true', 'method' => 'PUT']) !!}
-						
-						<div class="">
-							<h2 class="mr-4 d-inline-block">Edit Website</h2>
-							<button class="btn btn-mdb-color d-inline sendPaymentReminder">Send Payment Reminder</button>
-						</div>
 					
 						<div class="container-fluid">
 							

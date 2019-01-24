@@ -64,3 +64,5 @@ Route::resource('bank', 'BankAccountController');
 Route::resource('documents', 'DocumentController');
 
 Route::resource('websites', 'WebsiteController');
+
+Route::post('websites/reminder/{website}', 'WebsiteController@payment_reminder')->name('payment_reminder');

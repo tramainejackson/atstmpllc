@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Website;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use App\Mail\PaymentReminder;
 
 class WebsiteController extends Controller
 {
@@ -102,5 +104,19 @@ class WebsiteController extends Controller
     public function destroy(Website $website)
     {
         //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Website  $website
+     * @return \Illuminate\Http\Response
+     */
+    public function payment_reminder(Website $website)
+    {
+	    // Send Email to Admin and Recipient
+	    \Mail::to($website->owner_email)->send(new PaymentReminder($website));
+
+        return redirect()->back()->with('status', 'Email Sent Successfulle');
     }
 }
