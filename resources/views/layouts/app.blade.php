@@ -33,13 +33,16 @@
 	
 	@yield('addt_styles')
 </head>
+
 <body>
 	<div id="app">
+
 		@if(session('status'))
 			<div id="return_messages" class="wow rotateInDownLeft" data-wow-delay="0.7s">
-				<ul class="flashMessage text-center">{!! session('status') !!}</ul>
+				<ul class="flashMessage text-center progress-bar-striped green p-2 text-white">{!! session('status') !!}</ul>
 			</div>
 		@endif
+
 		<div class="modal fade loadingSpinner">
 			<div class="loader"></div>
 			<div class="">
@@ -66,5 +69,13 @@
 	<script src="/js/atstmpllc.js"></script>
 	
 	@yield('addt_scripts')
+
+	@if(session('status'))
+		<script type="text/javascript">
+			setTimeout(function() {
+				$('#return_messages').fadeOut();
+			}, 7000)
+		</script>
+	@endif
 </body>
 </html>

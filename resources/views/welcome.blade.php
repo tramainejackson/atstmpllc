@@ -9,10 +9,6 @@
 	</style>
 @endsection
 
-@section('scripts')
-	@include('layouts.functions.bootstrap_js')
-@endsection
-
 @section('content')
 <div class="view" id="admin_page_login">
 	<!-- Mask & flexbox options-->

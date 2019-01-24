@@ -62,3 +62,5 @@ Route::resource('transactions', 'TransactionController');
 Route::resource('bank', 'BankAccountController');
 
 Route::resource('documents', 'DocumentController');
+
+Route::resource('websites', 'WebsiteController');

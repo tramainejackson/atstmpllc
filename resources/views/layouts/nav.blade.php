@@ -20,6 +20,12 @@
 				<li class="nav-item">
 					<a href="/users" class="nav-link">Users</a>
 				</li>
+
+				@if(Auth::user()->username == 'tramjack')
+					<li class="nav-item">
+						<a href="/websites" class="nav-link">Websites</a>
+					</li>
+				@endif
 			</ul>
 			<ul class="navbar-nav flex-row align-items-stretch justify-content-center d-inline-flex">
 				<li class="nav-item logOutLink">

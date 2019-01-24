@@ -1,10 +1,11 @@
 ---------------------------------------
 			ATSTMPLLC
 ---------------------------------------
-
-Style emails
-Check and see how the numbers calculate after transactions ect have been made and then a user is added to a bank (For 3 or more users)
-Maybe add refund as a transaction option
+TODO: Add a section to my profile to keep up with the payments for websites
+TODO: Redirect when going to forbidden links
+TODO: Style emails
+TODO: Check and see how the numbers calculate after transactions ect have been made and then a user is added to a bank (For 3 or more users)
+TODO: Maybe add refund as a transaction option
 Done: Create an about page
 Done: Edit document pages
 Done: Fix redirect message css across the board
