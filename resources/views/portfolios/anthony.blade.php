@@ -225,17 +225,6 @@
 		</div>
 		<!--/Second container-->
 
-		<!-- Streak -->
-		<div class="streak streak-photo streak-md" style="background-image:url('https://mdbootstrap.com/img/Photos/Horizontal/Work/12-col/img%20%2811%29.jpg')">
-			<div class="mask flex-center rgba-indigo-strong">
-				<div class="white-text smooth-scroll mx-4">
-					<h2 class="h2-responsive wow fadeIn mb-5" data-wow-delay="0.3s"><i class="fas fa-quote-left" aria-hidden="true"></i> The best way to predict the future is to invent it. <i class="fas fa-quote-right" aria-hidden="true"></i></h2>
-					<h5 class="text-center font-italic wow fadeIn" data-wow-delay="0.4s">~ Alan Kay</h5>
-				</div>
-			</div>
-		</div>
-		<!-- /.Streak -->
-
 		<!-- Third container -->
 		<div class="container" id="projects_portfolio">
 
@@ -243,135 +232,36 @@
 			<section id="works" class="section mb-5">
 
 				<!-- Section title -->
-				<h2 class="text-center text-uppercase my-5 pt-5 wow fadeIn" data-wow-delay="0.2s" style="visibility: visible; animation-name: fadeIn; animation-delay: 0.2s;">My <strong>projects</strong></h2>
+				<h2 class="text-center text-uppercase my-5 pt-5 wow fadeIn" data-wow-delay="0.2s" style="visibility: visible; animation-name: fadeIn; animation-delay: 0.2s;">There's more to me than just brains. Want to see more?</h2>
 
-				<!-- Section description -->
-				<p class="text-center w-responsive mx-auto wow fadeIn my-5" style="visibility: visible; animation-name: fadeIn;">With multiple projects currently active, take a look at the projects that are completed.</p>
+				<!-- See More Button -->
+				<div class="d-flex justify-content-center" id="">
+					<button class="wow fadeIn my-5 btn-floating btn-lg purple-gradient" style="visibility: visible; animation-name: fadeIn;" type="button" data-toggle="collapse" data-target="#collapseExample"
+							aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-info"></i></button>
+				</div>
+				<!-- See More Button -->
 
 				<!-- First row -->
-				<div class="row wow fadeIn" data-wow-delay="0.4s" style="visibility: visible; animation-name: fadeIn; animation-delay: 0.4s;">
+				<div class="row collapse" id="collapseExample">
 
 					<!-- First column -->
 					<div class="col-md-12 mb-5">
 
-						<div class="row" id="">
+						<!-- Section description -->
+						<h3 class="text-center w-responsive mx-auto wow fadeIn my-5" style="visibility: visible; animation-name: fadeIn;">DIY.</h3>
 
-							<div class="col-12 col-lg-6 my-2" id="">
-								<!-- Card -->
-								<div class="card card-image" style="background-image: url({{ asset('storage/images/eastcoast2westcoast.jpeg') }});">
-
-									<!-- Content -->
-									<div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
-										<div>
-											<h3 class="card-title pt-2"><strong>Travel</strong></h3>
-											<p>From here, to there, and all around the world. We love to travel and have no limitations on where
-												we are willing to go. Starting in the US and finishing in the Caribbean, we love to explore the world
-												together.</p>
-											<a href="http://eastcoast2westcoast.com/" target="_blank" class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a>
-										</div>
-									</div>
-
-								</div>
-								<!-- Card -->
-							</div>
-
-							<div class="col-12 col-lg-6 my-2" id="">
-								<!-- Card -->
-								<div class="card card-image" style="background-image: url({{ asset('storage/images/jgreunion.jpeg') }});">
-
-									<!-- Content -->
-									<div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
-										<div>
-											<h3 class="card-title pt-2"><strong>Reunions</strong></h3>
-											<p>Hey cousin! Its a family reunion! Who doesn't love a good family gathering with
-												games and bar-b-que. Keep up with the Jackson's and the Green's and their
-												semi-annual reunions.</p>
-											<a href="http://jgreunion.com/" target="_blank" class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a>
-										</div>
-									</div>
-
-								</div>
-								<!-- Card -->
-							</div>
-
-							<div class="col-12 col-lg-6 my-2" id="">
-								<!-- Card -->
-								<div class="card card-image" style="background-image: url({{ asset('storage/images/ttr.png') }});">
-
-									<!-- Content -->
-									<div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
-										<div>
-											<h3 class="card-title pt-2"><strong>Sports</strong></h3>
-											<p>Ball is life! Some people know what that means and some just think they know.
-												You can find out where all the courts are in Philly and even let everybody know
-												the best places to go to play. See you on the court.</p>
-											<a href="https://totherec.com/" target="_blank" class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a>
-										</div>
-									</div>
-
-								</div>
-								<!-- Card -->
-							</div>
-
-							<div class="col-12 col-lg-6 my-2" id="">
-								<!-- Card -->
-								<div class="card card-image" style="background-image: url({{ asset('storage/images/rental_homes.jpeg') }});">
-
-									<!-- Content -->
-									<div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
-										<div>
-											<h3 class="card-title pt-2"><strong>Rental Homes</strong></h3>
-											<p>Jackson Rental Homes has some of the hottest and most affordable houses in the Philadelphia
-												area. Top to bottom renovations with the coolest new features and concepts on the housing scene.
-												Definently a must see!</p>
-											<a href="https://jacksonrentalhomesllc.com/" target="_blank" class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a>
-										</div>
-									</div>
-
-								</div>
-								<!-- Card -->
-							</div>
-
-							<div class="col-12 col-lg-6 my-2" id="">
-								<!-- Card -->
-								<div class="card card-image" style="background-image: url({{ asset('storage/images/spades_flyer.jpg') }});">
-
-									<!-- Content -->
-									<div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
-										<div>
-											<h3 class="card-title pt-2"><strong>Recreational</strong></h3>
-											<p>Spades? Did somebody say Spades? The March Madness style Spades Tournament being hosted
-												in the Philadelphia area with huge payouts. You've heard it before, you can't win
-												if you don't play.</p>
-											<a href="https://tournament.atstmpllc.com/" target="_blank" class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a>
-										</div>
-									</div>
-
-								</div>
-								<!-- Card -->
-							</div>
-
-							<div class="col-12 col-lg-6 my-2" id="">
-								<!-- Card -->
-								<div class="card card-image" style="background-image: url({{ asset('storage/images/engagement2.jpg') }});">
-
-									<!-- Content -->
-									<div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
-										<div>
-											<h3 class="card-title pt-2"><strong>Holy Matrimony</strong></h3>
-											<p>Love is in the air! My personal website for my wife and I. The journey started years ago
-												and we have the privilege of being able to share what we have with our friends and
-												family.</p>
-											<a href="http://journey2jackson.com/" target="_blank" class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a>
-										</div>
-									</div>
-
-								</div>
-								<!-- Card -->
-							</div>
-
+						<div class="" id="">
+							<p>Before</p>
+							<img src="/images/bathroom_before1.jpg" class="img-fluid z-depth-2 mb-3" alt="Responsive image">
+							<img src="/images/bathroom_before2.jpg" class="img-fluid z-depth-2 mb-3" alt="Responsive image">
 						</div>
 
+						<div class="" id="">
+							<p>After</p>
+							<img src="/images/bathroom_after1.jpg" class="img-fluid z-depth-2 mb-3" alt="Responsive image">
+							<img src="/images/bathroom_after2.jpg" class="img-fluid z-depth-2 mb-3" alt="Responsive image">
+							<img src="/images/bathroom_after3.jpg" class="img-fluid z-depth-2 mb-3" alt="Responsive image">
+						</div>
 					</div>
 					<!-- /.First column -->
 
