@@ -232,13 +232,13 @@
 											<th class="">Last Payment Date<i class=""></i></th>
 										</tr>
 
-										<tr class="align-center" style="margin-bottom: 25px;">
+										<tr class="align-center" style="">
 											<td class="align-center">{{ $website->renew_date }}</td>
 											<td class="align-center">{{ $website->last_paid_date }}</td>
 										</tr>
 
 										<tr>
-											<td>1 Year Extension = 1 x $100</td>
+											1 Year Extension = 1 x $100
 										</tr>
 
 										<tr>

@@ -19,7 +19,8 @@
 			  <h6 class="text-uppercase mb-4 font-weight-bold">Affiliation</h6>
 			  <p><a href="#!" target="_blank">Business Management</a></p>
 			  <p><a href="http://jacksonrentalhomesllc.com" target="_blank">Property Management</a></p>
-			  <p><a href="{{ route('portfolio') }}" target="_blank">Web Design</a></p>
+			  <p><a href="{{ route('portfolio_tramaine') }}" target="_blank">Web Design</a></p>
+			  <p><a href="{{ route('portfolio_anthony') }}" target="_blank">IT Consultant</a></p>
 		  </div>
 		  <!--/.Second column-->
 

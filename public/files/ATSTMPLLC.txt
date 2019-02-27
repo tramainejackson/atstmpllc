@@ -1,7 +1,7 @@
 ---------------------------------------
 			ATSTMPLLC
 ---------------------------------------
-TODO: Create a mailgun account
+
 TODO: Check and see how the numbers calculate after transactions ect have been made and then a user is added to a bank (For 3 or more users)
 TODO: Maybe add refund as a transaction option
 Done: Redirect when going to forbidden links

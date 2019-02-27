@@ -269,7 +269,7 @@
 								<p class="grey-text">This one belongs to yours truly. I'm a web developer with about 4+ years of experience. You need something built with your personal touch on it? Let me know and I'll get it going for you.</p>
 							</div>
 							<div class="col-12 order-3 order-md-4">
-								<a href="{{ route('portfolio') }}" class="btn btn-lg cyan">Potfolio</a>
+								<a href="{{ route('portfolio_tramaine') }}" class="btn btn-lg cyan">Portfolio</a>
 							</div>
 						</div>
 					</div>

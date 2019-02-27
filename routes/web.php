@@ -16,8 +16,9 @@
 //	 $name = 'Test Name';
 //	 $email = 'test Email';
 //	 $body = 'test Body';
+//	 $website = \App\Website::find(2);
 //
-//     return view('emails.contact_response', compact('subject', 'name', 'email', 'body'));
+//     return view('emails.payment_reminder', compact('subject', 'name', 'email', 'body', 'website'));
 // })->middleware('web');
 
 Auth::routes();
@@ -28,7 +29,9 @@ Route::get('/home', 'HomeController@home')->name('home');
 
 Route::get('/about_us', 'HomeController@about_us')->name('about_us');
 
-Route::get('/tramaine/portfolio', 'HomeController@portfolio')->name('portfolio');
+Route::get('/portfolio/tramaine', 'HomeController@portfolio')->name('portfolio_tramaine');
+
+Route::get('/portfolio/anthony', 'HomeController@portfolio_2')->name('portfolio_anthony');
 
 Route::get('bank/{bankAccount}/users', 'BankAccountController@bank_accounts');
 

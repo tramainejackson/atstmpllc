@@ -127,6 +127,6 @@ class WebsiteController extends Controller
 	    // Send Email to Admin and Recipient
 	    \Mail::to($website->owner_email)->send(new PaymentReminder($website));
 
-        return redirect()->back()->with('status', 'Email Sent Successfulle');
+        return redirect()->back()->with('status', 'Email Sent Successfully');
     }
 }
